@@ -1,0 +1,43 @@
+/*Custom css for validation form. author Allan*/
+.form-horizontal .control-group {
+	margin-bottom: 20px;
+}
+
+.form-horizontal .control-label {
+	float: left;
+	width: 140px;
+	padding-top: 5px;
+	text-align: right;
+	font-size: 16px;
+}
+
+.form-horizontal .controls {
+	margin-left: 155px;
+	font-size: 16px;
+}
+
+.form-horizontal .controls span {
+	font-size: 12px;
+}
+
+.form-horizontal .controls span.form-error {
+	color: red;
+	display: block;
+}
+
+.form-horizontal div.agree-term {
+	font-size: 15px;
+	color: grey;
+	margin: 35px 5px 5px 0px;
+}
+
+.form-horizontal a {
+	color: rgb(75, 75, 182);
+}
+
+.form-horizontal div.agree-term span.form-error{
+	color: red;
+	display: block;
+	font-size: 12px;
+	margin-left: 20px;
+}

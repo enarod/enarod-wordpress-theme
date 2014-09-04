@@ -1,0 +1,35 @@
+Changelog Legend:
+----
+
+[+] = Added
+[*] = Changed
+[^] = Moved
+[=] = No Changes
+[x] = Deleted
+[!] = Bugs
+
+02/23/14 - Improvements - Version 2.0.8
+
+[!] Fixed footer widget bug
+[x] Removed shortcode CSS (moved to plugin)
+
+----
+
+02/24/14 - Improvements - Version 2.0.9
+
+[+] Added Support for wp_pagenavi
+
+----
+
+02/25/14 - Improvements - Version 2.1.0
+
+[!] Fixed duplicate stylesheet
+[x] Removed unused Javascript (now handled by plugin)
+[+] Added Plugin Support for WP Pagenavi
+[+] Added Plugin Support for Regenerate Thumbnails
+[+] Added Plugin Support for Smpl Shortcodes
+[+] Added Ability to change body font color
+[*] Applied better default widget styling
+[*] Cleaned up post loops
+
+----

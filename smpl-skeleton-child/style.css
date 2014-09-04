@@ -1,0 +1,419 @@
+/* Theme Name:   Smpl Skeleton Child
+Description:  Smpl Skeleton Child Theme, created for E-Maidan
+Template:     smpl-skeleton
+Text Domain:  smpl-skeleton-child
+*/
+@import url("../smpl-skeleton/style.css");
+
+/* -------------------------------------------------------------- */
+
+
+/* #Media Queries
+================================================== */
+
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: Arial !important;
+  background: none !important;
+}
+@font-face {
+  font-family: Politica_Bold;
+  src: url(fonts/Politica_Bold.eot);
+  src: local(Politica_Bold), url(fonts/Politica_Bold.ttf);
+}
+.clear {
+  clear:both;
+}
+
+.ie7 BODY .div_deputy BUTTON {
+ padding: 0 15px 13px 0 !important;
+ margin-left: 10px;
+ vertical-align: top;
+}
+.ie7 BODY BUTTON {
+ padding-top: 0 !important;
+}
+
+#header .inner {
+  padding-top: 0;
+}
+
+body #header h1#site-title a {
+  color: #000;
+  font-size: 40px;
+  display: inline-block;
+  line-height: 50px;
+  margin: 17px 0 0;
+  font-family: 'Politica_Bold';
+  letter-spacing: 2px;
+}
+
+#header h1#site-title a span {
+  color: #fff;
+  background: #55a038;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+body #header span.site-desc {
+  color: #000;
+  text-transform: uppercase;
+  font-family: 'Politica_Bold';
+  padding-left: 210px;
+  padding-top: 7px;
+  display: inline-block;
+  letter-spacing: 1px;
+  font-size: 15px;
+}
+
+#navigation ul {
+  background: none;
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+  height: 41px;
+  min-width: 960px;
+}
+
+#navigation ul li {
+  background: #212121;
+  float: left;
+  text-align: center;
+  behavior: none;
+}
+
+#navigation ul li.active a {
+  background: #55a038;
+  border-bottom: none;
+  text-shadow: none;
+  color: #fff;
+}
+
+#navigation ul li a:hover {
+  background: #55a038;
+  border-bottom: none;
+  color: #fff;
+  text-shadow: none;
+}
+
+#navigation ul li a {
+  color: #fff;
+  font-family: 'Politica_Bold';
+  letter-spacing: 1px;
+  text-shadow: none;
+  padding: 11px 0px;
+}
+
+#navigation ul li.menu-item-60 a {
+  width: 241px;
+}
+#navigation ul li.menu-item-59 a {
+  width: 229px;
+}
+#navigation ul li.menu-item-57 a {
+  width: 235px;
+}
+#navigation ul li.menu-item-200 a {
+  width: 232px;
+}
+
+body li.menu-item a {
+  border-bottom: none;
+}
+
+body li#menu-item-200 {
+  border-right: none;
+}
+
+body li#menu-item-63 {
+  display: none;
+}
+
+.service-desc {
+  display: none;
+}
+
+/*.entry-title {height: 100px; border: 2px solid black; font-family: 'Politica_Bold', sans-serif;  letter-spacing: 1px; font-size: 11pt; }.entry-title:hover {background: #000000; }*/
+.contacts_header {
+  font-size: 13pt;
+}
+
+.contacts_info {
+  font-size: 10pt;
+}
+
+.su-column.su-column-size-1-4 ul li:hover {
+  background: #f5f5f5;
+}
+
+.div_left {
+  float: left;
+  margin-right: 5px;
+}
+
+.img_deputy {
+  width: 100%;
+  height: 100%;
+}
+
+.img_div {
+  width: 212px;
+  height: 265px;
+  overflow: hidden;
+}
+
+.img_div_small {
+  width: 80px;
+  height: 100px;
+  overflow: hidden;
+}
+
+.div_deputy {
+  height: 100px;
+  width: 200px;
+}
+
+.button_green {
+  background-color: #55a038;
+  border-color: #44802d;
+  color: white;
+  font-size: 12px;
+}
+
+body a.services-navi {
+  color: #333;
+  text-decoration: none;
+}
+
+body h1, body h2 {
+  font-family: Arial;
+  font-size: 23px;
+}
+
+body h3 {
+  font-family: Arial;
+  font-size: 17px;
+}
+
+body a.services-navi:hover {
+  color: #55a038;
+}
+
+
+body button, input[type="submit"], body input[type="reset"], body input[type="button"], body .button a, body .button.medium a, body button:hover, input[type="submit"]:hover, body input[type="reset"]:hover, body input[type="button"]:hover, body .button a:hover, body .button.medium a:hover {
+  text-shadow: 0 1px 0px #55a038;
+  background: #55a038;
+  /*padding: .4em 0.6em !important;
+  font-size: 14px !important;*/
+  cursor: pointer;
+}
+
+body button:hover, input[type="submit"]:hover, body input[type="reset"]:hover, body input[type="button"]:hover, body .button a:hover, body .button.medium a:hover {
+  text-decoration: underline;
+}
+
+body .one_fourth {
+  margin-right: 10px;
+  width: auto;
+}
+
+body .div_deputy a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 11pt;
+}
+.deputy_title {
+  font-weight: bold;
+  font-size: 14px;
+}
+.deputy_right {
+  float: left;
+  width: 115px;
+}
+.div_deputy {
+  float:left;
+}
+body .su-column-size-1-4 ul a {
+  text-decoration: none;
+}
+body .div_deputy a:hover, body .div_deputy a:active {
+  text-decoration: underline;
+}
+body .div_deputy button {
+  padding: 5px !important;
+}
+
+body .su-column.su-column-size-1-4 ul li a {
+  padding-bottom: 12px;
+  color: #333;
+  display:block;
+}
+body .su-column.su-column-size-1-4 ul li {
+  color: #333;
+  border: none;
+  font-size: 10pt;
+  letter-spacing: 0px;
+  padding: 6px;
+  list-style: none;
+  border-bottom: 1px #ccc solid;
+  margin-bottom:0px;
+  padding-bottom:0;
+
+}
+body .su-column.su-column-size-1-4.agreement {
+  border-color: #ccc;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  border-style: solid;
+  border-width: 1px;
+  width: 212px;
+  float: left;
+  margin-left: 20px;
+}
+body .su-column.su-column-size-1-4.agreement .stats {
+  font-size: 13px;
+}
+body .su-column.su-column-size-1-4.agreement .deputy_main {
+  padding-bottom:30px;
+  background: #f5f5f5;
+}
+
+body .su-column.su-column-size-1-4.agreement ul {
+  border:0;
+  margin-bottom:0px;
+}
+body .su-column.su-column-size-1-4.agreement h3 {
+  padding-left: 6px;
+  padding-right: 6px;
+  margin-bottom:0;
+}
+body .su-column.su-column-size-1-4 ul li.deputu_li_last {
+  border-bottom:0;
+  pdding-bottom: 10px;
+}
+body .su-column.su-column-size-1-4 ul {
+  display:block;
+  width: 212px;
+  border-color: #ccc;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+body .su-column.su-column-size-1-4 ul > a:hover {
+  background: #f5f5f5;
+}
+
+body .su-column.su-column-size-1-4 h3 {
+  font-size: 18px;
+}
+body .su-column.su-column-size-1-4 .deputy_main {
+  text-align: center;
+}
+
+.team_text {
+  font-weight: bold;
+  font-size:14px;
+}
+
+#betatext {
+  font-family: 'Politica_Bold';
+  font-size: 23px;
+  // color:#55a038;
+}
+
+#rum_sst_tab {
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+
+body a.under-construction {
+  color: #999 !important;
+}
+
+
+.agreements-navi a, .agreements-navi a:visited {
+  font-family: 'Politica_Bold';
+  font-size: 16px;
+  color: #333;
+}
+.agreements-navi {
+  border-bottom: 1px solid #ccc;
+  margin-right: 11px;
+  height: 32px;
+  margin-bottom: 25px;
+}
+.agreements-navi a.active {
+  color: #55a038;
+}
+
+
+#agreements-types-text {
+  display:none;
+}
+.scrollup{
+  width:40px;
+  height:40px;
+  position:fixed;
+  opacity: 0.7;
+  bottom:5px;
+  right:15px;
+  display:none;
+  text-indent:-9999px;
+  background: url('../smpl-skeleton/images/arrow_top.png') no-repeat;
+  background: url('../smpl-skeleton/images/arrow_top.png') no-repeat;
+}
+.ie8 .scrollup, .ie7 .scrollup {
+  background: url('../smpl-skeleton/images/arrow_top.png') no-repeat;
+}
+.scrollup:hover {
+  opacity: 0.4;
+}
+
+#lang_top {position: absolute; top: 47px; right: 10px; }
+#lang_top select {	border: 0 !important;	-webkit-appearance: none;	-moz-appearance: none;	background: #55A038 url(../smpl-skeleton/images/select-arrow.png) no-repeat 90% center;	width: 100px;	text-indent: 0.01px;	text-overflow: "";	color: #FFF;	border-radius: 0px;	font-family: 'Politica_Bold';
+margin-top: 20px;
+}
+
+#lang_top select:hover { cursor: pointer; cursor: hand; }
+.su-list.contacts_info b {
+ font-size: 14px; 
+}
+#post-51 .one_half {
+ width:58%;
+}
+#post-51 .one_half.last {
+ width:38%;
+}
+img.alignleft {
+ float: left;
+ width: 134px;
+}
+
+
+.su-row .su-column .column_title {
+ display:block;
+ padding-bottom: 4px;
+ padding-top:5px;
+ text-align: center;
+ font-family: 'Politica_Bold';
+ font-size: 15px;
+ background: #f5f5f5;
+}
+#post-15 .su-row .su-column {
+  padding-right: 4%;
+}
+.pre_text {
+ text-align: center;
+ display: block;
+}
+#post-15 .su-row .su-column:first-child {
+  border-right: 1px dashed #ccc;
+}

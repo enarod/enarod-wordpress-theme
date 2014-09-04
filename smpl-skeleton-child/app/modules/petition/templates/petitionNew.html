@@ -1,0 +1,80 @@
+﻿<div class="su-column su-column-size-3-4" style="width: 73%; float:left;">
+    <div id="petition-header">
+        <div class="petition-header-inner new-petition">
+            <h2>• Нова петиція •</h2>
+        </div>
+    </div>
+    <div id="petition-form">
+        <div class="petition-form-textarea petition-form-textarea1">
+            <textarea id='subject' name='subject' placeholder="Тема / Назва"></textarea>
+        </div>
+        <div class="petition-form-item petition-form-item-level">
+            <h3>Рівень :</h3>
+            <% _.each( levelList.models, function( level, index, list ){ %>
+            <label for="<%=level.get('Name')%>">
+                <input id="<%=level.get('Name')%>" name='petition-level' type='radio' value='<%=level.get("ID")%>'>
+                <span class="level-text"><%=level.get('Description')%></span>
+            </label>
+            <% }) %>
+        </div>
+        <div class="petition-form-item petition-form-item-address">
+            <h3>Адресат :</h3>
+            <label for="recipient">
+                <input id="recipient" type='radio' name='recipient' value='Порошенко П.О.' />
+                <span class="level-text">Президент України Порошенко П.О.</span>
+            </label>
+        </div>
+        <div class="clear"></div>
+        <div class="petition-form-item petition-form-item-category">
+            <h3>Категорія :</h3>
+            <table>
+                <% _.each( categoryList.models, function( category, index, list ){ %>
+                <% if ( index%2 == 0 ){ %>
+                <tr>
+                    <% } %>
+                    <td>
+                        <label for="<%=category.get('Name')%>">
+                            <input id="<%=category.get('Name')%>" name='petition-category' value="<%=category.get('Name')%>" type='radio'>
+                            <span class="level-text"><%=category.get('Description')%></span>
+                        </label>
+                    </td>
+                    <% if ( index%2 != 0 ){ %>
+                </tr>
+                <% } %>
+                <% }) %>
+            </table>
+        </div>
+        <div class="clear"></div>
+        <div class="petition-form-textarea petition-form-textarea1">
+            <textarea id='description' name='description' placeholder="Опис проблеми"></textarea>
+        </div>
+        <div class="petition-form-textarea petition-form-textarea2">
+            <textarea id='requirements' name='requirements' placeholder="Вимоги / пропозиції щодо її вирішеня"></textarea>
+        </div>
+        <div class="petition-form-textarea petition-form-textarea1">
+            <textarea id='keywords' name='keywords' placeholder="Ключові слова"></textarea>
+        </div>
+	<div class="petition-form-textarea petition-form-textarea1">
+	    <textarea id='email' name='email' placeholder="Введіть котнактний email"></textarea>
+	</div>
+        <div class="petition-publish-wrapper">
+            <input type="button" id="publish_petition" value="ОПУБЛІКУВАТИ ПЕТИЦІЮ">
+        </div>
+    </div>
+</div>
+
+<div class="su-column su-column-size-1-4" style="width: 27%; float:left;">
+    <div class="petition-wrapper">
+        <div id='petition-latest'>
+            <div class="petition-latest-title">ОСТАННІ ПЕТИЦІЇ</div>
+            <div class='petition-latest-item'>
+                <a href='#'>
+                    Але щоб ви зрозуміли, звідки виникає це хибне уявлення людей, цуратись насолоди і
+                    вихваляти страждання, я розкрию перед вами всю картину і...
+                </a>
+            </div>
+            <a id="petitions-all" href="#petition">Показати всі</a>
+        </div>
+    </div>
+</div>
+
