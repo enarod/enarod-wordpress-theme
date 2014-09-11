@@ -15,6 +15,7 @@ define( 	function( require ){
 		routes:{
 			""						:	"home",
 			"petition"				:	"listPetitions",
+			"petition/search"		:	"listPetitions",
 			"petition/new"			:	"createPetition",
 			"petition/tag/:tag"		:	"listPetitions",
 			"petition/:id"			:	"openPetition",

@@ -15,6 +15,7 @@ define(function (require) {
         events: {
             'click span#search': 'openSearch',
             'click button#find': 'find',
+            'click button#show-all-petitions': 'showAllPetitions',
         },
         render: function () {
             this.$el.html(this.template());
@@ -58,7 +59,7 @@ define(function (require) {
             event.preventDefault();
 
             var searchFor = $('input[name=search_for]').val();
-            this.router.navigate('/petition');
+            this.router.navigate('/petition/search');
 
             var PetitionCollection  = require ('module/petition/collection/petitionCollection');
             var Petitions = new PetitionCollection({search: searchFor});
@@ -69,6 +70,9 @@ define(function (require) {
                 settings : {petitions : Petitions} 
             }); 
             Petitions.fetch();
+        },
+        showAllPetitions: function () {
+            this.router.navigate('/petition', true);
         },
         //Clean
         cleanUp: function () {
