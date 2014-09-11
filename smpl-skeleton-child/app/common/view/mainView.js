@@ -14,7 +14,7 @@ define(function (require) {
         moduleNode: '#module-content',
         events: {
             'click span#search': 'openSearch',
-            'click button#find': 'find'
+            'click button#find': 'find',
         },
         render: function () {
             this.$el.html(this.template());

@@ -12,13 +12,17 @@ define(function(require){
             this.listenTo(this.petitions, 'sync', this.render);
         },
         render: function(){
-            var parentView = this.parentView;
-            this.petitions.each(function(petition){
-                var item = new PetitionView ({ tmpl: 'item', model: petition });
-                item.parentView = parentView;
-                item.render();
-                this.petitionsViewList.push(item);
-            }, this);
+			if ( this.petitions.length == 0 ){
+				alert('На жаль, не вдалося знайти петиції які відповідають Вашому запиту.');
+			}else{
+	            var parentView = this.parentView;
+	            this.petitions.each(function(petition){
+	                var item = new PetitionView ({ tmpl: 'item', model: petition });
+	                item.parentView = parentView;
+	                item.render();
+	                this.petitionsViewList.push(item);
+	            }, this);
+			}
         },
         remove: function(){
             _.each( this.petitionsViewList, function (petition){

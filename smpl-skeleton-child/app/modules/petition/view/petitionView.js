@@ -24,7 +24,7 @@ define( function(require){
         events:{
             'click input[id=sign]':             'sign',
             'click input[id=publish_petition]': 'publishPetition',
-            'click input[name=petition-level]': 'openRegionList'
+            'click input[name=petition-level]': 'openRegionList',
         },
 
         render: function() {
@@ -49,7 +49,7 @@ define( function(require){
                     Subject         :   $('#subject').val(),
                     AddressedTo     :   $('#recipient').val(),
                     Text            :   $('#description').val(),
-                    Requirements    :   JSON.stringify($('#requirements').val()),
+                    Requirements    :	$('#requirements').val(),
                     Category        :   { Name  : $('input[name=petition-category]:checked').val() },
                     Level           :   { ID    : $('input[name=petition-level]:checked').val() },
                     KeyWords        :   $('#keywords').val().split(','),
@@ -61,7 +61,7 @@ define( function(require){
                 this.model.save();
                 this.listenTo(this.model, 'sync', this.openStoredPetition);
             }else{
-                alert('¬‚Â‰≥Ú¸ ·Û‰¸-Î‡ÒÍ‡ ¬‡¯ email.');
+                alert('–í–≤–µ–¥—ñ—Ç—å –±—É–¥—å-–ª–∞—Å–∫–∞ –í–∞—à email.');
             }
         },
 
@@ -89,7 +89,7 @@ define( function(require){
                 alert("–°—Ç–∞–ª–∞—Å—è –ø–æ–º–∏–ª–∫–∞!");
             }
         },
-
+		
         onceAll: function(sources, eventName, handler, context){
             handler = _.after( sources.length, handler);
             context = context || this;
