@@ -18,13 +18,15 @@
         <div class="petition-subsection">
             <div class="petition-subsection-header">Вимоги</div>
             <div id="petition-requirements"><%=Requirements%></div>
-        </div>
+		</div>
+		<%if ( VotesCount > Limit ) { %>
         <div class="petition-tags">
             Теги:
             <% _.each(KeyWords, function(el, idx, list){ %>
             <a href='#petition/tag/<%=el%>'><%=el%></a>
             <% }) %>
 		</div>
+		<%}%>
 <!-- TEMPORARY DISABLED		
         <div class="social-media">
             <a href='#'>Facebook</a>
