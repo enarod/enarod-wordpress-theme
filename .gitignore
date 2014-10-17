@@ -2,6 +2,7 @@
 .htaccess
 sitemap.xml
 sitemap.xml.gz
+index.php
 wp-config.php
 wp-content/advanced-cache.php
 wp-content/backup-db/
