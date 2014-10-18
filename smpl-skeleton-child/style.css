@@ -1,10 +1,10 @@
 /*
-Theme Name:   Smpl Skeleton Child
-Description:  Smpl Skeleton Child Theme, created for enarod.org
-Template:     smpl-skeleton
-Text Domain:  smpl-skeleton-child
-Version:      0.2
+Theme Name: e-narod
+Description: Skeleton Child Theme. Created for enarod.org.
+Version: 0.2
+Template: smpl-skeleton
 */
+
 
 @import url("../smpl-skeleton/style.css");
 @import url("skeleton-tweaks.css");

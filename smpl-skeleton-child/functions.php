@@ -78,19 +78,19 @@ add_action('after_setup_theme', 'en_colors');
 
 function en_scripts() {
     $theme = wp_get_theme();
-    if (is_child_theme()) {
-        $parent = $theme->parent();
-        $version = $parent['Version'];
-    } else {
-        $version = $theme['Version'];
-    }
+    $version = $theme['Version'];
+    $theme_uri = get_stylesheet_directory_uri();
+
 
     wp_enqueue_style(
         'shortcodes', trailingslashit(plugins_url()).'smpl-shortcodes/assets/css/smpl-shortcodes.css',
         array(), $version, 'screen, projection');
 
     wp_enqueue_script(
-        'agreement-service', get_template_directory_uri().'/crypto/agreement-service.js',
+        'en-agreement-service', $theme_uri.'/crypto/agreement-service.js',
+        array('jquery'), $version, 'screen, projection');
+    wp_enqueue_script(
+        'en-functions', $theme_uri.'/functions.js',
         array('jquery'), $version, 'screen, projection');
 }
 add_action('wp_enqueue_scripts', 'en_scripts');
