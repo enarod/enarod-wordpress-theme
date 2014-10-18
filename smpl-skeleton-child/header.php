@@ -34,31 +34,9 @@
 
 <!-- Mobile Specific Metas
 ================================================== -->
-
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-
-<script type="text/javascript" src="/wp-content/themes/smpl-skeleton-child/jquery/jquery-1.7.2.min.js"></script>
-
-<script type="text/javascript" src="/wp-content/themes/smpl-skeleton-child/jquery/jquery-ui-1.8.20.custom.min.js"></script>
-
-<script type="text/javascript" src="/wp-content/themes/smpl-skeleton-child/crypto/agreement-service.js"></script>
-
-
-<!--<script type="text/javascript" src="/wp-content/themes/smpl-skeleton-child/jquery/jquery.base64.min.js"></script>-->
-
-<!--<link rel="stylesheet" type="text/css" media="screen" href="/wp-content/themes/smpl-skeleton-child/jquery/redmond/jquery-ui-1.8.20.custom.css" />-->
-
-
-
-
-
 <?php wp_head(); ?>
-
-<!--<link rel='stylesheet' id='smpl_shortcodes-css'  href='http://emaidan.infopulsepackaging.com/wp-content/plugins/smpl-shortcodes/assets/css/smpl-shortcodes.css' type='text/css' media='all' />-->
-
-<link rel='stylesheet' id='smpl_shortcodes-css'  href='/wp-content/plugins/smpl-shortcodes/assets/css/smpl-shortcodes.css' type='text/css' media='all' />
-
 
 </head>
 <body <?php body_class(); ?>>

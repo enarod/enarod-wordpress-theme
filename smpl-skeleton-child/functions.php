@@ -6,8 +6,10 @@
  *
  * Layout Hooks:
  *
+ * skeleton_above_header // Opening header wrapper
  * skeleton_header // header tag and logo/header text
  * skeleton_header_extras // Additional content may be added to the header
+ * skeleton_below_header // Closing header wrapper
  * skeleton_navbar // main menu wrapper
  * skeleton_before_content // Opening content wrapper
  * skeleton_after_content // Closing content wrapper
@@ -15,118 +17,83 @@
  * skeleton_after_sidebar // Closing sidebar wrapper
  * skeleton_footer // Footer
  *
+ * Sets up the theme and provides some helper functions. Some helper functions
+ * are used in the theme as custom template tags. Others are attached to action and
+ * filter hooks in WordPress to change core functionality.
+ *
+ * The first function, skeleton_setup(), sets up the theme by registering support
+ * for various features in WordPress, such as post thumbnails, navigation menus, and the like.
+ *
+ * When using a child theme (see http://codex.wordpress.org/Theme_Development and
+ * http://codex.wordpress.org/Child_Themes), you can override certain functions
+ * (those wrapped in a function_exists() call) by defining them first in your child theme's
+ * functions.php file. The child theme's functions.php file is included before the parent
+ * theme's file, so the child theme functions would be used.
+ *
+ * Functions that are not pluggable (not wrapped in function_exists()) are instead attached
+ * to a filter or action hook. The hook can be removed by using remove_action() or
+ * remove_filter() and you can attach your own function to the hook.
+ *
+ * We can remove the parent theme's hook only after it is attached, which means we need to
+ * wait until setting up the child theme:
+ *
  * For more information on hooks, actions, and filters, see http://codex.wordpress.org/Plugin_API.
  *
  * @package WordPress
  * @subpackage skeleton
  * @since skeleton 2.0
- *
  */
 
 
-/*-----------------------------------------------------------------------------------*/
-/* Theme Customizer
-/*-----------------------------------------------------------------------------------*/
+/**
+ * Programatically set some default values for skeleton theme,
+ * only if values are not defined.
+ *
+ * @param $options - values to set.
+ */
+function set_skeleton_options($options) {
+    $skeleton_options = (get_option('skeleton_options')) ? get_option('skeleton_options') : null;
+    $updated = false;
+    foreach ($options as $name=>$value) {
+        if (!isset($skeleton_options[$name])) {
+            $skeleton_options[$name] = $value;
+            $updated = true;
+        }
+    }
 
-require_once get_template_directory() . '/customizer.php';
-
-/*-----------------------------------------------------------------------------------*/
-/* Register Core Stylesheets
-/* These are necessary for the theme to function as intended
-/* Supports the 'Better WordPress Minify' plugin to properly minimize styleshsets into one.
-/* http://wordpress.org/extend/plugins/bwp-minify/
-/*-----------------------------------------------------------------------------------*/
-
-if ( !function_exists( 'skeleton_scripts' ) ) {
-
-function skeleton_scripts() {
-
-	// Set a dynamic version for cache busting
-	$theme = wp_get_theme();
-	if(is_child_theme()) {
-		$parent = $theme->parent();
-		$version = $parent['Version'];
-		} else {
-		$version = $theme['Version'];
-	}
-
-	wp_enqueue_script('superfish',get_template_directory_uri()."/javascripts/superfish.js",array('jquery'),$version,true);
-
-	wp_enqueue_script('formalize',get_template_directory_uri()."/javascripts/jquery.formalize.min.js",array('jquery'),$version,true);
-
-	wp_enqueue_script('custom',get_template_directory_uri()."/javascripts/custom.js",array('jquery'),$version,true);
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-
-	// register the various widths based on max_layout_width option
-	$maxwidth = skeleton_options('layout', '960');
-  	wp_enqueue_style('skeleton', trailingslashit(get_template_directory_uri()) .'/css/skeleton-'.$maxwidth.'.css', array(), $version, 'screen, projection');
-
-    wp_enqueue_style('formalize', trailingslashit(get_template_directory_uri()).'/css/formalize.css', array(), $version, 'screen, projection');
-
-    wp_enqueue_style('superfish', trailingslashit(get_template_directory_uri()).'/css/superfish.css', array(), $version, 'screen, projection');
-
-	// Get Typography Options
-
-	$body_font = str_replace("+"," ", skeleton_options('body_font', 'Sans-Serif'));
-	$heading_font = str_replace("+"," ", skeleton_options('heading_font', 'Sans-Serif'));
-	$protocol = is_ssl() ? 'https' : 'http';
-
-	$body_query_args = array('family' => skeleton_options('body_font').':400,700');
-	$heading_query_args = array('family' =>	skeleton_options('heading_font').':400,700');
-
-	if ($body_font != 'Sans-Serif' && $body_font != 'Serif') {
-		wp_enqueue_style('skeleton-body-fonts',add_query_arg($body_query_args, "$protocol://fonts.googleapis.com/css" ),array(), null);
-	}
-	if ($heading_font != 'Sans-Serif' && $body_font != 'Serif') {
-		wp_enqueue_style('skeleton-heading-fonts',add_query_arg($heading_query_args, "$protocol://fonts.googleapis.com/css" ),array(), null);
-	}
-
-	wp_enqueue_style( 'skeleton-style', get_stylesheet_uri() );
-
-	wp_enqueue_style( 'skeleton-theme-settings-css', trailingslashit(get_template_directory_uri()) . 'css/layout.css', array(), null );
-	$secondary_color = skeleton_options('secondary_color', '#BE3243');
-	$primary_color = skeleton_options('primary_color', '#375199');
-	$body_bg_color = skeleton_options('body_bg_color', '#f9f9f9');
-	$body_text_color = skeleton_options('body_text_color', '#333333');
-	$link_color = skeleton_options('link_color', '#55a038');
-	$link_hover_color = skeleton_options('link_hover_color', '#55a038');
-
-	$css = "
-		body {
-			color: {$body_text_color};
-			font-family: {$body_font};
-			background-color: {$body_bg_color};
-		}
-		h1,h2,h3,h4,h5 {
-			font-family: {$heading_font};
-		}
-		a,a:visited {
-			color: {$link_color};
-		}
-		a:hover, a:focus, a:active {
-			color: {$link_hover_color};
-		}
-		#header h1#site-title a {
-			color:{$primary_color};
-		}
-		h3.widget-title,
-		#header span.site-desc {
-			color:{$secondary_color};
-		}
-
-	";
-	wp_add_inline_style( 'skeleton-theme-settings-css', $css );
-
+    if ($updated) {
+        update_option('skeleton_options', $skeleton_options);
+    }
 }
 
-add_action( 'wp_enqueue_scripts', 'skeleton_scripts');
-
+function en_colors() {
+    // Set some defaults to Skeleton
+    set_skeleton_options(array(
+        'secondary_color' => '#be3243',
+        'link_color' => '#55a038',
+        'link_hover_color' => '#55a038'
+    ));
 }
+add_action('after_setup_theme', 'en_colors');
 
+function en_scripts() {
+    $theme = wp_get_theme();
+    if (is_child_theme()) {
+        $parent = $theme->parent();
+        $version = $parent['Version'];
+    } else {
+        $version = $theme['Version'];
+    }
 
+    wp_enqueue_style(
+        'shortcodes', trailingslashit(plugins_url()).'smpl-shortcodes/assets/css/smpl-shortcodes.css',
+        array(), $version, 'screen, projection');
+
+    wp_enqueue_script(
+        'agreement-service', get_template_directory_uri().'/crypto/agreement-service.js',
+        array('jquery'), $version, 'screen, projection');
+}
+add_action('wp_enqueue_scripts', 'en_scripts');
 
 
 
