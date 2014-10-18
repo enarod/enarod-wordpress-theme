@@ -4,6 +4,7 @@ Template:     smpl-skeleton
 Text Domain:  smpl-skeleton-child
 */
 @import url("../smpl-skeleton/style.css");
+@import url("./style.org.css");
 
 /* -------------------------------------------------------------- */
 

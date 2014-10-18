@@ -214,7 +214,7 @@ h1#site-title a,
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     -pie-box-shadow: 0 1px 1px #ccc;
     position: relative;
-    behavior: url("./wp-content/themes/skeleton/PIE.php");
+    behavior: url("/wp-content/themes/smpl-skeleton/PIE.php");
 }
 
 
@@ -225,7 +225,7 @@ h1#site-title a,
 	background-image: none;
 	border-right: 1px solid #e3e3e3;
     position: relative;
-    behavior: url("./wp-content/themes/skeleton/PIE.php");
+    behavior: url("/wp-content/themes/smpl-skeleton/PIE.php");
 }
 
 #navigation ul li a {
@@ -248,7 +248,7 @@ h1#site-title a,
 	-pie-background: linear-gradient(#FFFFFF, #F1F1F1);
 	border-bottom: 1px solid #F1F1F1;
     position: relative;
-    behavior: url("./wp-content/themes/skeleton/PIE.php");
+    behavior: url("/wp-content/themes/smpl-skeleton/PIE.php");
 }
 
 #navigation ul li:hover li a {
@@ -529,7 +529,7 @@ img.scale-with-grid,
 	-moz-box-shadow:1px 1px 6px #ddd;
 	box-shadow:1px 1px 6px #ddd;
 	position: relative;
-	behavior: url('../wp-content/themes/skeleton/css/PIE.php');
+	behavior: url('/wp-content/themes/smpl-skeleton/PIE.php');
 }
 
 .wp-caption img {
@@ -873,16 +873,15 @@ input[type="button"],
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px;
-  background: #1d65b3;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2a72c0), color-stop(100%, #1d65b3));
-  background: -webkit-linear-gradient(top, #2a72c0 0%, #1d65b3 100%);
-  background: -o-linear-gradient(top, #2a72c0 0%, #1d65b3 100%);
-  background: -ms-linear-gradient(top, #2a72c0 0%, #1d65b3 100%);
-  background: -moz-linear-gradient(top, #2a72c0 0%, #1d65b3 100%);
-  background: linear-gradient(top bottom, #2a72c0 0%, #1d65b3 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #55a038), color-stop(100%, #55a038));
+  background: -webkit-linear-gradient(top, #55a038 0%, #55a038 100%);
+  background: -o-linear-gradient(top, #55a038 0%, #55a038 100%);
+  background: -ms-linear-gradient(top, #55a038 0%, #55a038 100%);
+  background: -moz-linear-gradient(top, #55a038 0%, #55a038 100%);
+  background: linear-gradient(top bottom, #55a038 0%, #55a038 100%);
   background-clip: border-box;
-  -pie-background: linear-gradient(top, #2a72c0, #1d65b3);
-  behavior: url("PIE.htc");
+  -pie-background: linear-gradient(top, #55a038, #55a038);
+  behavior: url("/wp-content/themes/smpl-skeleton/PIE.htc");
   position: relative;
   background-repeat: repeat-x;
 }
@@ -897,15 +896,15 @@ input[type="reset"]:hover,
 input[type="button"]:hover,
 a.button:hover {
   background: #156bc6;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #156bc6), color-stop(100%, #156bc6));
-  background: -webkit-linear-gradient(top, #156bc6 0%, #156bc6 100%);
-  background: -o-linear-gradient(top, #156bc6 0%, #156bc6 100%);
-  background: -ms-linear-gradient(top, #156bc6 0%, #156bc6 100%);
-  background: -moz-linear-gradient(top, #156bc6 0%, #156bc6 100%);
-  background: linear-gradient(top bottom, #156bc6 0%, #156bc6 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #55a038), color-stop(100%, #55a038));
+  background: -webkit-linear-gradient(top, #55a038 0%, #55a038 100%);
+  background: -o-linear-gradient(top, #55a038 0%, #55a038 100%);
+  background: -ms-linear-gradient(top, #55a038 0%, #55a038 100%);
+  background: -moz-linear-gradient(top, #55a038 0%, #55a038 100%);
+  background: linear-gradient(top bottom, #55a038 0%, #55a038 100%);
   background-clip: border-box;
-  -pie-background: linear-gradient(top, #156bc6, #156bc6);
-  behavior: url("PIE.htc");
+  -pie-background: linear-gradient(top, #55a038, #55a038);
+  behavior: url("/wp-content/themes/smpl-skeleton/PIE.htc");
   position: relative;
   cursor: pointer;
 }
@@ -915,9 +914,9 @@ input[type="submit"]:active,
 input[type="reset"]:active,
 input[type="button"]:active,
 a.button:active {
-  -webkit-box-shadow: inset 0 2px 6px 0 #0e4177, inset 0 0 0 0 #0e4177, 0 1px 1px 0 #eeeeee;
-  -moz-box-shadow: inset 0 2px 6px 0 #0e4177, inset 0 0 0 0 #0e4177, 0 1px 1px 0 #eeeeee;
-  box-shadow: inset 0 2px 6px 0 #0e4177, inset 0 0 0 0 #0e4177, 0 1px 1px 0 #eeeeee;
+  -webkit-box-shadow: inset 0 2px 6px 0 #55a038, inset 0 0 0 0 #55a038, 0 1px 1px 0 #eeeeee;
+  -moz-box-shadow: inset 0 2px 6px 0 #55a038, inset 0 0 0 0 #55a038, 0 1px 1px 0 #eeeeee;
+  box-shadow: inset 0 2px 6px 0 #55a038, inset 0 0 0 0 #55a038, 0 1px 1px 0 #eeeeee;
 }
 
 a.button span.btn_caption {
@@ -1043,7 +1042,7 @@ body.dark #comments {background: url(images/dark/divider.png) repeat-x right top
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
     -pie-box-shadow: 0px 0px 5px #ccc;
     position: relative;
-    behavior: url("./wp-content/themes/skeleton/PIE.php");
+    behavior: url("/wp-content/themes/smpl-skeleton/PIE.php");
 }
 
 .gallery-caption {
@@ -1265,9 +1264,15 @@ html.ie .gallery .gallery-item img,
 html.ie .gallery .gallery-item img.thumbnail,
 html.ie .widget-container,
 html.ie #author-info {
-	behavior: url("PIE.php");
+	behavior: url("/wp-content/themes/smpl-skeleton/PIE.php");
 	position: relative;
 }
 
+img.dark:hover {
+  opacity:0.5;
+  -moz-opacity:0.5;
+  filter: alpha(opacity=50);
+  -khtml-opacity: 0.5;
+  -moz-linear-gradient(left,black,white);
+  }
 /* @end */
-
