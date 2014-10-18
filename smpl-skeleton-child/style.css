@@ -113,17 +113,9 @@ body #header span.site-desc {
   padding: 11px 0;
 }
 
-#navigation ul li.menu-item-60 a {
-  width: 241px;
-}
-#navigation ul li.menu-item-59 a {
-  width: 229px;
-}
-#navigation ul li.menu-item-57 a {
-  width: 235px;
-}
-#navigation ul li.menu-item-200 a {
-  width: 232px;
+#navigation ul li a {
+  min-width: 155px;
+  max-width: 230px;
 }
 
 body li.menu-item a {
@@ -401,7 +393,7 @@ body a.under-construction {
 }
 
 .su-list.contacts_info b {
- font-size: 14px; 
+ font-size: 14px;
 }
 
 #post-51 .one_half {
