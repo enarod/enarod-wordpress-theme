@@ -64,6 +64,7 @@ function set_skeleton_options($options) {
     if ($updated) {
         update_option('skeleton_options', $skeleton_options);
     }
+    add_theme_support('post-thumbnails');
 }
 
 function en_colors() {

@@ -115,7 +115,6 @@ body #header span.site-desc {
 
 #navigation ul li a {
   min-width: 155px;
-  max-width: 230px;
 }
 
 body li.menu-item a {
@@ -426,4 +425,13 @@ img.alignleft {
 }
 #post-15 .su-row .su-column:first-child {
   border-right: 1px dashed #ccc;
+}
+
+.entry-summary img {
+  float: left;
+  margin-right: 10px;
+}
+
+#sidebar {
+  width: 270px;
 }
