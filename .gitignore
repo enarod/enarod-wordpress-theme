@@ -3,6 +3,7 @@
 sitemap.xml
 sitemap.xml.gz
 index.php
+twenty*
 wp-config.php
 wp-content/advanced-cache.php
 wp-content/backup-db/
