@@ -113,6 +113,24 @@ function en_scripts() {
 add_action('wp_enqueue_scripts', 'en_scripts');
 
 
+/*-----------------------------------------------------------------------------------*/
+/* Navigation Hook (skeleton_navbar)
+/*-----------------------------------------------------------------------------------*/
+
+
+if ( !function_exists( 'skeleton_main_menu' ) ) {
+
+    function skeleton_main_menu() {
+        echo '<nav id="en-navigation" class="row sixteen columns">';
+        wp_nav_menu( array( 'container_class' => 'menu-header', 'theme_location' => 'primary'));
+        echo '</nav><!--/#navigation-->';
+    }
+
+    add_action('skeleton_navbar','skeleton_main_menu', 1);
+
+}
+
+
 
 /*-----------------------------------------------------------------------------------*/
 // Hookable theme option field to add add'l content to header

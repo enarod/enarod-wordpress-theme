@@ -75,48 +75,39 @@ body #header span.site-desc {
   font-size: 15px;
 }
 
-#navigation ul {
-  background: none;
-  box-shadow: none;
-  border: none;
-  border-radius: 0;
-  height: 41px;
-  min-width: 960px;
+#en-navigation ul {
+    height: 41px;
+    width: 100%;
+    min-width: 960px;
+    display: table;
+    list-style: none;
 }
 
-#navigation ul li {
-  background: #212121;
-  float: left;
-  text-align: center;
-  behavior: none;
-  width: 16%;
+#en-navigation ul li {
+    display: table-cell;
+    text-align: center;
 }
 
-#navigation ul li.active a {
-  background: #55a038;
-  border-bottom: none;
-  text-shadow: none;
-  color: #fff;
+#en-navigation ul li a {
+    margin: 0 1px 0 0;
+    padding: 11px 0;
+    min-width: 100px;
+    color: #fff;
+    background: #212121;
+    font-family: 'Politica_Bold', sans-serif;
+    letter-spacing: 1px;
 }
 
-#navigation ul li a:hover {
-  background: #55a038;
-  border-bottom: none;
-  color: #fff;
-  text-shadow: none;
+#en-navigation ul li a:hover {
+    background: #55a038;
+    color: #fff;
 }
 
-#navigation ul li a {
-  color: #fff;
-  font-family: 'Politica_Bold', sans-serif;
-  letter-spacing: 1px;
-  text-shadow: none;
-  padding: 11px 0;
+#en-navigation ul li.active a {
+    background: #55a038;
+    color: #fff;
 }
 
-#navigation ul li a {
-  min-width: 100px;
-}
 
 body li.menu-item a {
   border-bottom: none;
