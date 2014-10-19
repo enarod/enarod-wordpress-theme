@@ -45,6 +45,21 @@
  */
 
 
+add_action( 'pre_get_posts' , 'alter_query' );
+
+function alter_query($query) {
+    if (!$query->is_main_query()) {
+        return;
+    }
+
+    if (!is_author()) {
+        return;
+    }
+
+    $query->set('post_type', array('blogs', 'documents'));
+
+}
+
 /**
  * Programatically set some default values for skeleton theme,
  * only if values are not defined.
@@ -95,7 +110,6 @@ function en_scripts() {
         array('jquery'), $version, 'screen, projection');
 }
 add_action('wp_enqueue_scripts', 'en_scripts');
-
 
 
 

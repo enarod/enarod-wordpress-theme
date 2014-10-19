@@ -148,7 +148,7 @@
 					<span class="meta-sep">|</span>
 				<?php endif; ?>
 				<?php
-					$tags_list = apply_filters( 'the_tags', get_the_term_list( $id, array('post_tag', 'blog-tags'), '', ', '), '', ', ', '', $id );
+					$tags_list = apply_filters( 'the_tags', get_the_term_list( $id, array('post_tag', 'blog-tags', 'document-tags'), '', ', '), '', ', ', '', $id );
 					if ( $tags_list ):
 				?>
 					<span class="tag-links">

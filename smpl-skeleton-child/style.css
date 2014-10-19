@@ -89,6 +89,7 @@ body #header span.site-desc {
   float: left;
   text-align: center;
   behavior: none;
+  width: 16%;
 }
 
 #navigation ul li.active a {
@@ -114,7 +115,7 @@ body #header span.site-desc {
 }
 
 #navigation ul li a {
-  min-width: 155px;
+  min-width: 100px;
 }
 
 body li.menu-item a {
@@ -434,4 +435,8 @@ img.alignleft {
 
 #sidebar {
   width: 270px;
+}
+
+.single-documents #content, .single-blogs #content {
+  width: 660px;
 }
