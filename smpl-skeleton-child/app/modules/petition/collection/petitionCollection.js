@@ -1,14 +1,9 @@
-define(
-	function(require){
-		'use strict';
+define(['require', 'backbone', 'petition/model/petitionModel'], function(require, Backbone, Petition){
+    'use strict';
 
-		var $	= require('jquery'),
-		_		= require('underscore'),
-		Backbone= require('backbone'),
-		Petition= require('modules/petition/model/petitionModel');
 
 	return Backbone.Collection.extend({
-		model: Petition,
+		model: require('petition/model/petitionModel'),
 
 		url: function(){
 			var URL = "https://enarod.org/app/api/petition/";
@@ -29,7 +24,7 @@ define(
 
 		parse: function(response){
 			return response.Data;
-		},
+		}
 
 	});
 

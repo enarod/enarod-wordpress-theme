@@ -1,5 +1,6 @@
 define(function (require) {
     'use strict';
+
     var $ = require('jquery'),
         _ = require('underscore'),
         Backbone = require('backbone'),
@@ -8,6 +9,7 @@ define(function (require) {
         appFrame = require('text!common/templates/appFrame'),
         PetitionView = require('module/petition/view/petitionView'),
         PetitionsView = require('module/petition/view/petitionsView');
+
     return Backbone.View.extend({
         className: 'app',
         template: _.template(appFrame),

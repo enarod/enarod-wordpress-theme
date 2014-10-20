@@ -13,25 +13,25 @@ define( 	function( require ){
 
 
 		routes:{
-			""						:	"home",
-			"petition"				:	"listPetitions",
-			"petition/search"		:	"listPetitions",
-			"petition/new"			:	"createPetition",
-			"petition/tag/:tag"		:	"listPetitions",
-			"petition/:id"			:	"openPetition",
-			"petition/:id/(:state)"	:	"openPetition",
+            "": "home",
+            "petition": "listPetitions",
+            "petition/search": "listPetitions",
+            "petition/new": "createPetition",
+            "petition/tag/:tag": "listPetitions",
+            "petition/:id": "openPetition",
+            "petition/:id/(:state)": "openPetition"
 		},
 	
 	
 		home: function(){
-console.log("Home!!!");
+            console.log("Home!!!");
 			this.appView.cleanUp();
 			this.appView.removeModuleMenu();
 		},
 
 		openPetition: function(id, state){
-console.log(id+' '+state);
-			var Petition = require('module/petition/model/petitionModel');
+            console.log(id+' '+state);
+			var Petition = require('petition/model/petitionModel');
 			Petition = new Petition({"ID" : id});
 			Petition.set("id" , id);
 			Petition.set("unfold" , 1);
@@ -44,13 +44,11 @@ console.log(id+' '+state);
 		   	});
 
 			Petition.fetch();
-
-	
-		}, 
+		},
 
 
 		createPetition: function(){
-			var Petition = require('module/petition/model/petitionModel');
+			var Petition = require('petition/model/petitionModel');
 			Petition = new Petition();
 			Petition.getLevel();
 			Petition.getCategory();
@@ -65,6 +63,7 @@ console.log(id+' '+state);
 
 	
 		listPetitions: function(tagName){
+            console.debug('List petitions');
 			this.appView.setModuleMenu('petition');
 
 			var PetitionCollection	= require ('module/petition/collection/petitionCollection');

@@ -104,13 +104,17 @@ function en_scripts() {
         array(), $version, 'screen, projection');
 
     wp_enqueue_script(
-        'en-agreement-service', $theme_uri.'/crypto/agreement-service.js',
-        array('jquery'), $version, 'screen, projection');
-    wp_enqueue_script(
         'en-functions', $theme_uri.'/functions.js',
         array('jquery'), $version, 'screen, projection');
 }
 add_action('wp_enqueue_scripts', 'en_scripts');
+
+function en_app() {
+    $theme_uri = get_stylesheet_directory_uri();
+    echo "<script type=\"text/javascript\"
+        src=\"$theme_uri/app/libs/require.js\"
+        data-main=\"$theme_uri/app/main\"></script>";
+}
 
 
 /*-----------------------------------------------------------------------------------*/

@@ -15,7 +15,7 @@ define(
 		defaults: {
 			Subject	:	'',
 			Text	:	'',
-			ID		:	'',
+			ID		:	''
 		},	
 
 		initialize: function(){
@@ -37,18 +37,16 @@ define(
 		},	
 
 		validate: function(attrs){
-console.log(attrs);
-
+            console.log(attrs);
 		},
 
 
 		errorHandler: function(){
-alert("Error!");
-
-		},		
+            alert("Error!");
+		},
 	
 		changeHandler: function(){
-console.log(" Petition model changed! ");
+            console.log(" Petition model changed! ");
 		},
 
 		/*----------------------------------
@@ -113,11 +111,8 @@ console.log(" Petition model changed! ");
 			var regionList = new PetitionRegions();
 			this.set( 'regionList', regionList);
 			regionList.fetch();
-
 		}
-
-
-	}); 
+	});
 
 
 

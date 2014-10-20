@@ -37,7 +37,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 <?php wp_head(); ?>
-
+<?php en_app(); ?>
 </head>
 <body <?php body_class(); ?>>
 <?php
