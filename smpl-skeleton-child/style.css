@@ -4,9 +4,12 @@ Description: Skeleton Child Theme. Created for enarod.org.
 Version: 0.2
 Template: smpl-skeleton
 */
+
 @import url("../smpl-skeleton/style.css");
 
 /* -------------------------------------------------------------- */
+/* TODO: Move all from here to enarod.less, or just delete */
+
 body li.menu-item a {
     border-bottom: none;
 }
