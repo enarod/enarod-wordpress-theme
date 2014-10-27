@@ -81,57 +81,53 @@ function set_skeleton_options($options) {
     }
 }
 
-function en_setup() {
-    // Set some defaults to Skeleton
-    set_skeleton_options(array(
-        'secondary_color' => '#be3243',
-        'link_color' => '#55a038',
-        'link_hover_color' => '#55a038'
-    ));
 
+if ( !function_exists( 'skeleton_scripts' ) ) {
+
+    function skeleton_scripts() {
+        // Set a dynamic version for cache busting
+        $theme = wp_get_theme();
+        $version = $theme['Version'];
+        $parent_uri = get_template_directory_uri();
+        $theme_uri = get_stylesheet_directory_uri();
+
+        wp_enqueue_script('superfish', "$parent_uri/javascripts/superfish.js", array('jquery'), $version, true);
+        wp_enqueue_script('formalize', "$parent_uri/javascripts/jquery.formalize.min.js", array('jquery'), $version, true);
+        wp_enqueue_script('custom', "$parent_uri/javascripts/custom.js", array('jquery'), $version, true);
+        wp_enqueue_script('en-functions', "$theme_uri/functions.js", array('jquery'), $version, 'screen, projection');
+        wp_enqueue_script('less', "$theme_uri/app/libs/less-1.7.5.min.js", array('jquery'), '', 'screen, projection');
+
+        if (is_singular() && comments_open() && get_option('thread_comments')) {
+            wp_enqueue_script('comment-reply');
+        }
+
+        // register the various widths based on max_layout_width option
+        $max_width = skeleton_options('layout', '960');
+        wp_enqueue_style('skeleton', "$parent_uri/css/skeleton-$max_width.css", array(), $version, 'screen, projection');
+        wp_enqueue_style('formalize', "$parent_uri/css/formalize.css", array(), $version, 'screen, projection');
+        wp_enqueue_style('superfish', "$parent_uri/css/superfish.css", array(), $version, 'screen, projection');
+        wp_enqueue_style('skeleton-theme-settings-css', "$parent_uri/css/layout.css", array(), null);
+    }
+    add_action( 'wp_enqueue_scripts', 'skeleton_scripts');
+}
+
+function en_setup() {
     add_theme_support('post-thumbnails');
+    add_filter('show_admin_bar', '__return_false');
 }
 add_action('after_setup_theme', 'en_setup');
-
-function en_scripts() {
-    $theme = wp_get_theme();
-    $version = $theme['Version'];
-    $theme_uri = get_stylesheet_directory_uri();
-
-
-    wp_enqueue_style(
-        'shortcodes', trailingslashit(plugins_url()).'smpl-shortcodes/assets/css/smpl-shortcodes.css',
-        array(), $version, 'screen, projection');
-
-    wp_enqueue_script(
-        'en-functions', $theme_uri.'/functions.js',
-        array('jquery'), $version, 'screen, projection');
-}
-add_action('wp_enqueue_scripts', 'en_scripts');
-
-function en_app() {
-    $theme_uri = get_stylesheet_directory_uri();
-    echo "<script type=\"text/javascript\"
-        src=\"$theme_uri/app/libs/require.js\"
-        data-main=\"$theme_uri/app/main\"></script>";
-}
 
 
 /*-----------------------------------------------------------------------------------*/
 /* Navigation Hook (skeleton_navbar)
 /*-----------------------------------------------------------------------------------*/
-
-
 if ( !function_exists( 'skeleton_main_menu' ) ) {
-
     function skeleton_main_menu() {
         echo '<nav id="en-navigation" class="row sixteen columns">';
         wp_nav_menu( array( 'container_class' => 'menu-header', 'theme_location' => 'primary'));
         echo '</nav><!--/#navigation-->';
     }
-
     add_action('skeleton_navbar','skeleton_main_menu', 1);
-
 }
 
 

@@ -1,0 +1,299 @@
+@font-face {
+  font-family: "PoliticaBold";
+  src: local("PoliticaBold"), url("fonts/Politica_Bold.ttf");
+}
+
+@heading-font-family: "PoliticaBold" sans-serif;
+@body-font-family: Arial, Helvetica, sans-serif;
+@en-green: #55a038;
+@en-black: #212121;
+
+@import "style.css";
+
+.gradient-background(@color, @m: 5%) {
+  background: @color;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten(@color, @m)), color-stop(100%, @color));
+  background: -webkit-linear-gradient(top, lighten(@color, @m) 0%, @color 100%);
+  background: -o-linear-gradient(top, lighten(@color, @m) 0%, @color 100%);
+  background: -ms-linear-gradient(top, lighten(@color, @m) 0%, @color 100%);
+  background: -moz-linear-gradient(top, lighten(@color, @m) 0%, @color 100%);
+  background: linear-gradient(top bottom, lighten(@color, @m) 0%, @color 100%);
+  background-clip: border-box;
+
+  -webkit-box-shadow: inset 0 2px 6px 0 darken(@color, @m), inset 0 0 0 0 darken(@color, @m), 0 1px 1px 0 #eeeeee;
+  -moz-box-shadow: inset 0 2px 6px 0 darken(@color, @m), inset 0 0 0 0 darken(@color, @m), 0 1px 1px 0 #eeeeee;
+  box-shadow: inset 0 2px 6px 0 darken(@color, @m), inset 0 0 0 0 darken(@color, @m), 0 1px 1px 0 #eeeeee;
+}
+
+.button() {
+  text-shadow: 0 1px 0 @en-black;
+  cursor: pointer;
+  color: @en-black;
+  .gradient-background(@en-green);
+
+  &:hover {
+    text-decoration: underline;
+    .gradient-background(@en-black);
+  }
+}
+
+
+// Global tweaks
+
+body {
+  font-family: @body-font-family;
+  background: none !important;
+}
+
+a {
+  text-decoration: none;
+  color: @en-green;
+
+  &:visited {
+    color: @en-green;
+  }
+
+  &:hover, &:focus, &:active {
+    color: @en-black;
+  }
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: @heading-font-family;
+}
+
+h1, h2 {
+  font-size: 23px;
+}
+
+h3 {
+  font-size: 17px;
+}
+
+button, .button a {
+  .button();
+}
+
+input {
+  &[type="submit"], &[type="reset"], &[type="button"] {
+    .button();
+  }
+}
+
+.clear {
+  clear: both;
+}
+
+.ie7 body {
+  .div_deputy button {
+    padding: 0 15px 13px 0 !important;
+    margin-left: 10px;
+    vertical-align: top;
+  }
+
+  button {
+    padding-top: 0 !important;
+  }
+}
+
+
+// Header
+
+#header {
+  .inner {
+    padding-top: 0;
+  }
+
+  #site-title {
+    a {
+      color: #000;
+      font-size: 40px;
+      display: inline-block;
+      line-height: 50px;
+      margin: 17px 0 0;
+      font-family: @heading-font-family;
+      letter-spacing: 2px;
+
+      span {
+        color: #fff;
+        background: #55a038;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+    }
+  }
+
+  span.site-desc {
+    color: #000;
+    font: 15px @heading-font-family;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 7px 0 0 210px;
+    display: inline-block;
+  }
+
+  #lang_top {
+    position: absolute;
+    top: 47px; right: 10px;
+
+    select {
+      border: 0 !important;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background: @en-green url("img/select-arrow.png") no-repeat 90% center;
+      width: 100px;
+      color: #FFF;
+      border-radius: 0;
+      font-family: @heading-font-family;
+      margin-top: 20px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  #betatext {
+    font: 23px @heading-font-family;
+    color: @en-green;
+  }
+}
+
+// Main navigation
+
+#en-navigation {
+  ul {
+    height: 41px;
+    width: 100%;
+    min-width: 960px;
+    display: table;
+    list-style: none;
+    li {
+      display: table-cell;
+      text-align: center;
+
+      a {
+        margin: 0 1px 0 0;
+        padding: 11px 0;
+        min-width: 100px;
+        color: #fff;
+        .gradient-background(@en-black);
+        background: @en-black;
+
+        font-family: @heading-font-family;
+        letter-spacing: 1px;
+
+        &:hover {
+          .gradient-background(@en-green);
+          color: #fff;
+        }
+      }
+    }
+
+    li.active {
+      color: #fff;
+      .gradient-background(@en-green);
+    }
+  }
+}
+
+// Deputy, whatever it is...
+
+.div_deputy {
+  float: left;
+  height: 100px;
+  width: 200px;
+
+  a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 11pt;
+
+    &:hover, &:active {
+      text-decoration: underline;
+    }
+  }
+
+  button {
+    padding: 5px !important;
+  }
+}
+
+.deputy_title {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.deputy_right {
+  float: left;
+  width: 115px;
+}
+
+// Scroll up arrow
+
+.scrollup {
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  opacity: 0.7;
+  bottom: 5px;
+  right: 15px;
+  display: none;
+  text-indent: -9999px;
+  background: url('img/arrow_top.png') no-repeat;
+
+  &:hover {
+    opacity: 0.4;
+  }
+}
+
+// Agreements
+// TODO: Remove this
+
+.agreements-navi {
+  border-bottom: 1px solid #ccc;
+  margin-right: 11px;
+  height: 32px;
+  margin-bottom: 25px;
+
+  a, a:visited {
+    font-family: @heading-font-family;
+    font-size: 16px;
+    color: #333;
+  }
+
+  a.active {
+    color: @en-green;
+  }
+}
+
+#agreements-types-text {
+  display: none;
+}
+
+// Sidebar tweak
+#sidebar {
+  width: 270px;
+}
+
+
+// Contacts page styles
+.contacts_header {
+  font-size: 13pt;
+}
+
+.contacts_info {
+  font-size: 10pt;
+}
+
+
+// Another fucking shit here to remove...
+.su-row .su-column .column_title {
+  display: block;
+  background: #f5f5f5;
+  padding: 4px 0 5px;
+  font: 15px @heading-font-family;
+  text-align: center;
+}
+
