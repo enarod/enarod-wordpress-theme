@@ -6,6 +6,7 @@ define(
 			jqueryui= require ('jqueryui'),
 			_		= require ('underscore'),
 			Backbone= require ('backbone'),
+			emailSignatorModel	= require('module/signature/model/emailSignatorModel'),
 			emailSignatureModel	= require('module/signature/model/emailSignatureModel'),
 			emailSignatureView	= require('module/signature/view/emailSignatureView'),
 			signatureSelector	= require('text!modules/signature/templates/signatureSelector.html')
@@ -45,7 +46,8 @@ console.log('select certificate');
 				},
 				   
 				selectEmail: function(){
-					var signatureModel	= new emailSignatureModel({'ID': this.petitionID});
+					var emailSignator	= new emailSignatorModel();
+					var signatureModel	= new emailSignatureModel({'ID': this.petitionID, 'Signator' : emailSignator});
 					var signatureView	= new emailSignatureView({model: signatureModel});
 					this.close();
 					signatureView.render();
