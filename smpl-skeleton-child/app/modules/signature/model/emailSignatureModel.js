@@ -8,7 +8,7 @@ define(
 		;
 
 		return Backbone.Model.extend({
-			urlRoot: "https://enarod.org/app/api/petition/emailVote",
+			urlRoot: BASE_URL+"petition/v2/emailVote",
 
 			defaults:{
 				ID: '',

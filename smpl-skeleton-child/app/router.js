@@ -16,10 +16,15 @@ define( 	function( require ){
 			""						:	"home",
 			"petition"				:	"listPetitions",
 			"petition/search"		:	"listPetitions",
+			"petition/search(?:query)"	:	"searchPetitions",
 			"petition/new"			:	"createPetition",
 			"petition/tag/:tag"		:	"listPetitions",
 			"petition/:id"			:	"openPetition",
 			"petition/:id/(:state)"	:	"openPetition",
+
+            "organization"			:   "openOrganization",
+            "organization/:id"      :   "openOrganization",
+            
 		},
 	
 	
@@ -29,6 +34,9 @@ console.log("Home!!!");
 			this.appView.removeModuleMenu();
 		},
 
+/*-----------------------
+    Petition routes
+-----------------------*/
 		openPetition: function(id, state){
 console.log(id+' '+state);
 			var Petition = require('module/petition/model/petitionModel');
@@ -86,6 +94,25 @@ console.log(id+' '+state);
 
 		},
 
+		searchPetitions: function( query ){
+console.log('Search petitions: '+query);
+		},
+
+/*-----------------------
+    Petition routes
+-----------------------*/
+        openOrganization: function (id){
+            var Organization = require('module/organization/model/organizationModel');
+            Organization = new Organization ({"ID"  : id});
+
+            this.appView.addChildView({
+                module: 'organization',
+                type: 'organization',
+                settings: {model: Organization, tmpl: 'organization'}
+            });
+
+            Organization.fetch();
+        }
 
 	});
 

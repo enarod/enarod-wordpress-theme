@@ -11,7 +11,9 @@ require.config ({
 			backbone	: 'libs/backbone',
 			text		: 'libs/text',
 			jqueryui	: 'libs/jquery-ui-1.11.0/jquery-ui',
-			jqte		: 'libs/jqte/jquery-te-1.4.0'
+			jqte		: 'libs/jqte/jquery-te-1.4.0',
+            validation  : 'libs/backbone-validation-amd',
+            stickit     : 'libs/backbone.stickit',
 			
 	}, 
 
@@ -33,9 +35,25 @@ require.config ({
 });
 
 
-require(['jquery', 'backbone', 'router', 'common/view/mainView'], 
+require(['jquery', 'backbone', 'router', 'common/view/mainView', 'validation', 'config' ], 
 
 	function ( $, Backbone, Router, MainView ){
+
+        //Add custom header to HTTP request
+        var defaultBackboneSync = Backbone.sync;
+        Backbone.sync = function ( method, model, options ){
+            options.headers = {
+                'api-version': 2
+            };
+            defaultBackboneSync( method, model, options );
+        };
+
+        // Validation config
+        Backbone.Validation.configure ({
+            forceUpdate : true
+        });
+
+
 		var appView = new MainView();
 		appView.render();
 

@@ -10,7 +10,7 @@ define(
 		PetitionRegions		= require( 'module/petition/collection/petitionRegionCollection' ) ;
 
 	return Backbone.Model.extend({
-		urlRoot: "https://enarod.org/app/api/petition/",
+		urlRoot: BASE_URL+"petition/",
 
 		defaults: {
 			Subject	:	'',

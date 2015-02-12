@@ -5,12 +5,23 @@
                 <h2><%=Subject%></h2>
                 <div class="petition-date"> <%=CreatedDate%> </div>
                 <div class="petition-whom"> <%=AddressedTo%> </div>
-                <!-- DO NOT DISPLAY petition initiator
                 <div class="petition-initiator">Ініціатор: <span> <%=CreatedBy.Login%> </span></div>
-                -->
                 <div class="clear"></div>
             </div>
         </div>
+
+		<% if ( Organization ) { %>
+		<div class="petition-subsection">
+			<div class="petition-subsection-header">Організація-партнер</div>
+			<div id="organization-name">
+				<a href="./#organization/<%=Organization.ID%>">
+					<%=Organization.Name%>
+				</a>
+			</div>
+			<div id="organization-logo"> <img src="<%=Organization.Logo%>" alt="Logo"/> </div>
+		</div>
+		<%}%>
+
         <div class="petition-subsection">
             <div class="petition-subsection-header">Опис проблеми</div>
             <div id="petition-text"><%=Text%></div>
@@ -19,6 +30,7 @@
             <div class="petition-subsection-header">Вимоги</div>
             <div id="petition-requirements"><%=Requirements%></div>
 		</div>
+
 		<%if ( VotesCount > Limit ) { %>
         <div class="petition-tags">
             Теги:
@@ -43,7 +55,7 @@
                 <h4><%=Level.Limit%> ПІДПИСІВ</h4>
                 <span>необхідно зібрати до <%=EffectiveTo%> </span>
             </div>
-            <input class='unsigned' type='image' id='sign' petition-id='<%=ID%>' value='Підписати' src='https://enarod.org/wp-content/themes/smpl-skeleton-child/app/images/sign.jpg'><!-- src='../../../images/signed.jpg' -->
+            <input class='unsigned' type='image' id='sign' petition-id='<%=ID%>' value='Підписати' src='../wp-content/themes/smpl-skeleton-child/app/images/sign.jpg'><!-- src='../../../images/signed.jpg' -->
             <p id='collected'><%=VotesCount%></p>
             <p class="sign-label">підписів зібрано</p>
             <p id='left'><%=VotesLeft%></p>

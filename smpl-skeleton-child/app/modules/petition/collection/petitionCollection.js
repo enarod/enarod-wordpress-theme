@@ -11,7 +11,7 @@ define(
 		model: Petition,
 
 		url: function(){
-			var URL = "https://enarod.org/app/api/petition/";
+			var URL = BASE_URL+"petition/";
 			if(this.search){
 				URL += "search/"+this.search;
 			}else if(this.tag){

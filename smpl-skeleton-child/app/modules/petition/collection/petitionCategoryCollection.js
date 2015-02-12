@@ -8,7 +8,7 @@ define(
 		return Backbone.Collection.extend({
 			model: PetitionCategory,
 
-			url: "https://enarod.org/app/api/petition/category",
+			url: BASE_URL+"petition/category",
 
 			parse: function(data){
 				return data.Data;

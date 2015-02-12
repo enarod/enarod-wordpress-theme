@@ -7,7 +7,7 @@ define( function( require ){
 	return Backbone.Collection.extend({
 		model : PetitionRegion,
 
-		url: "https://enarod.org/app/api/petition/region/3",
+		url: BASE_URL+"petition/region/3",
 
 		parse: function(data){
 			return data.Data;

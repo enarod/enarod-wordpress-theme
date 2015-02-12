@@ -8,7 +8,7 @@ define(
 		return Backbone.Collection.extend({
 			model: PetitionLevel,
 
-			url: "https://enarod.org/app/api/petition/level",
+			url: BASE_URL+"petition/level",
 
 			parse: function(data){
 				return data.Data;
