@@ -2,32 +2,53 @@
 <button id="show-all-petitions" class="search-for-petition">Показати всі петиції</button>
 <span id='search'>
     <form id='petition-search-form'>
-        <input class="search-input-petition" name='search_for'/>
+        <input class="search-input-petition" name='search_for' placeholder='Введіть фразу, назву партнера або П.І.Б. автора' />
         <button id="find" class='search-for-petition'>Шукати</button>
-	<p>
-		<button id="custom-search" class='search-for-petition'>Розширений пошук</button>
-		<table>
-			<td>
-				<label for="id-search-in-new">
-					<input name="search-in-new" type="checkbox" value="1"/>
-					<span class='lavel-text'>Шукати серед нових</span>
-				</label>
-			</td>
-			<td>
-				<label for="id-search-in-category">
-					<input name="search-in-category" type="checkbox" value="1"/>
-					<span class='lavel-text'>Шукати в категорії</span>
-				</label>
-			</td>
-			<td>
-				<label for="id-search-in-partner">
-					<input name="search-in-partner" type="checkbox" value="1"/>
-					<span class='lavel-text'>Шукати серед організацій</span>
-				</label>
-			</td>
-		</table>
-	</p>	
-
     </form>
 </span>
+<div style="clear: both;"></div>
+	<div>
+		Розширений пошук
+<!--
+	<button id="custom-search" class='search-for-petition'>Розширений пошук</button>
+-->
+	</div>
+	<div>
+		<label for="id-search-in-new">
+			<input id="id-search-in-new" name="search-in-new" type="checkbox" value="1"/>
+			<span class='lavel-text'>Шукати серед нових</span>
+		</label>
+	</div>
+	<div id="categories">
+		<label for="id-search-in-category">
+			<input id="id-search-in-category" name="search-in-category" type="checkbox" value="1"/>
+			<span class='lavel-text'>Шукати в категорії</span>
+		</label>
+
+		<div id="categories-list">
+			<%_.each(data.CategoriesList.models, function(el, idx, list){%>
+				<label>
+					<input type="radio" name="search-category" value="<%=el.get('Name')%>" />
+					<span><%=el.get('Description')%> </span>
+				</label>
+			<%});%>
+		</div>
+			
+	</div>
+	<div id="organizations">
+		<label for="id-search-in-organization">
+			<input id="id-search-in-organization" name="search-in-organization" type="checkbox" value="1"/>
+			<span class='lavel-text'>Шукати серед організацій</span>
+		</label>
+
+		<div id="organizations-list">
+			<%_.each(data.OrganizationsList.models, function(el, idx, list){%>
+				<label>
+					<input type="radio" name="search-organization" value="<%=el.get('Name')%>" />
+					<span><%=el.get('Name')%> </span>
+				</label>
+			<%});%>
+		</div>
+	</div>
+	
 <div style="clear: both;"></div>
