@@ -90,7 +90,7 @@ define(
 				$('div.app').append( $(this.el).html( this.template() ) );
 				$('.emailForm').dialog({
 					modal: true,
-					height: 150,
+					height: 'auto',
 					width: 450,
 					title: "Проголосувати через електронну пошту", 
 					close: function(){

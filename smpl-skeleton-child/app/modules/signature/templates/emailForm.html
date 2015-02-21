@@ -1,57 +1,73 @@
-<div id='email-form'>
-	<ul class="email-form-list">
-		<li>
-			Введіть Ваш email:
-			<input id='Email' name='Email'>
-			<span class="help-block"></span>
-		</li>
-		<li>
-			Введіть Ваше ім’я:
-			<input id='Name' name='Name'>
-			<span class="help-block"></span>
-		</li>
-		<li>
-			Введіть Ваше призвище:
-			<input id='Surname' name='Surname'>
-			<span class="help-block"></span>
-		</li>
-		<li>
-			Введіть Ваше ім’я по-батькові:
-			<input id='Middle-name' name='Middle-name'>
-			<span class="help-block"></span>
-		</li>
-		<li>
-			Введіть Вашу адресу:
-			<input id='Address1' name='Address1'>
-			<span class="help-block"></span>
-		</li>
-		<li>
-			
-			<input id='Address2' name='Address2'>
-			<span class="help-block"></span>
-		</li>
-		<li>
-			Місто:
-			<input id='City' name='City'>
-			<span class="help-block"></span>
-		</li>
-		<li>
-			Область:
-			<input id='Area' name='Area'>
-			<span class="help-block"></span>
-		</li>
-		<li>
-			Поштовий індекс:
-			<input id='Zip-code' name='Zip-code'>
-			<span class="help-block"></span>
-		</li>
-		<li>
-			Країна:
-			<input id='Country' name='Country'>
-			<span class="help-block"></span>
-		</li>
-	</ul>
-	<p>
-		<input type='button' id='vote-with-email' value='Проголосувати' >
-	</p>
+<div class="form-group" id='email-form'>
+	<div class="email-form-list form-horizontal">
+		<div class="form-group">
+			 <label class="control-label  col-sm-3" class="control-label  col-sm-2" for="Email">Ваш email:</label>
+			<div class="col-sm-9">
+				<input id='Email' name='Email' class="form-control">
+				<span class="help-block"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-3" for="Name">Ім’я:</label>
+			<div class="col-sm-3">
+				<input id='Name' name='Name' class="form-control">
+				<span class="help-block"></span>
+			</div>
+			<label class="control-label  col-sm-2" for="Surname">Прізвище:</label>
+			<div class="col-sm-4">
+				<input id='Surname' name='Surname' class="form-control">
+				<span class="help-block"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label  col-sm-3" for="Middle-name">По-батькові:</label>
+			<div class="col-sm-9">
+				<input id='Middle-name' name='Middle-name' class="form-control">
+				<span class="help-block"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label  col-sm-3" for="Address1">Ваша адреса 1:</label>
+			<div class="col-sm-9">
+				<input id='Address1' name='Address1' class="form-control">
+				<span class="help-block"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label  col-sm-3" for="Address2">Ваша адреса 2:</label>
+			<div class="col-sm-9">
+				<input id='Address2' name='Address2' class="form-control">
+				<span class="help-block"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label  col-sm-3" for="City">Місто:</label>
+			<div class="col-sm-4">
+				<input id='City' name='City' class="form-control">
+				<span class="help-block"></span>
+			</div>
+			<label class="control-label  col-sm-2" for="Area">Область:</label>
+			<div class="col-sm-3">
+				<input id='Area' name='Area' class="form-control">
+				<span class="help-block"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label  col-sm-3" for="Zip-code">Поштовий індекс:</label>
+			<div class="col-sm-3">
+				<input id='Zip-code' name='Zip-code' class="form-control">
+				<span class="help-block"></span>
+			</div>
+			<label class="control-label  col-sm-2" for="Country">Країна:</label>
+			<div class="col-sm-4">
+				<input id='Country' name='Country' class="form-control">
+				<span class="help-block"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-3 col-sm-9">
+				<input type='button' class="btn" id='vote-with-email' value='Проголосувати' >
+			</div>
+		</div>
+	</div>
 </div>
