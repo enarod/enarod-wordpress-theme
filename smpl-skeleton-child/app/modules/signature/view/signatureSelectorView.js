@@ -33,6 +33,7 @@ define(
 						height: 150,
 						width: 450,
 						title:"Вибрати спосіб голосування",
+						closeText: "&times;",
 						close: function(){
 							that.close();
 						}

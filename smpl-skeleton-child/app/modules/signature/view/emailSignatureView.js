@@ -92,7 +92,8 @@ define(
 					modal: true,
 					height: 'auto',
 					width: 450,
-					title: "Проголосувати через електронну пошту", 
+					title: "Проголосувати через електронну пошту",
+					closeText: "&times;",
 					close: function(){
 						that.close();
 					}
