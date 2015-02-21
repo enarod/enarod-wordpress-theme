@@ -9,7 +9,10 @@ define(function (require) {
         PetitionView = require('module/petition/view/petitionView'),
         PetitionsView = require('module/petition/view/petitionsView'),
 
-        OrganizationView = require('module/organization/view/organizationView');
+        OrganizationView = require('module/organization/view/organizationView'),
+		Organizations	 = require('module/organization/collection/organizationCollection'),
+		Categories		 = require( 'module/petition/collection/petitionCategoryCollection' )
+		;
 
     return Backbone.View.extend({
         className: 'app',
@@ -22,6 +25,8 @@ define(function (require) {
             'click span#search': 'openSearch',
             'click button#find': 'find',
             'click button#show-all-petitions': 'showAllPetitions',
+			'click input#id-search-in-organization': 'showOrganizations',
+			'click input#id-search-in-category' : 'showCategories',
         },
 
         render: function () {
@@ -43,8 +48,10 @@ define(function (require) {
             organization: OrganizationView,
         },
 
-        setModuleMenu: function (type) {
-            var menu = _.template(this.menues[type]);
+        setModuleMenu: function () {
+console.log(this.OrganizationsList);
+			var type = this.menuType;
+            var menu = _.template(this.menues[type], {data: this});
             this.$('div.submenu').html(menu);
             this.submenu = type;
         },
@@ -59,7 +66,19 @@ define(function (require) {
                 this.cleanUp();
             }
             if (!this.submenu) {
-                this.setModuleMenu(view.module);
+				this.menuType = view.module;
+
+				//TODO: Code below need to be removed/generalized so it 
+				// support loading of required components for menu for 
+				// different modules
+				//
+				//Loading Organizations and Categories for petition menu
+				this.OrganizationsList = new Organizations();
+				this.CategoriesList = new Categories();
+				//run setModuleMenu once OrganizationsList and CategoriesList are loaded
+	            this.onceAll ( [this.OrganizationsList, this.CategoriesList ], 'sync', this.setModuleMenu, this );
+				
+//              this.setModuleMenu();
             }
             var View = this.subviews[view.type];
             var subView = new View(view.settings);
@@ -74,16 +93,31 @@ define(function (require) {
 
         find: function () {
             event.preventDefault();
-
-            var searchFor = $('input[name=search_for]').val();
+			
+			var searchFor, searchText, searchOrganization, searchCategory, showPreliminary;
+			
+			searchText = $('input[name=search_for]').val();
 
 			if ( $('input[name=search-in-new]').prop('checked') ){
-				searchFor += '?showPreliminaryPetitions=true'
+				showPreliminary = 'showPreliminaryPetitions=true';
+			}
+
+			if ( $('input[name=search-in-category').prop('checked') ){
+				searchCategory = '&category=' + '';
+			}
+		
+			if ( $('input[name=search-in-organization').prop('checked') ){
+				searchOrganization = '&organization=' + '';
 			}
 
             this.router.navigate('/petition/search');
 
             var PetitionCollection  = require ('module/petition/collection/petitionCollection');
+
+searchFor = searchText;
+//
+//			searchFor =  '?'text='+searchText + searchCategory + searchOrganization;
+//
             var Petitions = new PetitionCollection({search: searchFor});
         
             this.addChildView({
@@ -96,6 +130,30 @@ define(function (require) {
 
         showAllPetitions: function () {
             this.router.navigate('/petition', true);
+        },
+
+		showOrganizations: function () {
+
+			if ( event.target.checked ){
+
+
+			}
+		},
+
+		showCategories: function (){
+			if (event.target.checked ){
+
+
+			}
+		},
+
+        onceAll: function(sources, eventName, handler, context){
+            handler = _.after( sources.length, handler);
+            context = context || this;
+            _.each(sources, function(source){
+				source.fetch();
+                source.once(eventName, handler, context)
+            });
         },
 
         //Clean

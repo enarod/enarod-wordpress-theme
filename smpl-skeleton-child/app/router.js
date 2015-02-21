@@ -73,7 +73,7 @@ console.log(id+' '+state);
 
 	
 		listPetitions: function(tagName){
-			this.appView.setModuleMenu('petition');
+//			this.appView.setModuleMenu('petition');
 
 			var PetitionCollection	= require ('module/petition/collection/petitionCollection');
 			var Petitions;
