@@ -22,9 +22,8 @@ define( 	function( require ){
 			"petition/:id"			:	"openPetition",
 			"petition/:id/(:state)"	:	"openPetition",
 
-            "organization"			:   "openOrganization",
-            "organization/:id"      :   "openOrganization",
-            
+			"organization"			:   "listOrganizations",
+			"organization/:id"      :   "openOrganization",
 		},
 	
 	
@@ -112,7 +111,22 @@ console.log('Search petitions: '+query);
             });
 
             Organization.fetch();
-        }
+        },
+
+		listOrganizations: function (id) {
+			var OrganizationCollection	= require ('module/organization/collection/organizationCollection');
+			var Organizations;
+
+			Organizations = new OrganizationCollection();
+
+			this.appView.addChildView({
+				module: 'organization',
+				type : 'organizations',
+				settings : {organizations : Organizations}
+			});
+
+			Organizations.fetch();
+		}
 
 	});
 

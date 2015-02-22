@@ -959,3 +959,42 @@ span#ui-id-2 {
 }
 
 /*petitions end */
+
+/* organizations */
+
+.organization-item {
+    width: 940px;
+}
+.organization-item:before,
+.organization-item:after {
+    content:"";
+    display:table;
+}
+.organization-item:after {
+    clear:both;
+}
+.organization-item {
+    zoom:1; /* For IE 6/7 (trigger hasLayout) */
+}
+.organization-logo {
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+
+.organization-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+.organization-details {
+    width: 600px;
+    float: left;
+}
+
+.organization-actions {
+    width: 140px;
+    float: left;
+}
+/* organizations end*/
