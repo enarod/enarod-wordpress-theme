@@ -127,7 +127,11 @@ define(
 				} );
 
 				if ( this.model.get('Signer').isValid(true) ){
-					this.model.save();
+					if ( this.model.get('ID') !== '' ){
+						this.model.save();
+					}else{
+						this.model.get('Signer').trigger( 'signed' );
+					}
 				}
 			},	
 

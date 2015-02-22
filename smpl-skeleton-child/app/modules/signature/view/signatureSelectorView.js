@@ -16,7 +16,12 @@ define(
 				className: 'signatureSelector',
 
 				initialize: function(data){
-					this.petitionID = data.petitionID;
+					if ( data.petitionID ){
+						this.petitionID = data.petitionID;
+					}
+					if ( data.signator ){
+						this.signator = data.signator;
+					}
 				},
 
 				events: {
@@ -47,8 +52,10 @@ console.log('select certificate');
 				},
 				   
 				selectEmail: function(){
-					var emailSignator	= new emailSignatorModel();
-					var signatureModel	= new emailSignatureModel({'ID': this.petitionID, 'Signer' : emailSignator});
+					if ( !this.signator ){
+						this.signator	= new emailSignatorModel();
+					}
+					var signatureModel	= new emailSignatureModel({ 'ID': this.petitionID, 'Signer' : this.signator });
 					var signatureView	= new emailSignatureView({model: signatureModel});
 					this.close();
 					signatureView.render();

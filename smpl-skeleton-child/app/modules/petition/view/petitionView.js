@@ -43,32 +43,40 @@ define( function(require){
         },
 
         publishPetition: function() {
-            var mail = $('#email').val();
-            if (mail.length > 0 ){
-                this.model.set({
-                    Subject         :   $('#subject').val(),
-                    AddressedTo     :   $('#recipient').val(),
-                    Text            :   $('#description').val(),
-                    Requirements    :	$('#requirements').val(),
-                    Category        :   { Name  : $('input[name=petition-category]:checked').val() },
-                    Level           :   { ID    : $('input[name=petition-level]:checked').val() },
-                    KeyWords        :   $('#keywords').val().split(','),
-                    Email           :   mail
-                
-                }); 
-                delete this.model.attributes.ID;
-                
-                this.model.save();
-                this.listenTo(this.model, 'sync', this.openStoredPetition);
-            }else{
-                alert('Введіть будь-ласка Ваш email.');
-            }
-        },
+			this.setModelParameters();
 
+            var view = new SignatureSelector( {
+							signator: this.model.get("Author") 
+						} );
+            view.render();
+
+            this.listenTo(this.model.get("Author"), 'signed', this.storePetition ); //model.save() );
+            this.listenTo(this.model, 'sync', this.openStoredPetition);
+        },
+		
+		setModelParameters: function( ){
+             this.model.set({
+                 Subject         :   $('#subject').val(),
+                 AddressedTo     :   $('#recipient').val(),
+                 Text            :   $('#description').val(),
+                 Requirements    :	$('#requirements').val(),
+                 Category        :   { Name  : $('input[name=petition-category]:checked').val() },
+                 Level           :   { ID    : $('input[name=petition-level]:checked').val() },
+                 KeyWords        :   $('#keywords').val().split(','),
+             }); 
+             delete this.model.attributes.ID;
+
+		},
+
+		storePetition: function(){
+			this.model.set( 'Email', this.model.get("Author").get("Email") );
+			this.model.save();
+		},	
+	
         openStoredPetition: function(){
         //TODO: Change below, so ID was reachable easily
-        var id = this.model.attributes.Data.ID;
-            this.parentView.router.navigate('/petition/'+id,true);
+			var id = this.model.attributes.Data.ID;
+            this.parentView.router.navigate('/petition/'+id, true);
         },
 
         openRegionList: function(){

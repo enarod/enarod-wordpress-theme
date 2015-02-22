@@ -49,7 +49,6 @@ define(function (require) {
         },
 
         setModuleMenu: function () {
-console.log(this.OrganizationsList);
 			var type = this.menuType;
             var menu = _.template(this.menues[type], {data: this});
             this.$('div.submenu').html(menu);
