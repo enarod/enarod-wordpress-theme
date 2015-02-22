@@ -7,7 +7,10 @@ define(
 		Backbone = require('backbone'),
 		PetitionCategories	= require( 'module/petition/collection/petitionCategoryCollection' ),
 		PetitionLevels		= require( 'module/petition/collection/petitionLevelCollection' ) ,
-		PetitionRegions		= require( 'module/petition/collection/petitionRegionCollection' ) ;
+		PetitionRegions		= require( 'module/petition/collection/petitionRegionCollection' ) ,
+
+		PetitionAuthor  = require('module/signature/model/emailSignatorModel');
+
 
 	return Backbone.Model.extend({
 		urlRoot: BASE_URL+"petition/",
@@ -16,6 +19,7 @@ define(
 			Subject	:	'',
 			Text	:	'',
 			ID		:	'',
+			Author	:   new PetitionAuthor(),
 		},	
 
 		initialize: function(){
