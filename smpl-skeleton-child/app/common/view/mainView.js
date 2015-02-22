@@ -10,6 +10,7 @@ define(function (require) {
         PetitionsView = require('module/petition/view/petitionsView'),
 
         OrganizationView = require('module/organization/view/organizationView'),
+        OrganizationsView = require('module/organization/view/organizationsView'),
 		Organizations	 = require('module/organization/collection/organizationCollection'),
 		Categories		 = require( 'module/petition/collection/petitionCategoryCollection' )
 		;
@@ -25,6 +26,7 @@ define(function (require) {
             'click span#search': 'openSearch',
             'click button#find': 'find',
             'click button#show-all-petitions': 'showAllPetitions',
+            'click button#show-all-partners': 'showAllPartners',
 			'click input#id-search-in-organization': 'showOrganizations',
 			'click input#id-search-in-category' : 'showCategories',
         },
@@ -46,9 +48,11 @@ define(function (require) {
             petitions: PetitionsView,
     
             organization: OrganizationView,
+            organizations: OrganizationsView,
         },
 
         setModuleMenu: function () {
+console.log(this.OrganizationsList);
 			var type = this.menuType;
             var menu = _.template(this.menues[type], {data: this});
             this.$('div.submenu').html(menu);
@@ -130,6 +134,10 @@ searchFor = searchText;
         showAllPetitions: function () {
             this.router.navigate('/petition', true);
         },
+
+      showAllPartners: function () {
+        this.router.navigate('/organization', true);
+      },
 
 		showOrganizations: function () {
 

@@ -7,7 +7,8 @@ define(
 		_ = require('underscore'),
 		Backbone = require('backbone'),
         Organization = require ('text!module/organization/templates/organization.html'),
-        OrganizationNew = require ('text!module/organization/templates/organizationNew.html')
+        OrganizationNew = require ('text!module/organization/templates/organizationNew.html'),
+        OrganizationItem	= require('text!module/organization/templates/organizationItem.html');
     ;
 
     return Backbone.View.extend({
@@ -23,7 +24,7 @@ define(
 //                               'sync', 
 //                               this.render, this );
             } else if (data.tmpl === 'item'){ // this.render triggered by collection view (organizationsView.js)
-                this.tmpl = PetitionItem;
+                this.tmpl = OrganizationItem;
             } else if (data.tmpl === 'organization'){
                 this.tmpl = Organization;
                 this.listenTo(this.model, 'sync', this.render);
