@@ -131,6 +131,7 @@ define(
 						this.model.save();
 					}else{
 						this.model.get('Signer').trigger( 'signed' );
+						this.close();
 					}
 				}
 			},	
