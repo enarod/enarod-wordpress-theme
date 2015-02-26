@@ -1,0 +1,83 @@
+﻿<div class="su-column su-column-size-3-4" style="width: 73%; float:left;">
+    <div id="petition-detail">
+        <div id="petition-header">
+            <div class="petition-header-inner">
+                <h2><%=Subject%></h2>
+                <div class="petition-date"> <%=CreatedDate%> </div>
+                <div class="petition-whom"> <%=AddressedTo%> </div>
+                <div class="petition-initiator">Ініціатор: <span> <%=CreatedBy.Login%> </span></div>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+		<% if ( Organization ) { %>
+		<div class="petition-subsection">
+			<div class="petition-subsection-header">Організація-партнер</div>
+			<div id="organization-name">
+				<a href="./#organization/<%=Organization.ID%>">
+					<%=Organization.Name%>
+				</a>
+			</div>
+			<div id="organization-logo"> <img src="<%=Organization.Logo%>" alt="Logo"/> </div>
+		</div>
+		<%}%>
+
+        <div class="petition-subsection">
+            <div class="petition-subsection-header">Опис проблеми</div>
+            <div id="petition-text"><%=Text%></div>
+        </div>
+        <div class="petition-subsection">
+            <div class="petition-subsection-header">Вимоги</div>
+            <div id="petition-requirements"><%=Requirements%></div>
+		</div>
+
+		<%if ( VotesCount > Limit ) { %>
+        <div class="petition-tags">
+            Теги:
+            <% _.each(KeyWords, function(el, idx, list){ %>
+            <a href='#petition/tag/<%=el%>'><%=el%></a>
+            <% }) %>
+		</div>
+		<%}%>
+<!-- TEMPORARY DISABLED		
+        <div class="social-media">
+            <a href='#'>Facebook</a>
+            <a href='#'>Twitter</a>
+            <a href='#'>Googlе</a>
+		</div>
+-->
+    </div>
+</div>
+<div class="su-column su-column-size-1-4" style="width: 27%; float:left;">
+    <div class="petition-wrapper">
+        <div id='petition-signatures-summary'>
+            <div id="petition-signatures">
+                <h4><%=Level.Limit%> ПІДПИСІВ</h4>
+                <span>необхідно зібрати до <%=EffectiveTo%> </span>
+            </div>
+            <input class='unsigned' type='image' id='sign' petition-id='<%=ID%>' value='Підписати' src='../wp-content/themes/smpl-skeleton-child/app/images/sign.jpg'><!-- src='../../../images/signed.jpg' -->
+            <p id='collected'><%=VotesCount%></p>
+            <p class="sign-label">підписів зібрано</p>
+            <p id='left'><%=VotesLeft%></p>
+            <p class="sign-label sign-label2">залишилось зібрати</p>
+            <div id='days-left'>
+                <span><%=daysLeft%></span> днів <span><%=hoursLeft%></span> годин <span><%=minutesLeft%></span>хвилин
+            </div>
+        </div>
+        <!-- DO NOT DISPLAY SIGNATURES LIST
+        <div id="petition-signature-list">
+        <p class="title-last">Останні підписи</p>
+        <div class='signature-item'>
+        <div class="icon"></div>
+        <div class="name">
+        <p class='initials'>П.О.К.</p>
+        <p class='location'>Полтавська обл.</p>
+        <p class='nr'>Підпис № 15479</p>
+        <p class='date'>15.07.2014</p>
+        </div>
+        <div class="clear"></div>
+        </div>
+        </div>-->
+    </div>
+</div>
+
