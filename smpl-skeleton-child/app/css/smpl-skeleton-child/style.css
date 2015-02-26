@@ -5,8 +5,6 @@ Template:     smpl-skeleton
 Text Domain:  smpl-skeleton-child
 */
 @import url("../smpl-skeleton/style.css");
-@import url("../../bootstrap/css/bootstrap-theme.min.css");
-@import url("../../bootstrap/css/bootstrap.min.css");
 
 /* -------------------------------------------------------------- */
 
@@ -492,8 +490,9 @@ img.alignleft {
 }
 
 #petition-search-form .search-input-petition {
+    width:88%;
     display: inline-block;
-    height: 40px;
+    height: 36px;
     border-radius: 0;
     box-shadow: none;
     border: 2px solid #BBB;
@@ -504,14 +503,12 @@ img.alignleft {
     margin: 0;
     float: left;
 }
-#search {
-    float: right;
-}
+
 .create-petition-btn {
     background: #55a038;
     float: left;
-    height: 40px;
-    line-height: 40px;
+    height: 36px;
+    line-height: 36px;
     color: #fff !important;
     padding: 0 10px;
     text-transform: uppercase;
@@ -524,11 +521,14 @@ img.alignleft {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+.create-petition-btn, #show-all-petitions, #show-all-partners {
+  margin-bottom: 30px;
+}
 
 .search-for-petition {
     display: inline-block;
     margin: 0 0 0 10px;
-    height: 40px;
+    height: 36px;
     float: left;
     font-weight: bold;
     text-decoration: none !important;
@@ -540,6 +540,62 @@ img.alignleft {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+#search-advanced .search-for-petition {
+  margin:10px 0 0 0;
+  float:none;
+}
+.custom-search-div {
+  text-align: center;
+}
+#search-advanced {
+  width: 21.5%;
+  right: 2%;
+  position: absolute;
+  margin-top:20px;
+  border:2px solid #BBB;
+  padding:5px 5px 13px 15px;
+}
+#search-advanced label {
+  display:block;
+  line-height:120%;
+}
+#search-advanced input {
+  margin-left:0;
+  margin-bottom:0px;
+}
+#search-advanced span.lavel-text {
+  position:relative;
+  top:-3px;
+}
+#search-advanced span.lavel-text2 {
+  font-weight:normal;
+}
+.search-advanced-label {
+  text-align: center;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+#search-advanced #categories-list span, #search-advanced #organizations-list span {
+  font-weight: normal;
+  font-size: 12px;
+  top: -2px;
+  position: relative;
+}
+#search-advanced .search-div {
+  padding-bottom:8px;
+}
+#search-pib, #search-date-creation, #search-date-finish {
+  padding-top:8px;
+}
+input#id-search-in-date-creation-from, input#id-search-in-date-finish-from {
+  margin: 0 0 8px 8px;
+}
+#search-advanced input[type="text"] {
+  width: 150px;
 }
 
 #petition-header h2, #petition-signatures h4, .petition-latest-title, #publish_petition {
@@ -859,18 +915,26 @@ p.sign-label2 {
 .petition-publish-wrapper {
     text-align: center;
 }
-
+.petition-partner-image {
+  float: left;
+  display: block;
+  width: 23%;
+  padding-right: 20px;
+}
 .petition-item {
+  width: 73%;
+}
+.petition-item-inner {
+    width: 74%;
     background: #82b266;
     color: #fff;
     font-family: Helvetica;
     padding: 10px 10px 5px;
     border-bottom: 2px solid #387325;
-    width: 47.5%;
     float: left;
-    height: 120px;
+    height: 105px;
     position: relative;
-    margin: 0 2.5% 25px 0;
+    margin: 0 0 25px 0;
     box-sizing: border-box;
 }
 
@@ -898,16 +962,18 @@ p.sign-label2 {
 }
 
 .sign-name {
-    font-size: 14px;
+    font-size: 11px;
 }
-
+.partner, .petition-author, .finish-date {
+  font-size:13px;
+}
 .sign-have {
-    font-size: 19px;
+    font-size: 18px;
     margin: 0 -3px 0 3px;
 }
 
 .sign-left {
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .petition-item #sign {
@@ -936,10 +1002,9 @@ p.sign-label2 {
 .ui-dialog {
     background: #efefef !important;
     padding: 15px 15px 0 15px;
-    /*height: 130px !important;*/
+    height: 130px !important;
     box-shadow: 0 0 13px rgba(0,0,0,.5);
     border: 2px solid #BBB;
-    z-index: 1000;
 }
 
 button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-icon-only.ui-dialog-titlebar-close {
@@ -959,42 +1024,4 @@ span#ui-id-2 {
 }
 
 /*petitions end */
-
-/* organizations */
-
-.organization-item {
-    width: 940px;
-}
-.organization-item:before,
-.organization-item:after {
-    content:"";
-    display:table;
-}
-.organization-item:after {
-    clear:both;
-}
-.organization-item {
-    zoom:1; /* For IE 6/7 (trigger hasLayout) */
-}
-.organization-logo {
-    width: 100px;
-    height: 100px;
-    float: left;
-}
-
-.organization-logo img {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-}
-.organization-details {
-    width: 600px;
-    float: left;
-}
-
-.organization-actions {
-    width: 140px;
-    float: left;
-}
-/* organizations end*/
+ 

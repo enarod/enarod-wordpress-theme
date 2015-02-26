@@ -4,6 +4,7 @@ define( function(require){
         _		= require('underscore'),
         Backbone= require('backbone'),
         SignatureSelector	= require('module/signature/view/signatureSelectorView'),
+        OrganizationView	= require('module/organization/view/organizationView'),
         Petition		= require('text!module/petition/templates/petition.html'),
         PetitionNew		= require('text!module/petition/templates/petitionNew.html'),
         PetitionItem	= require('text!module/petition/templates/petitionItem.html');
@@ -12,7 +13,12 @@ define( function(require){
         initialize: function(data) {
             if (data.tmpl === 'new') {
                 this.tmpl = PetitionNew;
-                this.onceAll ( [this.model.get( 'categoryList' ), this.model.get( 'levelList' ), this.model.get ('regionList') ], 'sync', this.render, this );
+                this.onceAll ([
+					this.model.get( 'categoryList' ), 
+					this.model.get( 'levelList' ), 
+					this.model.get( 'regionList'),
+					this.model.get( 'organizationList')
+					], 'sync', this.render, this );
             } else if (data.tmpl === 'item'){ // this.render triggered by collection view (petitionsView.js)
                 this.tmpl = PetitionItem;
             } else if (data.tmpl === 'petition'){
@@ -25,6 +31,7 @@ define( function(require){
             'click input[id=sign]':             'sign',
             'click input[id=publish_petition]': 'publishPetition',
             'click input[name=petition-level]': 'openRegionList',
+			'change [name=organization]'	  : 'updateOrganization',
         },
 
         render: function() {
@@ -57,9 +64,9 @@ define( function(require){
 		setModelParameters: function( ){
              this.model.set({
                  Subject         :   $('#subject').val(),
-                 AddressedTo     :   $('#recipient').val(),
+                 Organization    :   $('#organization').val(),
                  Text            :   $('#description').val(),
-                 Requirements    :	$('#requirements').val(),
+                 Requirements    :	 $('#requirements').val(),
                  Category        :   { Name  : $('input[name=petition-category]:checked').val() },
                  Level           :   { ID    : $('input[name=petition-level]:checked').val() },
                  KeyWords        :   $('#keywords').val().split(','),
@@ -87,6 +94,18 @@ define( function(require){
 
             }
         },
+
+		updateOrganization: function( ){
+			var selectedOrgIndex = event.target.selectedIndex - 1;
+			if (this.childView ){
+				this.childView.close();
+			}
+			var Organization = this.model.get('organizationList').models[selectedOrgIndex] ;		
+			this.childView = new OrganizationView ( {model: Organization, tmpl: 'organizationInPetition'} );
+			this.moduleNode = '#organization-details';
+			this.childView.parentView = this;
+			this.childView.render();	
+		},
 
         checkState: function(state) {
             if (state=='alreadyVoted') {

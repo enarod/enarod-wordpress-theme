@@ -8,6 +8,7 @@ define(
 		PetitionCategories	= require( 'module/petition/collection/petitionCategoryCollection' ),
 		PetitionLevels		= require( 'module/petition/collection/petitionLevelCollection' ) ,
 		PetitionRegions		= require( 'module/petition/collection/petitionRegionCollection' ) ,
+		Organizations		= require( 'module/organization/collection/organizationCollection' ) ,
 
 		PetitionAuthor  = require('module/signature/model/emailSignatorModel');
 
@@ -118,6 +119,12 @@ console.log(" Petition model changed! ");
 			this.set( 'regionList', regionList);
 			regionList.fetch();
 
+		},
+
+		getOrganization: function(){
+			var organizationList = new Organizations();
+			this.set( 'organizationList', organizationList);
+			organizationList.fetch();
 		}
 
 

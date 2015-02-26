@@ -1,55 +1,85 @@
-<a class="create-petition-btn" href="#petition/new">Створити петицію</a> 
+<a class="create-petition-btn" href="#petition/new">Створити петицію</a>
 <button id="show-all-petitions" class="search-for-petition">Показати всі петиції</button>
 <button id="show-all-partners" class="search-for-petition">Показати всіх партнерів</button>
 <span id='search'>
     <form id='petition-search-form'>
-        <input class="search-input-petition" name='search_for' placeholder='Введіть фразу, назву партнера або П.І.Б. автора' />
-        <button id="find" class='search-for-petition'>Шукати</button>
+      <input class="search-input-petition" name='search_for' placeholder='Введіть фразу, назву партнера або П.І.Б. автора' />
+      <button id="find" class='search-for-petition'>Пошук</button>
     </form>
 </span>
 <div style="clear: both;"></div>
-	<div>
-		Розширений пошук
-<!--
-	<button id="custom-search" class='search-for-petition'>Розширений пошук</button>
--->
-	</div>
-	<div>
-		<label for="id-search-in-new">
-			<input id="id-search-in-new" name="search-in-new" type="checkbox" value="1"/>
-			<span class='lavel-text'>Шукати серед нових</span>
-		</label>
-	</div>
-	<div id="categories">
-		<label for="id-search-in-category">
-			<input id="id-search-in-category" name="search-in-category" type="checkbox" value="1"/>
-			<span class='lavel-text'>Шукати в категорії</span>
-		</label>
+<div id="search-advanced">
+<div class="search-advanced-label">
+  <span>Розширений пошук</span>
+  <!--
+    <button id="custom-search" class='search-for-petition'>Розширений пошук</button>
+  -->
+</div>
+<div class="search-div">
+  <label for="id-search-in-new">
+    <input id="id-search-in-new" name="search-in-new" type="checkbox" value="1"/>
+    <span class='lavel-text'>серед нових</span>
+  </label>
+</div>
+<div id="categories" class="search-div">
+  <label for="id-search-in-category">
+    <input id="id-search-in-category" name="search-in-category" type="checkbox" value="1"/>
+    <span class='lavel-text'>в назві категорії</span>
+  </label>
 
-		<div id="categories-list">
-			<%_.each(data.CategoriesList.models, function(el, idx, list){%>
-				<label>
-					<input type="radio" name="search-category" value="<%=el.get('Name')%>" />
-					<span><%=el.get('Description')%> </span>
-				</label>
-			<%});%>
-		</div>
-			
-	</div>
-	<div id="organizations">
-		<label for="id-search-in-organization">
-			<input id="id-search-in-organization" name="search-in-organization" type="checkbox" value="1"/>
-			<span class='lavel-text'>Шукати серед організацій</span>
-		</label>
+  <div id="categories-list">
+    <%_.each(data.CategoriesList.models, function(el, idx, list){%>
+    <label>
+      <input type="radio" name="search-category" value="<%=el.get('Name')%>" />
+      <span><%=el.get('Description')%> </span>
+    </label>
+    <%});%>
+  </div>
 
-		<div id="organizations-list">
-			<%_.each(data.OrganizationsList.models, function(el, idx, list){%>
-				<label>
-					<input type="radio" name="search-organization" value="<%=el.get('Name')%>" />
-					<span><%=el.get('Name')%> </span>
-				</label>
-			<%});%>
-		</div>
-	</div>
-	
+</div>
+<div id="organizations" class="search-div">
+  <label for="id-search-in-organization">
+    <input id="id-search-in-organization" name="search-in-organization" type="checkbox" value="1"/>
+    <span class='lavel-text'>в назві партнера</span>
+  </label>
+
+  <div id="organizations-list">
+    <%_.each(data.OrganizationsList.models, function(el, idx, list){%>
+    <label>
+      <input type="radio" name="search-organization" value="<%=el.get('Name')%>" />
+      <span><%=el.get('Name')%> </span>
+    </label>
+    <%});%>
+  </div>
+</div>
+  <div id="search-pib" class="search-div">
+    <label for="id-search-in-pib">
+      <span class='lavel-text'>в П.І.Б. автора</span>
+      <input id="id-search-in-pib" name="search-in-pib" type="text"/>
+    </label>
+  </div>
+  <div id="search-date-creation" class="search-div">
+    <label><span class='lavel-text'>Дата створення</span></label>
+    <label for="id-search-in-date-creation-from">
+      <span class='lavel-text lavel-text2'>з</span>
+      <input id="id-search-in-date-creation-from" name="search-in-date-creation-from" type="text"/>
+    </label>
+    <label for="id-search-in-date-creation-to">
+      <span class='lavel-text lavel-text2'>по</span>
+      <input id="id-search-in-date-creation-to" name="search-in-date-creation-to" type="text"/>
+    </label>
+  </div>
+  <div id="search-date-finish" class="search-div">
+    <label><span class='lavel-text'>Дата закінчення</span></label>
+    <label for="id-search-in-date-finish-from">
+      <span class='lavel-text lavel-text2'>з</span>
+      <input id="id-search-in-date-finish-from" name="search-in-date-finish-from" type="text"/>
+    </label>
+    <label for="id-search-in-date-finish-to">
+      <span class='lavel-text lavel-text2'>по</span>
+      <input id="id-search-in-date-finish-to" name="search-in-date-finish-to" type="text"/>
+    </label>
+  </div>
+  <div class="custom-search-div"><button id="custom-search" class='search-for-petition'>Пошук</button></div>
+</div>
 <div style="clear: both;"></div>

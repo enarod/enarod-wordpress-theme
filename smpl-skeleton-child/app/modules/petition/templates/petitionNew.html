@@ -20,12 +20,18 @@
         </div>
 -->
         <div class="petition-form-item petition-form-item-address">
-            <h3>Адресат :</h3>
-            <label for="recipient">
-                <input id="recipient" type='radio' name='recipient' value='Порошенко П.О.' />
-                <span class="level-text">Президент України Порошенко П.О.</span>
-            </label>
+            <h3>Організація:</h3>
+                <select id="organization" name='organization'>
+						<option value=""></option>
+					<% _.each( organizationList.models, function( organization, index, list ){ %>
+						<option value="<%=organization.get('ID')%>"><%=organization.get('Name')%></option>
+					<% }) %>
+				</select>
         </div>
+
+		<div id='organization-details'>
+			
+		</div>
 
         <div class="clear"></div>
 

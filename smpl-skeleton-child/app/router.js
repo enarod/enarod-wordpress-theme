@@ -37,7 +37,6 @@ console.log("Home!!!");
     Petition routes
 -----------------------*/
 		openPetition: function(id, state){
-console.log(id+' '+state);
 			var Petition = require('module/petition/model/petitionModel');
 			Petition = new Petition({"ID" : id});
 			Petition.set("id" , id);
@@ -62,6 +61,7 @@ console.log(id+' '+state);
 			Petition.getLevel();
 			Petition.getCategory();
 			Petition.getRegion();
+			Petition.getOrganization();
 
 			this.appView.addChildView({
 				module: 'petition',

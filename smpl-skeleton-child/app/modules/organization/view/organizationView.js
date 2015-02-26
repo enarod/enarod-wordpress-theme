@@ -8,7 +8,9 @@ define(
 		Backbone = require('backbone'),
         Organization = require ('text!module/organization/templates/organization.html'),
         OrganizationNew = require ('text!module/organization/templates/organizationNew.html'),
-        OrganizationItem	= require('text!module/organization/templates/organizationItem.html');
+        OrganizationItem	= require('text!module/organization/templates/organizationItem.html'),
+		OrganizationInPetition = require('text!module/organization/templates/organizationInPetition.html')
+		;
     ;
 
     return Backbone.View.extend({
@@ -28,7 +30,9 @@ define(
             } else if (data.tmpl === 'organization'){
                 this.tmpl = Organization;
                 this.listenTo(this.model, 'sync', this.render);
-            }
+            } else if ( data.tmpl === 'organizationInPetition'){
+				this.tmpl = OrganizationInPetition;
+			}
         },
 
         render: function(){
@@ -41,6 +45,10 @@ define(
             return this;
         },
     
+        close: function(){
+            this.remove();
+            this.unbind();
+        }
 
     });
 
