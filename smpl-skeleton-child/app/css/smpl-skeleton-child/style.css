@@ -938,7 +938,7 @@ p.sign-label2 {
     box-sizing: border-box;
 }
 
-.petition-item a {
+.petition-item a, .organization-item .organization-details h3 {
     font-size: 17px;
     color: #fff;
     text-transform: uppercase;
@@ -1022,6 +1022,35 @@ span#ui-id-2 {
     color: #4A9334;
     font-weight: bold;
 }
+.organization-item .organization-logo, .organization-item .organization-details {
+  float:left;
+}
+.organization-item .organization-actions  {
+  text-align: center;
+}
+.organization-item img {
+  width: 100%;
+}
+.organization-item .organization-logo {
+  width: 20%;
+  margin: 0 25px 15px 0;
+}
+.organization-item .organization-details {
+  width:56%;
+  background: #82b266;
+  color: #fff;
+  font-family: Helvetica;
+  padding: 10px 10px 5px;
+  border-bottom: 2px solid #387325;
+  margin: 0 25px 25px 0;
+  box-sizing: border-box;
+}
+.organization-item {
+  clear: both;
+}
 
+.organization-item .organization-details h3 {
+  display:block;
+}
 /*petitions end */
  
