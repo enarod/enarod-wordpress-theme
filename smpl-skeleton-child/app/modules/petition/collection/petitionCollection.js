@@ -13,7 +13,7 @@ define(
 		url: function(){
 			var URL = BASE_URL+"petition/";
 			if(this.search){
-				URL += "search/"+this.search;
+				URL += "search?"+this.search;
 			}else if(this.tag){
 				URL += "tag/"+this.tag;
 			}

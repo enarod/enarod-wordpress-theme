@@ -11,7 +11,7 @@ define(
         OrganizationItem	= require('text!module/organization/templates/organizationItem.html'),
 		OrganizationInPetition = require('text!module/organization/templates/organizationInPetition.html')
 		;
-    ;
+    
 
     return Backbone.View.extend({
         initialize: function(data) {
@@ -35,6 +35,11 @@ define(
 			}
         },
 
+		events:{
+			'click button[name=search]' : 'searchPetitions',
+			'click button[name=create]' : 'createPetition'	
+		},
+
         render: function(){
             this.template = _.template(this.tmpl);
             this.$el.html(this.template( this.model.attributes ) );
@@ -44,7 +49,18 @@ define(
             }
             return this;
         },
-    
+   
+		searchPetitions: function(){
+			var id = this.model.get('ID');
+			this.parentView.router.navigate('/petition/search/OrganizationId='+id, true);
+		},
+
+		createPetition: function(){
+			var id = this.model.get('ID');
+			this.parentView.router.navigate ('#petition/new/'+id, true );
+		},
+
+ 
         close: function(){
             this.remove();
             this.unbind();

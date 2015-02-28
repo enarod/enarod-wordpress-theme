@@ -25,6 +25,7 @@ define(function (require) {
         events: {
             'click span#search': 'openSearch',
             'click button#find': 'find',
+            'click button#custom-search': 'find',
             'click button#show-all-petitions': 'showAllPetitions',
             'click button#show-all-partners': 'showAllPartners',
 			'click input#id-search-in-organization': 'showOrganizations',
@@ -96,38 +97,29 @@ define(function (require) {
         find: function () {
             event.preventDefault();
 			
-			var searchFor, searchText, searchOrganization, searchCategory, showPreliminary;
+			var searchFor = '', 
+			searchText = '', 
+			searchOrganization = '', 
+			searchCategory = '', 
+			showPreliminary = '';
 			
-			searchText = $('input[name=search_for]').val();
+			searchText = 'Text=' + $('input[name=search_for]').val();
 
 			if ( $('input[name=search-in-new]').prop('checked') ){
-				showPreliminary = 'showPreliminaryPetitions=true';
+				showPreliminary = '&showPreliminaryPetitions=true';
 			}
 
 			if ( $('input[name=search-in-category').prop('checked') ){
-				searchCategory = '&category=' + '';
+				searchCategory = '&CategoryID=' + $('input[name=search-category]:checked').val();
 			}
 		
 			if ( $('input[name=search-in-organization').prop('checked') ){
-				searchOrganization = '&organization=' + '';
+				searchOrganization = '&OrganizationID=' + $('input[name=search-organization]:checked').val();
 			}
+			searchFor =  searchText + searchCategory + searchOrganization + showPreliminary;
 
-            this.router.navigate('/petition/search');
+            this.router.navigate('/petition/search/'+searchFor, true);
 
-            var PetitionCollection  = require ('module/petition/collection/petitionCollection');
-
-searchFor = searchText;
-//
-//			searchFor =  '?'text='+searchText + searchCategory + searchOrganization;
-//
-            var Petitions = new PetitionCollection({search: searchFor});
-        
-            this.addChildView({
-                module: 'petition',
-                type : 'petitions', 
-                settings : {petitions : Petitions} 
-            }); 
-            Petitions.fetch();
         },
 
         showAllPetitions: function () {
@@ -139,7 +131,6 @@ searchFor = searchText;
       },
 
 		showOrganizations: function () {
-
 			if ( event.target.checked ){
 
 
@@ -149,7 +140,7 @@ searchFor = searchText;
 		showCategories: function (){
 			if (event.target.checked ){
 
-
+				
 			}
 		},
 

@@ -1,14 +1,16 @@
 <div class='organization-item'>
    <div class='organization-logo'>
-		<img src='<%=Logo%>'/>
+		<a href='#organization/<%=ID%>'>
+			<img src='<%=Logo%>'/>
+		</a>
    </div>
 
     <div class='organization-details'>
-     <h3><%=Name%></h3>
+     <h3><a href='#organization/<%=ID%>'><%=Name%></a></h3>
 		<%=Description%>			
     </div>
  <div class="organization-actions">
-  <button>Створити петицію</button>
-  <button>Показати петиції</button>
+  <button name='create'>Створити петицію</button>
+  <button name='search'>Показати петиції</button>
  </div>
 </div>

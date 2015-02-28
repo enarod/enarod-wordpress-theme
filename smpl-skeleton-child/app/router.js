@@ -16,8 +16,8 @@ define( 	function( require ){
 			""						:	"home",
 			"petition"				:	"listPetitions",
 			"petition/search"		:	"listPetitions",
-			"petition/search(?:query)"	:	"searchPetitions",
-			"petition/new"			:	"createPetition",
+			"petition/search/(:query)"	:	"searchPetitions",
+			"petition/new(/:organization)"	:	"createPetition",
 			"petition/tag/:tag"		:	"listPetitions",
 			"petition/:id"			:	"openPetition",
 			"petition/:id/(:state)"	:	"openPetition",
@@ -55,13 +55,17 @@ console.log("Home!!!");
 		}, 
 
 
-		createPetition: function(){
+		createPetition: function( organizationID ){
 			var Petition = require('module/petition/model/petitionModel');
 			Petition = new Petition();
 			Petition.getLevel();
 			Petition.getCategory();
 			Petition.getRegion();
 			Petition.getOrganization();
+
+			if ( organizationID ){
+				Petition.set('organizationID', organizationID );
+			}
 
 			this.appView.addChildView({
 				module: 'petition',
@@ -72,8 +76,6 @@ console.log("Home!!!");
 
 	
 		listPetitions: function(tagName){
-//			this.appView.setModuleMenu('petition');
-
 			var PetitionCollection	= require ('module/petition/collection/petitionCollection');
 			var Petitions;
 
@@ -94,7 +96,16 @@ console.log("Home!!!");
 		},
 
 		searchPetitions: function( query ){
-console.log('Search petitions: '+query);
+            var PetitionCollection  = require ('module/petition/collection/petitionCollection');
+            var Petitions = new PetitionCollection({search: query});
+        
+            this.appView.addChildView({
+                module: 'petition',
+                type : 'petitions', 
+                settings : {petitions : Petitions} 
+            });
+
+            Petitions.fetch();
 		},
 
 /*-----------------------

@@ -41,6 +41,22 @@ define( function(require){
             if ( this.model.attributes.state ){
                 this.checkState( this.model.get('state') );
             }
+		
+			if ( this.model.get('organizationID') ){
+				var orgID = this.model.get('organizationID');
+				$('[name=organization]').val(this.model.get('organizationID'));
+				var Organization;
+				_.each (this.model.get('organizationList').models, function(el, index, list){
+					if ( el.get('ID') == orgID ){
+						Organization = el;
+					}
+				});
+
+				this.model.set( 'Organization', Organization );
+				this.addOrganizationView();
+				this.model.unset('organizationID');
+			}
+	
             return this;
         },
 
@@ -64,7 +80,7 @@ define( function(require){
 		setModelParameters: function( ){
              this.model.set({
                  Subject         :   $('#subject').val(),
-                 Organization    :   $('#organization').val(),
+        //         Organization    :   $('#organization').val(),
                  Text            :   $('#description').val(),
                  Requirements    :	 $('#requirements').val(),
                  Category        :   { Name  : $('input[name=petition-category]:checked').val() },
@@ -95,13 +111,18 @@ define( function(require){
             }
         },
 
-		updateOrganization: function( ){
+		updateOrganization: function( event ){
 			var selectedOrgIndex = event.target.selectedIndex - 1;
+			this.model.set("Organization", this.model.get('organizationList').models[selectedOrgIndex]);
+			this.addOrganizationView();
+		},
+
+		addOrganizationView: function(){
 			if (this.childView ){
 				this.childView.close();
 			}
-			var Organization = this.model.get('organizationList').models[selectedOrgIndex] ;		
-			this.childView = new OrganizationView ( {model: Organization, tmpl: 'organizationInPetition'} );
+
+			this.childView = new OrganizationView ( {model: this.model.get('Organization'), tmpl: 'organizationInPetition'} );
 			this.moduleNode = '#organization-details';
 			this.childView.parentView = this;
 			this.childView.render();	

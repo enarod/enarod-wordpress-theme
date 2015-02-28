@@ -30,7 +30,7 @@
   <div id="categories-list">
     <%_.each(data.CategoriesList.models, function(el, idx, list){%>
     <label>
-      <input type="radio" name="search-category" value="<%=el.get('Name')%>" />
+      <input type="radio" name="search-category" value="<%=el.get('ID')%>" />
       <span><%=el.get('Description')%> </span>
     </label>
     <%});%>
@@ -46,7 +46,7 @@
   <div id="organizations-list">
     <%_.each(data.OrganizationsList.models, function(el, idx, list){%>
     <label>
-      <input type="radio" name="search-organization" value="<%=el.get('Name')%>" />
+      <input type="radio" name="search-organization" value="<%=el.get('ID')%>" />
       <span><%=el.get('Name')%> </span>
     </label>
     <%});%>
