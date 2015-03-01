@@ -1033,7 +1033,7 @@ span#ui-id-2 {
 }
 .organization-item .organization-logo {
   width: 20%;
-  margin: 0 25px 15px 0;
+  margin: 0 1% 15px 0;
 }
 .organization-item .organization-details {
   width:56%;
@@ -1042,11 +1042,21 @@ span#ui-id-2 {
   font-family: Helvetica;
   padding: 10px 10px 5px;
   border-bottom: 2px solid #387325;
-  margin: 0 25px 25px 0;
+  margin: 0 1% 25px 0;
   box-sizing: border-box;
 }
 .organization-item {
   clear: both;
+  width: 73%;
+}
+
+.organization-actions {
+    width: 22%;
+    float: left;
+}
+.organization-actions button {
+    width: 90%;
+    clear: both;
 }
 
 .organization-item .organization-details h3 {
