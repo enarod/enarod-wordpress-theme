@@ -101,12 +101,14 @@ define(function (require) {
 			searchText = '', 
 			searchOrganization = '', 
 			searchCategory = '', 
-			showPreliminary = '';
-			
-			searchText = 'Text=' + $('input[name=search_for]').val();
+			searchInNew = '';
+		
+			if ( $('input[name=search_for]').val() ){	
+				searchText = 'Text=' + $('input[name=search_for]').val();
+			}
 
 			if ( $('input[name=search-in-new]').prop('checked') ){
-				showPreliminary = '&showPreliminaryPetitions=true';
+				searchInNew = '&showNewPetitions=true';
 			}
 
 			if ( $('input[name=search-in-category').prop('checked') ){
@@ -116,7 +118,7 @@ define(function (require) {
 			if ( $('input[name=search-in-organization').prop('checked') ){
 				searchOrganization = '&OrganizationID=' + $('input[name=search-organization]:checked').val();
 			}
-			searchFor =  searchText + searchCategory + searchOrganization + showPreliminary;
+			searchFor =  searchText + searchCategory + searchOrganization + searchInNew;
 
             this.router.navigate('/petition/search/'+searchFor, true);
 

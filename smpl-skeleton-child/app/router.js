@@ -80,6 +80,7 @@ console.log("Home!!!");
 			var Petitions;
 
 			if (tagName){
+				tagName = 'tag='+tagName;
 				Petitions = new PetitionCollection({'tag': tagName });
 			}else{
 				Petitions = new PetitionCollection();

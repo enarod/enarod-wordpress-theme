@@ -15,7 +15,7 @@ define(
 			if(this.search){
 				URL += "search?"+this.search;
 			}else if(this.tag){
-				URL += "tag/"+this.tag;
+				URL += "tag?"+this.tag;
 			}
 			return URL;
 		},
