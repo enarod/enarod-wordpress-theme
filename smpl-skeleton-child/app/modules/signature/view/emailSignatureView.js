@@ -109,17 +109,17 @@ define(
 					model	: this.model.get('Signer'),
 					valid	: function( view, attr ){
 						var el	= view.$('[name='+attr+']'),
-						group	= el.closest('li');
+						group	= el.closest('div');
 
-						group.removeClass('error');
+						group.removeClass('has-error');
 						group.find('.help-block').html('').addClass('hidden');
 
 					},
 					invalid	: function( view, attr, error ){
 						var el	= view.$('[name='+attr+']'),
-						group	= el.closest('li');
+						group	= el.closest('div');
 
-						group.addClass('error');
+						group.addClass('has-error');
 						group.find('.help-block').html(error).removeClass('hidden');
 
 					}
