@@ -13,13 +13,15 @@ define(function(require){
         },
         render: function(){
             if ( this.petitions.length == 0 ){
-                $('#module-content', this.parentView.el).addClass('alert alert-info').append(
-                    $(document.createElement('div')).html(
-                        'На жаль, не вдалося знайти петиції які відповідають Вашому запиту.'
-                    ).prepend(
-                        $(document.createElement('span')).addClass('glyphicon glyphicon-info-sign')
-                    )
+                var message = $(document.createElement('div')).html(
+                    '&nbsp;На жаль, не вдалося знайти петиції які відповідають Вашому запиту.'
+                ).addClass('alert alert-info').prepend(
+                    $(document.createElement('span')).addClass('glyphicon glyphicon-info-sign')
                 );
+                $('#module-content', this.parentView.el).append(message);
+                this.parentView.router.on('route', function() {
+                    message.remove();
+                })
             }else{
                 var parentView = this.parentView;
                 this.petitions.each(function(petition){
