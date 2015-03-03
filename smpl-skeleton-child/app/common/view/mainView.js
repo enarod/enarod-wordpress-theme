@@ -30,6 +30,7 @@ define(function (require) {
             'click button#show-all-partners': 'showAllPartners',
 			'click input#id-search-in-organization': 'showOrganizations',
 			'click input#id-search-in-category' : 'showCategories',
+			'change input#search-advanced-checkbox' : 'toggleAdvancedSearchPanel',
         },
 
         render: function () {
@@ -128,9 +129,9 @@ define(function (require) {
             this.router.navigate('/petition', true);
         },
 
-      showAllPartners: function () {
-        this.router.navigate('/organization', true);
-      },
+		showAllPartners: function () {
+			this.router.navigate('/organization', true);
+		},
 
 		showOrganizations: function () {
 			if ( event.target.checked ){
@@ -143,6 +144,14 @@ define(function (require) {
 			if (event.target.checked ){
 
 				
+			}
+		},
+
+		toggleAdvancedSearchPanel: function(){
+			if ( $('#search-advanced-checkbox').prop('checked') ){
+				$('div#search-advanced').show();
+			}else{
+				$('div#search-advanced').hide();
 			}
 		},
 
@@ -163,6 +172,11 @@ define(function (require) {
             }
             this.searchActive = false;
             this.childView = null;
+
+			if ( $('#search-advanced-checkbox').prop('checked') ){
+				$('#search-advanced-checkbox').prop('checked', false);
+				this.toggleAdvancedSearchPanel();	
+			}
         }
     });
 });

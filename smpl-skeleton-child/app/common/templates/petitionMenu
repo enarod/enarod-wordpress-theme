@@ -31,7 +31,7 @@
       <button id="find" class='search-for-petition'>Пошук</button>
 
 <div style="clear: both;"></div>
-<div id="search-advanced">
+<div id="search-advanced" hidden="hidden">
   <div id="categories-list">
     <span class='lavel-text'>В категорії:</span>
     <%_.each(data.CategoriesList.models, function(el, idx, list){%>
