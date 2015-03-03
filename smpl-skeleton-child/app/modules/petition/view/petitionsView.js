@@ -12,17 +12,23 @@ define(function(require){
             this.listenTo(this.petitions, 'sync', this.render);
         },
         render: function(){
-			if ( this.petitions.length == 0 ){
-				alert('На жаль, не вдалося знайти петиції які відповідають Вашому запиту.');
-			}else{
-	            var parentView = this.parentView;
-	            this.petitions.each(function(petition){
-	                var item = new PetitionView ({ tmpl: 'item', model: petition });
-	                item.parentView = parentView;
-	                item.render();
-	                this.petitionsViewList.push(item);
-	            }, this);
-			}
+            if ( this.petitions.length == 0 ){
+                $('#module-content', this.parentView.el).addClass('alert alert-info').append(
+                    $(document.createElement('div')).html(
+                        'На жаль, не вдалося знайти петиції які відповідають Вашому запиту.'
+                    ).prepend(
+                        $(document.createElement('span')).addClass('glyphicon glyphicon-info-sign')
+                    )
+                );
+            }else{
+                var parentView = this.parentView;
+                this.petitions.each(function(petition){
+                    var item = new PetitionView ({ tmpl: 'item', model: petition });
+                    item.parentView = parentView;
+                    item.render();
+                    this.petitionsViewList.push(item);
+                }, this);
+            }
         },
         remove: function(){
             _.each( this.petitionsViewList, function (petition){
