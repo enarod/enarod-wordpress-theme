@@ -1,16 +1,14 @@
 <div class='organization-item'>
    <div class='organization-logo'>
-		<a href='#organization/<%=ID%>'>
-			<img src='<%=Logo%>'/>
-		</a>
+		<img src='<%=Logo%>'/>
    </div>
 
     <div class='organization-details'>
-     <h3><a href='#organization/<%=ID%>'><%=Name%></a></h3>
-		<%=Description%>			
+     <h3><%=Name%></h3>
+      <div class='organization-description'><%=Description%></div>
     </div>
  <div class="organization-actions">
-  <button name='create'>Нова петиція</button>
-  <button name='search'>Всі петиції</button>
+   <input type='image' id='create-petition' value='Створити петицію' title='Створити петицію' src='enarod-wordpress-theme-f.add_organization/smpl-skeleton-child/app/images/create.png'>
+   <input type='image' id='list-petitions' value='Показати петиції' title='Показати петиції' src='enarod-wordpress-theme-f.add_organization/smpl-skeleton-child/app/images/list.png'>
  </div>
 </div>
