@@ -5,6 +5,8 @@ Template:     smpl-skeleton
 Text Domain:  smpl-skeleton-child
 */
 @import url("../smpl-skeleton/style.css");
+@import url("../../bootstrap/css/bootstrap-theme.min.css");
+@import url("../../bootstrap/css/bootstrap.min.css");
 
 /* -------------------------------------------------------------- */
 
@@ -1052,7 +1054,7 @@ p.sign-label2 {
 .ui-dialog {
     background: #efefef !important;
     padding: 15px 15px 0 15px;
-    height: 130px !important;
+    /*height: 130px !important; If you need this style, please, don't apply it globally*/
     box-shadow: 0 0 13px rgba(0,0,0,.5);
     border: 2px solid #BBB;
 }

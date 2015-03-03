@@ -152,7 +152,9 @@ define(
 				this.remove();
 				this.unbind();
 				if (this.model.get('ID') !== ''){
-					alert(this.model.get('Message'));
+					if (typeof this.model.get('Message') !== 'undefined') {
+						alert(this.model.get('Message'));
+					}
 				}
 			},
 		
