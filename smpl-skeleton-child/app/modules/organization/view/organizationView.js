@@ -36,8 +36,8 @@ define(
         },
 
 		events:{
-			'click button[name=search]' : 'searchPetitions',
-			'click button[name=create]' : 'createPetition'	
+			'click input[id=list-petitions]' : 'searchPetitions',
+			'click input[id=create-petition]' : 'createPetition'	
 		},
 
         render: function(){
