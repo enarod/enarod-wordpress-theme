@@ -30,6 +30,7 @@ define(function (require) {
             'click button#show-all-partners': 'showAllPartners',
 			'click input#id-search-in-organization': 'showOrganizations',
 			'click input#id-search-in-category' : 'showCategories',
+      'change input#search-advanced-checkbox' : 'toggleAdvanced'
         },
 
         render: function () {
@@ -92,6 +93,11 @@ define(function (require) {
         openSearch: function () {
             $('input[name=search_for]').show();
             $('button[id=find]').show();
+
+        },
+
+        toggleAdvanced: function () {
+            $('#search-advanced').toggle($(event.target.checked));
         },
 
         find: function () {

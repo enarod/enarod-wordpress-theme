@@ -585,6 +585,7 @@ span#search {
 #search-advanced {
   width: 81%;
   margin-top:58px;
+  display: none;
 }
 #search-advanced .search-div, #categories-list {
   padding: 10px 0 8px 15px;
