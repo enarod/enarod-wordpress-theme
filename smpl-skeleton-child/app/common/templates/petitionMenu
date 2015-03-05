@@ -3,7 +3,7 @@
 <button id="show-all-partners" class="search-for-petition">Показати всіх партнерів</button>
 <span id='search'>
     <form id='petition-search-form'>
-      <input class="search-input-petition" name='search_for' placeholder='Введіть фразу, назву партнера або П.І.Б. автора' />
+      <input class="search-input-petition" name='search-for' placeholder='Введіть фразу, назву партнера або П.І.Б. автора' />
       <div id="search-line">
       <div id="organizations" class="search-div">
         <label for="id-search-in-organization">
@@ -36,7 +36,7 @@
     <span class='lavel-text'>В категорії:</span>
     <%_.each(data.CategoriesList.models, function(el, idx, list){%>
     <label>
-      <input type="radio" name="search-category" value="<%=el.get('Name')%>" />
+      <input type="radio" name="search-category" value="<%=el.get('ID')%>" />
       <span><%=el.get('Description')%> </span>
     </label>
     <%});%>

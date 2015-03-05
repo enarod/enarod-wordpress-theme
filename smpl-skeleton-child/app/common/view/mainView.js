@@ -91,7 +91,7 @@ define(function (require) {
         },
 
         openSearch: function () {
-            $('input[name=search_for]').show();
+            $('input[name=search-for]').show();
             $('button[id=find]').show();
         },
 
@@ -103,22 +103,30 @@ define(function (require) {
 			searchOrganization = '', 
 			searchCategory = '', 
 			searchInNew = '';
-		
-			if ( $('input[name=search_for]').val() ){	
-				searchText = 'Text=' + $('input[name=search_for]').val();
+			
+			if ( $('input[name=search-for]').val() ){	
+				searchText += 'Text=' + $('input[name=search-for]').val();
 			}
+
+			if ( $('input[name=search-in-organization]').prop('checked') ){
+				searchText += '&Organization=' + $('input[name=search-for]').val();
+			}
+			if ( $('input[name=search-in-petitions]').prop('checked') ){
+				searchText += '&Petition=' + $('input[name=search-for]').val();
+			}
+			if ( $('input[name=search-in-category]').prop('checked') ){
+				searchText += '&Category=' + $('input[name=search-for]').val();
+			}
+
 
 			if ( $('input[name=search-in-new]').prop('checked') ){
 				searchInNew = '&showNewPetitions=true';
 			}
 
-			if ( $('input[name=search-in-category').prop('checked') ){
+			if ( $('input[name=search-category]:checked').prop('checked') ){
 				searchCategory = '&CategoryID=' + $('input[name=search-category]:checked').val();
 			}
 		
-			if ( $('input[name=search-in-organization').prop('checked') ){
-				searchOrganization = '&OrganizationID=' + $('input[name=search-organization]:checked').val();
-			}
 			searchFor =  searchText + searchCategory + searchOrganization + searchInNew;
 
             this.router.navigate('/petition/search/'+searchFor, true);
@@ -172,11 +180,6 @@ define(function (require) {
             }
             this.searchActive = false;
             this.childView = null;
-
-			if ( $('#search-advanced-checkbox').prop('checked') ){
-				$('#search-advanced-checkbox').prop('checked', false);
-				this.toggleAdvancedSearchPanel();	
-			}
         }
     });
 });
