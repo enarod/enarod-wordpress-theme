@@ -1,37 +1,37 @@
 <div id='organization-details'>
+
+  <div id='organization-name'>
+    <h1>• <%=Name%> •</h1>
+  </div>
+
+  <div id="organization-wrapper-left">
    <div id='organization-logo'>
 		<img src='<%=Logo%>'/>
    </div>
-
-    <div id='organization-name'>
-		<h1><%=Name%></h1>
+    <div id='organization-description'>
+		<%=Description%>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
     </div>
+  </div>
 
-    <div id='organization-details'>
-		<%=Description%>			
-    </div>
-
-
-    <div id='petition-acceptance-policy'>
-		<%=AcceptancePolicy%>
-    </div>
-
-
+  <div id="organization-wrapper-right">
     <div id='preliminary-voting-days'>
-		<%=PreliminaryGatheringDays%>
+      Кількість днів для попереднього збору підписів - <span class="number"><%=PreliminaryGatheringDays%></span>
     </div>
-
     <div id='preliminary-vote-count'>
-		<%=PreliminaryVoteCount%>
+		Кількість попередньо зібраних підписів - <span class="number"><%=PreliminaryVoteCount%></span>
     </div>
-
-    
     <div id='voting-days'>
-		<%=GatheringDays%>
+      Кількість днів для збору підписів - <span class="number"><%=GatheringDays%></span>
     </div>
-
-
     <div id='vote-count'>
-		<%=VoteCount%>
+      Загальна кількість підписів - <span class="number"><%=VoteCount%></span>
     </div>
+    <div id="organization-buttons">
+    <a class="create-petition-btn" href="#petition/new">Створити петицію</a>
+    <button id="show-all-petitions" class="search-for-petition">Показати петиції</button>
+    </div>
+    <div id='petition-acceptance-policy'>
+      <%=AcceptancePolicy%>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+    </div>
+  </div>
 </div>
