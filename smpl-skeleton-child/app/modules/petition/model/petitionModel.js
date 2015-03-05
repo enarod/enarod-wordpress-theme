@@ -78,6 +78,31 @@ console.log(" Petition model changed! ");
 				data.CreatedDate =  this.formatDate( createdDate ) ;
 			}
 
+			if( data.Organization ) {
+				data.Partner = data.Organization.Name;
+			}
+			else if(data.AddressedTo) {
+				data.Partner = data.AddressedTo;
+			}
+			else {
+				data.Partner = "Без адресата"
+			}
+
+			if ( data.Author ) {
+				if (data.Author.LastName) {
+					data.AuthorRef = data.Author.LastName;
+					if (data.Author.FirstName) {
+						data.AuthorRef += ' ' + data.Author.FirstName.substring(0, 1).toUpperCase() + '.';
+					}
+					if (data.Author.City) {
+						data.AuthorRef += ' (' + data.Author.City + ')';
+					}
+				}
+				else {
+					data.AuthorRef = 'Без Автора';
+				}
+			}
+
 		},
 
 		setDaysLeft: function(effectiveDate){

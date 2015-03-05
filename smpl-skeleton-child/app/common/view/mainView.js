@@ -93,6 +93,11 @@ define(function (require) {
         openSearch: function () {
             $('input[name=search-for]').show();
             $('button[id=find]').show();
+
+        },
+
+        toggleAdvanced: function () {
+            $('#search-advanced').toggle($(event.target.checked));
         },
 
         find: function () {
