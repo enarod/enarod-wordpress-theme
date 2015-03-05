@@ -5,8 +5,6 @@ Template:     smpl-skeleton
 Text Domain:  smpl-skeleton-child
 */
 @import url("../smpl-skeleton/style.css");
-@import url("../../bootstrap/css/bootstrap-theme.min.css");
-@import url("../../bootstrap/css/bootstrap.min.css");
 
 /* -------------------------------------------------------------- */
 
@@ -490,37 +488,9 @@ img.alignleft {
     font-size: 10px;
     font-family: Verdana;
 }
-span#search {
-  min-height: 150px;
-  display: block;
-}
-#search-line {
-  margin-top: 117px;
-  position: absolute;
-  width: 99%;
-}
-#search-line .search-div {
-  float:left;
-  width:26.55%;
-  background: #f5f5f5;
-  border: 1px dashed #BBB;
-  border-right:0px;
-  text-align: center;
-  padding-top:4px;
-}
-#search-line .search-div.search-div-new {
-  border-right:1px dashed #BBB;
-}
-#search-line .search-div  span, .search-advanced-label span {
-  position: relative;
-  top: -3px;
-  display:inline-block;
-}
-#search-line .search-div input {
-  margin-bottom:0;
-}
+
 #petition-search-form .search-input-petition {
-    width:81%;
+    width:88%;
     display: inline-block;
     height: 36px;
     border-radius: 0;
@@ -530,12 +500,8 @@ span#search {
     font-size: 18px;
     box-sizing: border-box;
     padding: 5px 10px;
-    margin: 0 3% 0 0;
+    margin: 0;
     float: left;
-}
-.search-for-petition#find {
-  padding-left: 40px !important;
-  padding-right: 40px !important;
 }
 
 .create-petition-btn {
@@ -583,28 +549,12 @@ span#search {
   text-align: center;
 }
 #search-advanced {
-  width: 81%;
-  margin-top:58px;
-  display: none;
-}
-#search-advanced .search-div, #categories-list {
-  padding: 10px 0 8px 15px;
-  border: 1px dashed #BBB;
-  background: #f5f5f5;
-  margin-bottom: 12px;
-}
-#categories-list {
-  float: left;
-  width:62.7%;
-  padding: 8px 0 8px 15px;
-}
-#search-advanced #categories-list span.lavel-text {
-  font-size: 13px;
-  font-weight: bold;
-}
-#search-advanced-wrapper {
-  width: 33.5%;
-  float: right;
+  width: 21.5%;
+  right: 2%;
+  position: absolute;
+  margin-top:20px;
+  border:2px solid #BBB;
+  padding:5px 5px 13px 15px;
 }
 #search-advanced label {
   display:block;
@@ -622,18 +572,21 @@ span#search {
   font-weight:normal;
 }
 .search-advanced-label {
-  font-weight: bold;
-  font-size: 13px;
-  padding-left: 3%;
-  float: left;
   text-align: center;
-  padding-top: 6px;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding-bottom: 5px;
+  padding-top: 5px;
 }
 #search-advanced #categories-list span, #search-advanced #organizations-list span {
   font-weight: normal;
   font-size: 12px;
   top: -2px;
   position: relative;
+}
+#search-advanced .search-div {
+  padding-bottom:8px;
 }
 #search-pib, #search-date-creation, #search-date-finish {
   padding-top:8px;
@@ -968,7 +921,9 @@ p.sign-label2 {
   width: 23%;
   padding-right: 20px;
 }
-
+.petition-item {
+  width: 73%;
+}
 .petition-item-inner {
     width: 74%;
     background: #82b266;
@@ -979,12 +934,11 @@ p.sign-label2 {
     float: left;
     height: 105px;
     position: relative;
+    margin: 0 0 25px 0;
     box-sizing: border-box;
 }
-.petition-item {
-  margin-bottom: 20px;
-}
-.petition-item a, .organization-item .organization-details h3 {
+
+.petition-item a {
     font-size: 17px;
     color: #fff;
     text-transform: uppercase;
@@ -994,9 +948,6 @@ p.sign-label2 {
     margin: 0;
     display: inline-block;
     line-height: 130%;
-}
-.organization-item .organization-details h3 a {
-  color:#fff;
 }
 
 .petition-item .signature-summary {
@@ -1015,10 +966,6 @@ p.sign-label2 {
 }
 .partner, .petition-author, .finish-date {
   font-size:13px;
-  padding-right:10px;
-}
-.sign-left {
-  padding-right: 10px;
 }
 .sign-have {
     font-size: 18px;
@@ -1055,7 +1002,7 @@ p.sign-label2 {
 .ui-dialog {
     background: #efefef !important;
     padding: 15px 15px 0 15px;
-    /*height: 130px !important; If you need this style, please, don't apply it globally*/
+    height: 130px !important;
     box-shadow: 0 0 13px rgba(0,0,0,.5);
     border: 2px solid #BBB;
 }
@@ -1075,47 +1022,5 @@ span#ui-id-2 {
     color: #4A9334;
     font-weight: bold;
 }
-.organization-item .organization-logo, .organization-item .organization-details {
-  float:left;
-}
-.organization-item .organization-actions  {
-  text-align: center;
-}
-.organization-item img {
-  width: 100%;
-}
-.organization-item .organization-logo {
-  width: 20%;
-  margin: 0 25px 15px 0;
-}
-.organization-item .organization-details {
-  width:70%;
-  color: #fff;
-  font-family: Helvetica;
-  margin: 0 25px 25px 0;
-  box-sizing: border-box;
-  border: 1px solid #4A9334;
-}
-.organization-item {
-  clear: both;
-}
 
-.organization-item .organization-details h3 {
-  display:block;
-  padding: 10px 10px 5px;
-  background: #82b266;
-}
-.organization-description {
-  padding: 10px 10px 5px;
-  color: #333;
-  padding: 10px 10px 5px;
-}
-.organization-actions input {
-  display:block;
-  width:25px;
-  border:0;
-  border-radius: 0;
-  padding-top:6px;
-}
-/*petitions end */
- 
+/*petitions end  */
