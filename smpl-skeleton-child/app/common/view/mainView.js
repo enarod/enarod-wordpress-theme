@@ -107,7 +107,12 @@ define(function (require) {
 			searchText = '', 
 			searchOrganization = '', 
 			searchCategory = '', 
-			searchInNew = '';
+			searchInNew = '',
+			searchInPIB = '',
+			createDateStart = '',
+			createDateEnd = '',
+			finishDateStart = '',
+			finishDateEnd = '';
 			
 			if ( $('input[name=search-for]').val() ){	
 				searchText += 'Text=' + $('input[name=search-for]').val();
@@ -122,7 +127,9 @@ define(function (require) {
 			if ( $('input[name=search-in-category]').prop('checked') ){
 				searchText += '&Category=' + $('input[name=search-for]').val();
 			}
-
+			if ( $('input[name=search-in-pib]').prop('checked') ){
+//				searchInPIB = '&PIB=' + $('input[name=search-for]').val();
+			}
 
 			if ( $('input[name=search-in-new]').prop('checked') ){
 				searchInNew = '&showNewPetitions=true';
@@ -131,8 +138,29 @@ define(function (require) {
 			if ( $('input[name=search-category]:checked').prop('checked') ){
 				searchCategory = '&CategoryID=' + $('input[name=search-category]:checked').val();
 			}
+			
+			if ( $('input[name=search-in-date-creation-from]') ){
+				createDateStart = '&CreateDateStart=' + $('input[name=search-in-date-creation-from]').val();
+			}
+			if ( $('input[name=search-in-date-creation-to]') ){
+				createDateEnd = '&CreateDateEnd=' + $('input[name=search-in-date-creation-to]').val();
+			}
+			if ( $('input[name=search-in-date-finish-from]') ){
+				finishDateStart = '&FinishDateStart=' + $('input[name=search-in-date-finish-from]').val();
+			}
+			if ( $('input[name=search-in-date-finish-to]') ){
+				finishDateEnd = '&FinishDateEnd=' + $('input[name=search-in-date-finish-to]').val();
+			}
 		
-			searchFor =  searchText + searchCategory + searchOrganization + searchInNew;
+			searchFor =  searchText + 
+						searchCategory + 
+						searchOrganization + 
+						searchInNew +
+						createDateStart +
+						createDateEnd +
+						finishDateStart +
+						finishDateEnd
+						;
 
             this.router.navigate('/petition/search/'+searchFor, true);
 
