@@ -12,6 +12,9 @@ Text Domain:  smpl-skeleton-child
 
 /* #Media Queries
 ================================================== */
+#wrap {
+  width:960px !important;
+}
 
 a {
     text-decoration: none;
@@ -555,6 +558,9 @@ span#search {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+.create-petition-btn:hover {
+  text-decoration: none;
+}
 .create-petition-btn, #show-all-petitions, #show-all-partners {
   margin-bottom: 30px;
 }
@@ -817,7 +823,7 @@ p.sign-label2 {
 
 #petitions-all {
     display: block;
-    margin: 46px 0 0 0; 
+    margin: 46px 0 0 0;
     text-align: center;
     color: #6d6d6d;
     font-family: Verdana;
@@ -903,21 +909,17 @@ p.sign-label2 {
 #petition-form table td input:hover {
     cursor: pointer;
 }
-
 .petition-form-item-address {
     margin-left: 3%;
 }
-
 .petition-form-item-category {
     margin: 20px 0 0 0;
 }
-
 .category-column1 {
     float: left;
     width: 43%;
     height: 183px;
 }
-
 .petition-form-textarea textarea {
     background: #f0f0f0;
     color: #737373;
@@ -949,7 +951,6 @@ p.sign-label2 {
     height: 41px;
     padding-top: 10px;
 }*/
-
 #publish_petition {
     border: 0;
     padding: 4px 10px 4px 10px;
@@ -968,7 +969,6 @@ p.sign-label2 {
   width: 23%;
   padding-right: 20px;
 }
-
 .petition-item-inner {
     width: 74%;
     background: #82b266;
@@ -998,7 +998,6 @@ p.sign-label2 {
 .organization-item .organization-details h3 a {
   color:#fff;
 }
-
 .petition-item .signature-summary {
     position: absolute;
     bottom: 0;
@@ -1009,7 +1008,6 @@ p.sign-label2 {
     padding: 3px 10px 2px;
     box-sizing: border-box;
 }
-
 .sign-name {
     font-size: 11px;
 }
@@ -1028,7 +1026,6 @@ p.sign-label2 {
 .sign-left {
     font-size: 14px;
 }
-
 .petition-item #sign {
     display: block;
     float: right;
@@ -1038,12 +1035,10 @@ p.sign-label2 {
 .petition-subsection {
     margin: 10px 0;
 }
-
 .petition-subsection-header {
     font-weight: 800;
     text-decoration: underline;
 }
-
 .submenu {
     margin: 0 0 20px 0;
 }
@@ -1051,7 +1046,6 @@ p.sign-label2 {
 .petition-subsection img {
     max-width: 100%;
 }
-
 .ui-dialog {
     background: #efefef !important;
     padding: 15px 15px 0 15px;
@@ -1059,7 +1053,6 @@ p.sign-label2 {
     box-shadow: 0 0 13px rgba(0,0,0,.5);
     border: 2px solid #BBB;
 }
-
 button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-icon-only.ui-dialog-titlebar-close {
     position: absolute;
     top: -10px;
@@ -1068,7 +1061,6 @@ button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-icon-only.ui
     border-radius: 0;
     border: 2px solid #BBB;
 }
-
 span#ui-id-2 {
     display: block;
     margin: 0 0 15px 0;
@@ -1099,7 +1091,6 @@ span#ui-id-2 {
 .organization-item {
   clear: both;
 }
-
 .organization-item .organization-details h3 {
   display:block;
   padding: 10px 10px 5px;
@@ -1116,5 +1107,50 @@ span#ui-id-2 {
   border:0;
   border-radius: 0;
   padding-top:6px;
+}
+#organization-wrapper-left, #organization-wrapper-right {
+  float: left;
+  width: 47%;
+  margin-right: 3%;
+  margin-top: 20px;
+}
+#organization-wrapper-right {
+  margin-right:0;
+  margin-left: 3%;
+}
+#organization-details #organization-name {
+  text-align:center;
+}
+#organization-details {
+  top: 10px;
+  position: relative;
+}
+#organization-details #organization-logo {
+  text-align: center;
+}
+#organization-details #organization-logo img {
+  height: 176px;
+}
+#petition-acceptance-policy {
+  clear:both;
+}
+#organization-details #organization-name h1 {
+  background: #54a038;
+  padding: 10px 30px 6px 30px;
+  color: #fff;
+  text-shadow: #0d3003 0 1px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 18px;
+  font-family: Helvetica;
+  margin: 0;
+  border-bottom: 1px solid #356a22;
+  display: inline-block;
+}
+#organization-buttons {
+  margin-top:30px;
+}
+#organization-details .number {
+  font-weight:bold;
 }
 /*petitions end */
