@@ -12,9 +12,6 @@ Text Domain:  smpl-skeleton-child
 
 /* #Media Queries
 ================================================== */
-#wrap {
-  width:960px !important;
-}
 
 a {
     text-decoration: none;

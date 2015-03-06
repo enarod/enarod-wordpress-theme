@@ -30,7 +30,7 @@ define(function (require) {
             'click button#show-all-partners': 'showAllPartners',
 			'click input#id-search-in-organization': 'showOrganizations',
 			'click input#id-search-in-category' : 'showCategories',
-      'change input#search-advanced-checkbox' : 'toggleAdvanced'
+			'change input#search-advanced-checkbox' : 'toggleAdvancedSearchPanel',
         },
 
         render: function () {
@@ -91,7 +91,7 @@ define(function (require) {
         },
 
         openSearch: function () {
-            $('input[name=search_for]').show();
+            $('input[name=search-for]').show();
             $('button[id=find]').show();
 
         },
@@ -107,24 +107,60 @@ define(function (require) {
 			searchText = '', 
 			searchOrganization = '', 
 			searchCategory = '', 
-			searchInNew = '';
-		
-			if ( $('input[name=search_for]').val() ){	
-				searchText = 'Text=' + $('input[name=search_for]').val();
+			searchInNew = '',
+			searchInPIB = '',
+			createDateStart = '',
+			createDateEnd = '',
+			finishDateStart = '',
+			finishDateEnd = '';
+			
+			if ( $('input[name=search-for]').val() ){	
+				searchText += 'Text=' + $('input[name=search-for]').val();
+			}
+
+			if ( $('input[name=search-in-organization]').prop('checked') ){
+				searchText += '&Organization=' + $('input[name=search-for]').val();
+			}
+			if ( $('input[name=search-in-petitions]').prop('checked') ){
+				searchText += '&Petition=' + $('input[name=search-for]').val();
+			}
+			if ( $('input[name=search-in-category]').prop('checked') ){
+				searchText += '&Category=' + $('input[name=search-for]').val();
+			}
+			if ( $('input[name=search-in-pib]').prop('checked') ){
+//				searchInPIB = '&PIB=' + $('input[name=search-for]').val();
 			}
 
 			if ( $('input[name=search-in-new]').prop('checked') ){
 				searchInNew = '&showNewPetitions=true';
 			}
 
-			if ( $('input[name=search-in-category').prop('checked') ){
+			if ( $('input[name=search-category]:checked').prop('checked') ){
 				searchCategory = '&CategoryID=' + $('input[name=search-category]:checked').val();
 			}
-		
-			if ( $('input[name=search-in-organization').prop('checked') ){
-				searchOrganization = '&OrganizationID=' + $('input[name=search-organization]:checked').val();
+			
+			if ( $('input[name=search-in-date-creation-from]') ){
+				createDateStart = '&CreateDateStart=' + $('input[name=search-in-date-creation-from]').val();
 			}
-			searchFor =  searchText + searchCategory + searchOrganization + searchInNew;
+			if ( $('input[name=search-in-date-creation-to]') ){
+				createDateEnd = '&CreateDateEnd=' + $('input[name=search-in-date-creation-to]').val();
+			}
+			if ( $('input[name=search-in-date-finish-from]') ){
+				finishDateStart = '&FinishDateStart=' + $('input[name=search-in-date-finish-from]').val();
+			}
+			if ( $('input[name=search-in-date-finish-to]') ){
+				finishDateEnd = '&FinishDateEnd=' + $('input[name=search-in-date-finish-to]').val();
+			}
+		
+			searchFor =  searchText + 
+						searchCategory + 
+						searchOrganization + 
+						searchInNew +
+						createDateStart +
+						createDateEnd +
+						finishDateStart +
+						finishDateEnd
+						;
 
             this.router.navigate('/petition/search/'+searchFor, true);
 
@@ -134,9 +170,9 @@ define(function (require) {
             this.router.navigate('/petition', true);
         },
 
-      showAllPartners: function () {
-        this.router.navigate('/organization', true);
-      },
+		showAllPartners: function () {
+			this.router.navigate('/organization', true);
+		},
 
 		showOrganizations: function () {
 			if ( event.target.checked ){
@@ -149,6 +185,14 @@ define(function (require) {
 			if (event.target.checked ){
 
 				
+			}
+		},
+
+		toggleAdvancedSearchPanel: function(){
+			if ( $('#search-advanced-checkbox').prop('checked') ){
+				$('div#search-advanced').show();
+			}else{
+				$('div#search-advanced').hide();
 			}
 		},
 
