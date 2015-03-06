@@ -1182,15 +1182,17 @@ span#ui-id-2 {
   position:relative;
 }
 #petition-form #organization-details {
-  width: 338px;
+  width: 294px;
   position: absolute;
   left: 100%;
   top: 20px;
   margin-left: 35px;
-  border: 1px solid #BBB;
 }
 .organization-block {
   padding-bottom:20px;
+}
+.organization-item-in-petition {
+  border: 1px solid #BBB;
 }
 .organization-item-in-petition #organization-petition-author {
   font-size:16px;
