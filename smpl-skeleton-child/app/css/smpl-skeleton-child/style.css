@@ -16,8 +16,8 @@ Text Domain:  smpl-skeleton-child
   width:960px !important;
 }
 
-a {
-    text-decoration: none;
+a, a:visited, a:active, a:hover {
+    text-decoration: none !important;
 }
 
 body {
@@ -523,7 +523,7 @@ span#search {
   margin-bottom:0;
 }
 #petition-search-form .search-input-petition {
-    width:81%;
+    width:80.5%;
     display: inline-block;
     height: 36px;
     border-radius: 0;
@@ -533,7 +533,7 @@ span#search {
     font-size: 18px;
     box-sizing: border-box;
     padding: 5px 10px;
-    margin: 0 3% 0 0;
+    margin: 0 11px 0 0;
     float: left;
 }
 .search-for-petition#find {
@@ -609,12 +609,17 @@ span#search {
   font-weight: bold;
 }
 #search-advanced-wrapper {
-  width: 33.5%;
+  width: 33.3%;
   float: right;
+  margin-right: 4px;
 }
 #search-advanced label {
+  margin-bottom:0;
   display:block;
   line-height:120%;
+}
+#search-advanced #search-date-creation label:first-child, #search-advanced #search-date-finish label:first-child {
+  padding-bottom: 2px;
 }
 #search-advanced input {
   margin-left:0;
@@ -630,7 +635,7 @@ span#search {
 .search-advanced-label {
   font-weight: bold;
   font-size: 13px;
-  padding-left: 3%;
+  padding-left: 14px;
   float: left;
   text-align: center;
   padding-top: 6px;
@@ -889,7 +894,16 @@ p.sign-label2 {
 .petition-form-item-address input,
 #petition-form table td input {
     float: left;
-    margin: 6px 6px 0 0;
+    margin: 0 6px 0 0;
+}
+.petition-form-item-category table {
+  margin-bottom:0;
+}
+.petition-form-item-category table td {
+  padding: 0px 10px 0px 10px;
+}
+.petition-form-item-category h3 {
+  padding-bottom:7px;
 }
 
 .petition-form-item-level .level-text,
@@ -942,6 +956,7 @@ p.sign-label2 {
 .petition-form-textarea1 textarea {
     height: 52px;
     padding: 15px;
+   line-height:110%;
 }
 
 .petition-form-textarea2 textarea {
@@ -981,10 +996,9 @@ p.sign-label2 {
     background: #82b266;
     color: #fff;
     font-family: Helvetica;
-    padding: 10px 10px 5px;
+    padding-top: 10px;
     border-bottom: 2px solid #387325;
     float: left;
-    height: 105px;
     position: relative;
     box-sizing: border-box;
 }
@@ -1002,17 +1016,16 @@ p.sign-label2 {
     display: inline-block;
     line-height: 130%;
 }
+.petition-item a {
+  padding: 0 10px 5px 10px;
+}
 .organization-item .organization-details h3 a {
   color:#fff;
 }
 .petition-item .signature-summary {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 32px;
+    /*width: 100%;*/
     background: #4A9334;
-    padding: 3px 10px 2px;
+    padding: 3px 10px 3px;
     box-sizing: border-box;
 }
 .sign-name {
@@ -1088,7 +1101,7 @@ span#ui-id-2 {
   margin: 0 25px 15px 0;
 }
 .organization-item .organization-details {
-  width:70%;
+  width:72%;
   color: #fff;
   font-family: Helvetica;
   margin: 0 25px 25px 0;
@@ -1116,6 +1129,7 @@ span#ui-id-2 {
   padding-top:6px;
 }
 #organization-wrapper-left, #organization-wrapper-right {
+  margin-bottom:30px;
   float: left;
   width: 47%;
   margin-right: 3%;
