@@ -108,7 +108,7 @@ define(function (require) {
 			searchOrganization = '', 
 			searchCategory = '', 
 			searchInNew = '',
-			searchInPIB = '',
+			searchInActive = '',
 			createDateStart = '',
 			createDateEnd = '',
 			finishDateStart = '',
@@ -127,17 +127,23 @@ define(function (require) {
 			if ( $('input[name=search-in-category]').prop('checked') ){
 				searchText += '&Category=' + $('input[name=search-for]').val();
 			}
-			if ( $('input[name=search-in-pib]').prop('checked') ){
-//				searchInPIB = '&PIB=' + $('input[name=search-for]').val();
+			if ( $('input[name=search-in-active]').prop('checked') ){
+				searchInActive = '&showActivePetitions=true' ;
+			}
+			if ( ! $('input[name=search-in-active]').prop('checked') ){
+				searchInActive = '&showActivePetitions=false' ;
 			}
 
 			if ( $('input[name=search-in-new]').prop('checked') ){
 				searchInNew = '&showNewPetitions=true';
 			}
 
-			if ( $('input[name=search-category]:checked').prop('checked') ){
-				searchCategory = '&CategoryID=' + $('input[name=search-category]:checked').val();
-			}
+			$('input[name^=search-category-]').each( function(){
+				if ( $(this).prop('checked') ){
+					searchCategory += '&CategoryID=' + $(this).val();
+				}
+			});
+
 			
 			if ( $('input[name=search-in-date-creation-from]') ){
 				createDateStart = '&CreateDateStart=' + $('input[name=search-in-date-creation-from]').val();
@@ -156,6 +162,7 @@ define(function (require) {
 						searchCategory + 
 						searchOrganization + 
 						searchInNew +
+						searchInActive +
 						createDateStart +
 						createDateEnd +
 						finishDateStart +

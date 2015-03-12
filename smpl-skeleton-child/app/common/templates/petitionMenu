@@ -36,7 +36,7 @@
     <span class='lavel-text'>В категорії:</span>
     <%_.each(data.CategoriesList.models, function(el, idx, list){%>
     <label>
-      <input type="radio" name="search-category" value="<%=el.get('ID')%>" />
+      <input type="checkbox" name="search-category-<%=el.get('ID')%>" value="<%=el.get('ID')%>" />
       <span><%=el.get('Description')%> </span>
     </label>
     <%});%>
@@ -50,9 +50,9 @@
   </div>
 
   <div id="search-pib" class="search-div">
-    <label for="id-search-in-pib">
-      <input id="id-search-in-pib" name="search-in-pib" type="checkbox"/>
-      <span class='lavel-text'>в П.І.Б. автора</span>
+    <label for="id-search-in-active">
+      <input id="id-search-in-active" name="search-in-active" type="checkbox" checked="checked"/>
+      <span class='lavel-text'>серед активних</span>
     </label>
   </div>
   <div id="search-date-creation" class="search-div">
