@@ -3,16 +3,15 @@ define(function (require) {
     var $ = require('jquery'),
         _ = require('underscore'),
         Backbone = require('backbone'),
-        petitionMenu = require('text!common/templates/petitionMenu'),
         pollMenu = require('text!common/templates/pollMenu'),
         appFrame = require('text!common/templates/appFrame'),
+
+		PetitionMenu = require('common/view/petitionMenuView'),
         PetitionView = require('module/petition/view/petitionView'),
         PetitionsView = require('module/petition/view/petitionsView'),
 
         OrganizationView = require('module/organization/view/organizationView'),
-        OrganizationsView = require('module/organization/view/organizationsView'),
-		Organizations	 = require('module/organization/collection/organizationCollection'),
-		Categories		 = require( 'module/petition/collection/petitionCategoryCollection' )
+        OrganizationsView = require('module/organization/view/organizationsView')
 		;
 
     return Backbone.View.extend({
@@ -21,17 +20,10 @@ define(function (require) {
         template: _.template(appFrame),
 
         moduleNode: '#module-content',
+		
+		submenuNode: '.submenu',
 
-        events: {
-            'click span#search': 'openSearch',
-            'click button#find': 'find',
-            'click button#custom-search': 'find',
-            'click button#show-all-petitions': 'showAllPetitions',
-            'click button#show-all-partners': 'showAllPartners',
-			'click input#id-search-in-organization': 'showOrganizations',
-			'click input#id-search-in-category' : 'showCategories',
-			'change input#search-advanced-checkbox' : 'toggleAdvancedSearchPanel',
-        },
+        events: { },
 
         render: function () {
             this.$el.html(this.template());
@@ -40,9 +32,9 @@ define(function (require) {
         },
 
         menues: {
-            petition: petitionMenu,
+            petition: PetitionMenu,
             poll: pollMenu,
-            organization: petitionMenu,
+            organization: PetitionMenu,
         },
 
         subviews: {
@@ -54,14 +46,20 @@ define(function (require) {
         },
 
         setModuleMenu: function () {
-			var type = this.menuType;
-            var menu = _.template(this.menues[type], {data: this});
-            this.$('div.submenu').html(menu);
-            this.submenu = type;
+			this.submenuNode = '.submenu';
+			var submenuView = this.menues[this.menuType];
+			this.submenu = new submenuView ( { parentView: this } );
         },
 
+		/*
+		 Once submenu view rendered append it to mainView
+ 		*/
+		appendSubmenu: function(){
+			this.$(this.submenuNode).append(this.submenu.$el);
+		},
+
         removeModuleMenu: function () {
-            this.$('div.submenu').empty();
+			this.submenu.close();
             this.submenu = null;
         },
 
@@ -71,18 +69,7 @@ define(function (require) {
             }
             if (!this.submenu) {
 				this.menuType = view.module;
-
-				//TODO: Code below need to be removed/generalized so it 
-				// support loading of required components for menu for 
-				// different modules
-				//
-				//Loading Organizations and Categories for petition menu
-				this.OrganizationsList = new Organizations();
-				this.CategoriesList = new Categories();
-				//run setModuleMenu once OrganizationsList and CategoriesList are loaded
-	            this.onceAll ( [this.OrganizationsList, this.CategoriesList ], 'sync', this.setModuleMenu, this );
-				
-//              this.setModuleMenu();
+				this.setModuleMenu();
             }
             var View = this.subviews[view.type];
             var subView = new View(view.settings);
@@ -90,127 +77,9 @@ define(function (require) {
             subView.parentView = this;
         },
 
-        openSearch: function () {
-            $('input[name=search-for]').show();
-            $('button[id=find]').show();
-
-        },
-
-        toggleAdvanced: function () {
-            $('#search-advanced').toggle($(event.target.checked));
-        },
-
-        find: function () {
-            event.preventDefault();
-			
-			var searchFor = '', 
-			searchText = '', 
-			searchOrganization = '', 
-			searchCategory = '', 
-			searchInNew = '',
-			searchInActive = '',
-			createDateStart = '',
-			createDateEnd = '',
-			finishDateStart = '',
-			finishDateEnd = '';
-			
-			if ( $('input[name=search-for]').val() ){	
-				searchText += 'Text=' + $('input[name=search-for]').val();
-			}
-
-			if ( $('input[name=search-in-organization]').prop('checked') ){
-				searchText += '&Organization=' + $('input[name=search-for]').val();
-			}
-			if ( $('input[name=search-in-petitions]').prop('checked') ){
-				searchText += '&Petition=' + $('input[name=search-for]').val();
-			}
-			if ( $('input[name=search-in-category]').prop('checked') ){
-				searchText += '&Category=' + $('input[name=search-for]').val();
-			}
-			if ( $('input[name=search-in-active]').prop('checked') ){
-				searchInActive = '&showActivePetitions=true' ;
-			}
-			if ( ! $('input[name=search-in-active]').prop('checked') ){
-				searchInActive = '&showActivePetitions=false' ;
-			}
-
-			if ( $('input[name=search-in-new]').prop('checked') ){
-				searchInNew = '&showNewPetitions=true';
-			}
-
-			$('input[name^=search-category-]').each( function(){
-				if ( $(this).prop('checked') ){
-					searchCategory += '&CategoryID=' + $(this).val();
-				}
-			});
-
-			
-			if ( $('input[name=search-in-date-creation-from]') ){
-				createDateStart = '&CreateDateStart=' + $('input[name=search-in-date-creation-from]').val();
-			}
-			if ( $('input[name=search-in-date-creation-to]') ){
-				createDateEnd = '&CreateDateEnd=' + $('input[name=search-in-date-creation-to]').val();
-			}
-			if ( $('input[name=search-in-date-finish-from]') ){
-				finishDateStart = '&FinishDateStart=' + $('input[name=search-in-date-finish-from]').val();
-			}
-			if ( $('input[name=search-in-date-finish-to]') ){
-				finishDateEnd = '&FinishDateEnd=' + $('input[name=search-in-date-finish-to]').val();
-			}
-		
-			searchFor =  searchText + 
-						searchCategory + 
-						searchOrganization + 
-						searchInNew +
-						searchInActive +
-						createDateStart +
-						createDateEnd +
-						finishDateStart +
-						finishDateEnd
-						;
-
-            this.router.navigate('/petition/search/'+searchFor, true);
-
-        },
-
-        showAllPetitions: function () {
-            this.router.navigate('/petition', true);
-        },
-
-		showAllPartners: function () {
-			this.router.navigate('/organization', true);
-		},
-
-		showOrganizations: function () {
-			if ( event.target.checked ){
-
-
-			}
-		},
-
-		showCategories: function (){
-			if (event.target.checked ){
-
-				
-			}
-		},
-
-		toggleAdvancedSearchPanel: function(){
-			if ( $('#search-advanced-checkbox').prop('checked') ){
-				$('div#search-advanced').show();
-			}else{
-				$('div#search-advanced').hide();
-			}
-		},
-
-        onceAll: function(sources, eventName, handler, context){
-            handler = _.after( sources.length, handler);
-            context = context || this;
-            _.each(sources, function(source){
-				source.fetch();
-                source.once(eventName, handler, context)
-            });
-        },
+//        toggleAdvanced: function () {
+//            $('#search-advanced').toggle($(event.target.checked));
+//        },
 
         //Clean
         cleanUp: function () {
