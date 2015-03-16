@@ -88,6 +88,10 @@ console.log(" Petition model changed! ");
 				data.Partner = "Без адресата"
 			}
 
+			if (!data.Organization) {
+				data.Organization = {Logo: ''};
+			}
+
 			if ( data.Author ) {
 				if (data.Author.LastName) {
 					data.AuthorRef = data.Author.LastName;
