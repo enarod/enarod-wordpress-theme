@@ -3,8 +3,8 @@ define(function(require){
     var $	= require('jquery'),
         _		= require('underscore'),
         Backbone= require('backbone'),
-        PagingSettings	= require('text!module/petition/templates/petitionPagingSettings.html'),
-        MorePetitionBtn	= require('text!module/petition/templates/morePetitionButton.html'),
+//        PagingSettings	= require('text!module/petition/templates/petitionPagingSettings.html'),
+//        MorePetitionBtn	= require('text!module/petition/templates/morePetitionButton.html'),
         PetitionView	= require ('module/petition/view/petitionView');
     return Backbone.View.extend({
         className: 'petition-item',

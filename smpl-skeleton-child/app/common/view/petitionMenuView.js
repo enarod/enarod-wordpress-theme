@@ -16,6 +16,13 @@ define ( function(require){
 
 		template: _.template(petitionMenu),
 
+		pagingSettings: {
+			OrderBy: 'name',
+			OrderDirection: 'ASC',
+			PageNumber: 1,	
+			PageSize: 20,
+		},
+
 		initialize: function( data ){
 			this.parentView = data.parentView;
 
@@ -48,8 +55,6 @@ define ( function(require){
 		},
 
         find: function () {
-            event.preventDefault();
-			
 			var searchFor = '', 
 			searchText = 'Text=', 
 			searchOrganization = '', 
@@ -70,15 +75,12 @@ define ( function(require){
 			}
 
 			if ( $('input[name=search-in-organization]').prop('checked') ){
-//				searchText += '&Organization=' + $('input[name=search-for]').val();
 				searchInOrganizations = '&SearchInOrganizations=true';
 			}
 			if ( $('input[name=search-in-petitions]').prop('checked') ){
-//				searchText += '&Petition=' + $('input[name=search-for]').val();
 				searchInPetitions = '&SearchInPetitions=true';
 			}
 			if ( $('input[name=search-in-category]').prop('checked') ){
-//				searchText += '&Category=' + $('input[name=search-for]').val();
 				searchInCategories = '&SearchInCategories=true';
 			}
 			if ( $('input[name=search-in-active]').prop('checked') ){
@@ -111,7 +113,12 @@ define ( function(require){
 			if ( $('input[name=search-in-date-finish-to]') ){
 				finishDateEnd = '&FinishDateEnd=' + $('input[name=search-in-date-finish-to]').val();
 			}
-		
+	
+			var pagingSettings='';
+			_.each(this.pagingSettings, function( val, key, list){
+				pagingSettings += '&' + key + '=' + val;			
+			});
+	
 			searchFor =  searchText + 
 						searchCategory + 
 						searchOrganization + 
@@ -123,7 +130,8 @@ define ( function(require){
 						createDateStart +
 						createDateEnd +
 						finishDateStart +
-						finishDateEnd
+						finishDateEnd + 
+						pagingSettings
 						;
 
             this.parentView.router.navigate('/petition/search/'+searchFor, true);
