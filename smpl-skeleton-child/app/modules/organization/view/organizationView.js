@@ -52,7 +52,7 @@ define(
    
 		searchPetitions: function(){
 			var id = this.model.get('ID');
-			this.parentView.router.navigate('/petition/search/OrganizationId='+id, true);
+			this.parentView.router.navigate('/petition/search/Text=&OrganizationId='+id, true);
 		},
 
 		createPetition: function(){

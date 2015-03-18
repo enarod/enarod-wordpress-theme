@@ -1,6 +1,7 @@
 ﻿<div class="petition-item">
       <!--<img src="ImageUrl" class="petition-partner-image" />-->
-      <img src="<%=Organization.Logo%>" class="petition-partner-image">
+	  <% var logo = ( Organization.Logo ? Organization.Logo : '../wp-content/themes/smpl-skeleton-child/app/images/no-logo.png' ); %>
+      <img src="<%=logo%>" class="petition-partner-image">
     <div class="petition-item-inner">
     <a href='#petition/<%=ID%>'><%=Subject%></a>
     <div class='signature-summary'>

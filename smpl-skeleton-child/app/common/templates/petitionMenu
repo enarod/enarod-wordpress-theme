@@ -2,7 +2,7 @@
 <button id="show-all-petitions" class="search-for-petition">Показати всі петиції</button>
 <button id="show-all-partners" class="search-for-petition">Показати всіх партнерів</button>
 <span id='search'>
-    <form id='petition-search-form'>
+	<div id='petition-search-form'>
       <input class="search-input-petition" name='search-for' placeholder='Введіть фразу, назву партнера або П.І.Б. автора' />
       <div id="search-line">
       <div id="organizations" class="search-div">
@@ -80,6 +80,6 @@
   </div>
 
 </div>
-   </form>
+</div>
   </span>
 <div style="clear: both;"></div>
