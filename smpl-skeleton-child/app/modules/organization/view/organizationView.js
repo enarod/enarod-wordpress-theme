@@ -52,7 +52,12 @@ define(
    
 		searchPetitions: function(){
 			var id = this.model.get('ID');
-			this.parentView.router.navigate('/petition/search/Text=&OrganizationId='+id, true);
+			var searchInActive	= $('[name=search-in-active]').prop('checked');
+			var searchInNew		= $('[name=search-in-new]').prop('checked');
+
+			this.parentView.router.navigate('/petition/search/Text=&ShowActivePetitions='+searchInActive+
+					'&ShowInactivePetitions='+searchInNew+
+					'&OrganizationId='+id, true);
 		},
 
 		createPetition: function(){

@@ -16,7 +16,7 @@ define( 	function( require ){
 			""						:	"home",
 			"petition"				:	"listPetitions",
 			"petition/search"		:	"listPetitions",
-			"petition/search/(:query)"	:	"searchPetitions",
+			"petition/search/(:query)"		:	"searchPetitions",
 			"petition/new(/:organization)"	:	"createPetition",
 			"petition/tag/:tag"		:	"listPetitions",
 			"petition/:id"			:	"openPetition",
@@ -89,6 +89,7 @@ console.log("Home!!!");
 			this.appView.addChildView({
 				module: 'petition',
 				type : 'petitions', 
+				hasPaging: true,
 				settings : {petitions : Petitions} 
 			}); 
 
@@ -103,6 +104,7 @@ console.log("Home!!!");
             this.appView.addChildView({
                 module: 'petition',
                 type : 'petitions', 
+				hasPaging: true,
                 settings : {petitions : Petitions} 
             });
 
@@ -110,7 +112,7 @@ console.log("Home!!!");
 		},
 
 /*-----------------------
-    Petition routes
+    Organization routes
 -----------------------*/
         openOrganization: function (id){
             var Organization = require('module/organization/model/organizationModel');

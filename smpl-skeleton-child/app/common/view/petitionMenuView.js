@@ -17,10 +17,10 @@ define ( function(require){
 		template: _.template(petitionMenu),
 
 		pagingSettings: {
-			OrderBy: 'name',
+			OrderBy: 'Subject',
 			OrderDirection: 'ASC',
 			PageNumber: 1,	
-			PageSize: 20,
+			PageSize: 10,
 		},
 
 		initialize: function( data ){
@@ -31,18 +31,27 @@ define ( function(require){
 
 			//render view once OrganizationsList and CategoriesList are loaded
 	        this.onceAll ( [this.OrganizationsList, this.CategoriesList ], 'sync', this.render, this );
+			this.listenTo ( this.parentView, 'hasPaging', this.togglePagingSettings );
+			this.listenTo ( this.parentView, 'cleanup', this.resetPageNumber );
 		},
 		
 		events: {		
-            'click button#find': 'find',
+            'click button#find'					: 'find',
+            'click button#show-all-petitions'	: 'showAllPetitions',
+            'click button#show-all-partners'	: 'showAllPartners',
+			'click button#show-more'			: 'showMore',
+			'change [name=items-per-page]'		: 'updatePageSize',
+			'change [name=order-by]'			: 'updateOrderBy',
+			'change [name=order-direction]'		: 'updateOrderDirection',
+			'change [name=search-for]'			: 'resetPageNumber',
+			'change [name*=search-in-]'			: 'resetPageNumber',
 			'change input#search-advanced-checkbox' : 'toggleAdvancedSearchPanel',
-            'click button#show-all-petitions': 'showAllPetitions',
-            'click button#show-all-partners': 'showAllPartners',
 		},
 
         render: function () {
             this.$el.html(this.template({data: this}));
 			this.parentView.appendSubmenu();
+			this.togglePagingSettings( this.parentView.subMenuPaging );
             return this;
         },
 
@@ -54,7 +63,52 @@ define ( function(require){
 			this.parentView.router.navigate('/organization', true);
 		},
 
+		togglePagingSettings: function( hasPaging ){
+			$('#paging-settings, #app-footer').toggle(hasPaging);
+		},
+
+		/*---------------------------
+			Change paging settings
+		---------------------------*/
+		updatePageSize: function(){
+			this.pagingSettings.PageSize = $('[name=items-per-page] option:selected').val();
+			this.resetPageNumber();
+			this.find();
+		},
+
+		updateOrderBy: function(){
+			this.pagingSettings.OrderBy = $('[name=order-by] option:selected').val();
+			this.resetPageNumber();
+			this.find();
+		},
+
+		updateOrderDirection: function(){
+			this.pagingSettings.OrderDirection = $('[name=order-direction]:checked').val();
+			this.resetPageNumber();
+			this.find();
+		},
+
+		showMore: function(){
+			this.pagingSettings.PageNumber++;
+			var query = this.prepareSearchQuery();
+
+			return query;
+		},
+
+		resetPageNumber: function(){
+			this.pagingSettings.PageNumber = 1;
+		},
+
+		/*--------------------------
+			Petition search action
+ 		--------------------------*/
         find: function () {
+			var searchFor = this.prepareSearchQuery();
+            this.parentView.router.navigate('/petition/search/'+searchFor, true);
+
+        },
+
+		prepareSearchQuery: function(){
 			var searchFor = '', 
 			searchText = 'Text=', 
 			searchOrganization = '', 
@@ -134,9 +188,8 @@ define ( function(require){
 						pagingSettings
 						;
 
-            this.parentView.router.navigate('/petition/search/'+searchFor, true);
-
-        },
+			return searchFor;
+		},
 
         onceAll: function(sources, eventName, handler, context){
             handler = _.after( sources.length, handler);

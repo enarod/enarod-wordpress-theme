@@ -23,7 +23,9 @@ define(function (require) {
 		
 		submenuNode: '.submenu',
 
-        events: { },
+        events: {
+			'click #show-more' : 'showMore',
+		},
 
         render: function () {
             this.$el.html(this.template());
@@ -64,6 +66,9 @@ define(function (require) {
         },
 
         addChildView: function (view) {
+			this.subMenuPaging = ( view.hasPaging ? view.hasPaging : false );
+			this.trigger( 'hasPaging', this.subMenuPaging );
+
             if (this.childView) {
                 this.cleanUp();
             }
@@ -77,12 +82,22 @@ define(function (require) {
             subView.parentView = this;
         },
 
-//        toggleAdvanced: function () {
-//            $('#search-advanced').toggle($(event.target.checked));
-//        },
+		showMore: function(){
+			var query = this.submenu.showMore();
+            var PetitionCollection  = require ('module/petition/collection/petitionCollection');
+            var Petitions = new PetitionCollection({search: query});
+			this.morePetitions = Petitions;
+			this.listenTo ( Petitions, 'sync', this.readyForAppend );
+			Petitions.fetch();
+		},
+
+		readyForAppend: function(){
+			this.trigger( 'appendPetitions', this.morePetitions );
+		},
 
         //Clean
         cleanUp: function () {
+			this.trigger( 'cleanup' );
             if (this.childView) {
                 this.childView.remove();
                 this.childView.unbind();

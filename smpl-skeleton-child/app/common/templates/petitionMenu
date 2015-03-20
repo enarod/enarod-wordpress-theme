@@ -81,5 +81,27 @@
 
 </div>
 </div>
+
+
   </span>
 <div style="clear: both;"></div>
+
+<div id='paging-settings' hidden='hidden'>
+	Кількість на сторінку:
+	<select name='items-per-page'>
+		<option value="10">10</option>
+		<option value="50">50</option>
+		<option value="100">100</option>
+	</select>
+	Впорядкувати за:
+	<select name='order-by'>
+		<option value="Subject">Назвою петиції</option>
+		<option value="CreatedDate">Даті створення петиції</option>
+		<option value="Name">Назвою організації</option>
+	</select>
+	від найменшого
+	<input type='radio' name='order-direction' value='ASC' checked='checked'>
+	від найбільшого
+	<input type='radio' name='order-direction' value='DESC'>
+
+</div>
