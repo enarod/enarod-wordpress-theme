@@ -31,7 +31,7 @@ define( function(require){
             'click input[id=sign]':             'sign',
             'click input[id=publish_petition]': 'publishPetition',
             'click input[name=petition-level]': 'openRegionList',
-			'change [name=organization]'	  : 'updateOrganization',
+			      'change [name=organization]'	  : 'updateOrganization'
         },
 
         render: function() {
@@ -66,10 +66,10 @@ define( function(require){
         },
 
         publishPetition: function() {
-			this.setModelParameters();
+			      this.setModelParameters();
 
             var view = new SignatureSelector( {
-							signator: this.model.get("Author") 
+							signator: this.model.get("Author")
 						} );
             view.render();
 
@@ -85,7 +85,7 @@ define( function(require){
                  Requirements    :	 $('#requirements').val(),
                  Category        :   { Name  : $('input[name=petition-category]:checked').val() },
                  Level           :   { ID    : $('input[name=petition-level]:checked').val() },
-                 KeyWords        :   $('#keywords').val().split(','),
+                 KeyWords        :   $('#keywords').val().split(',')
              }); 
              delete this.model.attributes.ID;
 

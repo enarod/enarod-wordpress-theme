@@ -17,7 +17,7 @@ define(
 			},
 
 			events:{
-				'click input#vote-with-email'	: 'signWithEmail',	
+				'click input#vote-with-email'	: 'signWithEmail'
 			},
 
 			bindings:{
@@ -81,6 +81,12 @@ define(
 						validate : true
 					}
 				},
+				'[name=privacyConfirm]'	: {
+					observe : 'privacyConfirm',
+					setOptions : {
+						validate : true
+					}
+				}
 				
 			},
 
@@ -109,7 +115,7 @@ define(
 					model	: this.model.get('Signer'),
 					valid	: function( view, attr ){
 						var el	= view.$('[name='+attr+']'),
-						group	= el.closest('div');
+						group	= el.closest('div.form-element-group');
 
 						group.removeClass('has-error');
 						group.find('.help-block').html('').addClass('hidden');
@@ -117,7 +123,7 @@ define(
 					},
 					invalid	: function( view, attr, error ){
 						var el	= view.$('[name='+attr+']'),
-						group	= el.closest('div');
+						group	= el.closest('div.form-element-group');
 
 						group.addClass('has-error');
 						group.find('.help-block').html(error).removeClass('hidden');
@@ -137,11 +143,17 @@ define(
 			},	
 
 			setModelParameters: function( model ){
-				$('ul input').each(function(){
+				$('#email-form input').each(function(){
 					var name = this.name;
 					var val	 = this.value;
-
-					model.set( this.name, this.value );
+					if (this.type == 'checkbox') {
+						if (this.checked) {
+							model.set( this.name, this.value );
+						}
+					}
+					else {
+						model.set( this.name, this.value );
+					}
 				});
 			},
 			
@@ -156,7 +168,7 @@ define(
 						alert(this.model.get('Message'));
 					}
 				}
-			},
+			}
 		
 		});
 	

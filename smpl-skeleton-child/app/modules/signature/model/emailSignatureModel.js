@@ -11,8 +11,8 @@ define(
 			urlRoot: BASE_URL+"petition/v2/emailVote",
 
 			defaults:{
-				ID: '',
-			}	
+				ID: ''
+			}
 		
 		
 		});
