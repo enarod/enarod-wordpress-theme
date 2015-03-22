@@ -93,15 +93,16 @@
 		<option value="50">50</option>
 		<option value="100">100</option>
 	</select>
-	Впорядкувати за:
+	<span>Впорядкувати за:</span>
 	<select name='order-by'>
 		<option value="Subject">Назвою петиції</option>
 		<option value="CreatedDate">Даті створення петиції</option>
 		<option value="Name">Назвою організації</option>
 	</select>
-	від найменшого
+	
 	<input type='radio' name='order-direction' value='ASC' checked='checked'>
-	від найбільшого
+	від найменшого
 	<input type='radio' name='order-direction' value='DESC'>
+	від найбільшого
 
 </div>

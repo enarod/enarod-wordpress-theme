@@ -958,10 +958,9 @@ p.sign-label2 {
     padding: 15px;
    line-height:110%;
 }
-
-.petition-form-textarea2 textarea {
-    padding-top: 35px;
-    height: 90px;
+.petition-form-textarea1 textarea#description, .petition-form-textarea2 textarea#requirements {
+    height: 115px;
+	padding: 15px;
 }
 
 .petition-form-textarea3 {
@@ -1215,7 +1214,21 @@ span#ui-id-2 {
 .new-petition h2 {
   margin-top:4px;
 }
-
-
-
+#paging-settings {
+ padding-top:20px;
+}
+#paging-settings span, #paging-settings input{
+ margin-left: 15px;
+ display: inline-block;
+}
+#paging-settings input {
+height: 12px;}
+#paging-settings span {
+ padding-top:3px;
+}
+#show-more {
+ margin-top: 20px;
+ font-weight:bold;
+ text-transform:uppercase;
+}
 /*petitions end */
