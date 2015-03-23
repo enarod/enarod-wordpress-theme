@@ -535,6 +535,7 @@ span#search {
     padding: 5px 10px;
     margin: 0 11px 0 0;
     float: left;
+	clear:left;
 }
 .search-for-petition#find {
   padding-left: 40px !important;
