@@ -6,7 +6,7 @@
   body #navigation ul li a {
     font-size: .9em;
   }
-  body .su-column.su-column-size-1-4.agreement { 
+  body .su-column.su-column-size-1-4.agreement {
     width: 20%;
   }
   .img_div {
@@ -50,18 +50,6 @@
 
   #header .site-desc.text {
     font-size: 1.25em;
-  }
-  #petition-search-form #search-line {
-   width:79%;
-  }
-  .page #petition-search-form .search-input-petition {
-    width: 64.5%;
-  }
-  .page #paging-settings {
-    padding-top:35px;
-  }
-  .page #search-advanced  {
-    margin-top:83px;
   }
 }
 
@@ -173,42 +161,6 @@
    #lang_top select {
 	margin-top:80px;
  }
- .page .create-petition-btn, .page #show-all-petitions, .page #show-all-partners {
-    font-size: 11px !important;
-    clear: both;
-    margin: 0;
-    margin-top: 10px;
-  }
-  .page #search-line .search-div {
-    float:none;
-  }
-  .page #search-line {
-   margin-top:240px;
-  }
-  .page #petition-search-form .search-input-petition {
-    width:70%;
-	margin-top:10px;
-  }
-  .page .search-for-petition#find {
-    margin-left:0px;
-	margin-top:10px;
-  }
-  .page #search-advanced  {
-    margin-top:144px;
-  }
-  .page #search-line .search-div {
-    border-right: 1px dashed #BBB;
-  } 
-  .page #petition-header {
-    margin-top: 120px;
-  }
-  
-  #module-content > div > .organization-item:first-child {
-    margin-top:140px;
-  }
-  .page #paging-settings  {
-	margin-top:130px;
-  }
 }
 @media only screen and (max-width: 479px) {
  #lang_top select {
