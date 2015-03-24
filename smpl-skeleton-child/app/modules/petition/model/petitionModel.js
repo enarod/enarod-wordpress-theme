@@ -105,6 +105,8 @@ console.log(" Petition model changed! ");
 				else {
 					data.AuthorRef = 'Без Автора';
 				}
+			}else{
+				data.AuthorRef = 'Без Автора';
 			}
 
 		},
