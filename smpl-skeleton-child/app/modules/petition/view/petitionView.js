@@ -28,10 +28,10 @@ define( function(require){
         },
 
         events:{
-            'click input[id=sign]':             'sign',
-            'click input[id=publish_petition]': 'publishPetition',
-            'click input[name=petition-level]': 'openRegionList',
-			      'change [name=organization]'	  : 'updateOrganization'
+            'click input[id=sign]'				: 'sign',
+            'click input[id=publish_petition]'	: 'publishPetition',
+            'click input[name=petition-level]'	: 'openRegionList',
+		    'change [name=organization]'		: 'updateOrganization'
         },
 
         render: function() {
@@ -98,6 +98,7 @@ define( function(require){
 	
         openStoredPetition: function(){
         //TODO: Change below, so ID was reachable easily
+			alert ( this.model.get( "Message" ) );
 			var id = this.model.attributes.Data.ID;
             this.parentView.router.navigate('/petition/'+id, true);
         },
