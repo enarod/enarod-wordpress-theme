@@ -9,7 +9,7 @@ define (
 
 		return Backbone.Model.extend ({
 			validation: {
-				Name	: [{
+				FirstName	: [{
 					required: true,
 					msg: 'Необхідно вказати ім’я'
 				},
@@ -17,12 +17,12 @@ define (
 						maxLength	: 255,
 						msg: 'Ім’я надто довге (максимум 255 символів)'
 					}],
-				'Middle-Name' : {
+				MiddleName : {
 					required	: false,
 					maxLength	: 255,
 					msg: 'Значення надто довге (максимум 255 символів)'
 				},
-				Surname : {
+				LastName : {
 					required	: false,
 					maxLength	: 255,
 					msg: 'Значення надто довге (максимум 255 символів)'
@@ -37,22 +37,22 @@ define (
 						msg: 'Слід ввести коректну адресу'
 					}
 				],
-				Address1 : {
+				AddressLine1 : {
 					required	: false,
 					maxLength	: 255,
 					msg: 'Значення надто довге (максимум 255 символів)'
 				},
-				Address2 : {
+				AddressLine2 : {
 					required	: false,
 					maxLength	: 255,
 					msg: 'Значення надто довге (максимум 255 символів)'
 				},
-				Area	: {
+				Region	: {
 					required	: false,
 					maxLength	: 255,
 					msg: 'Значення надто довге (максимум 255 символів)'
 				},
-				'Zip-code':{
+				ZipCode:{
 					required	: false,
 					maxLength	: 255,
 					msg: 'Значення надто довге (максимум 255 символів)'

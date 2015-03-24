@@ -22,7 +22,7 @@ define(
 
 			bindings:{
 				'[name=Name]' : {
-					observe: 'Name',
+					observe: 'FirstName',
 					setOptions: {
 						validate: true
 					}
@@ -46,37 +46,37 @@ define(
 					}
 				},
 				'[name=Address1]'	: {
-					observe : 'Address1',
+					observe : 'AddressLine1',
 					setOptions : {
 						validate : true
 					}
 				},
 				'[name=Address2]'	: { 
-					observe : 'Address2',
+					observe : 'AddressLine2',
 					setOptions : { 
 						validate : true 
 					}
 				 },
 				'[name=Surname]' : {
-					observe : 'Surname',
+					observe : 'LastName',
 					setOptions : {
 						validate : true
 					}
 				},
 				'[name=Middle-name]' : { 
-					observe : 'Middle-name',
+					observe : 'MiddleName',
 					setOptions : {
 						validate : true
 					}
 				},
 				'[name=Area]'	: { 
-					observe : 'Area',
+					observe : 'Region',
 					setOptions : {
 						validate : true
 					}
 				},
 				'[name=Zip-code]'	: { 
-					observe : 'Zip-code',
+					observe : 'ZipCode',
 					setOptions : {
 						validate : true
 					}
@@ -110,7 +110,7 @@ define(
 			},
 
 			signWithEmail: function(){
-				this.setModelParameters (this.model.get('Signer') );
+//				this.setModelParameters (this.model.get('Signer') );
 				Backbone.Validation.bind ( this, {
 					model	: this.model.get('Signer'),
 					valid	: function( view, attr ){
