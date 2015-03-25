@@ -1155,6 +1155,8 @@ span#ui-id-2 {
 
 #petition-acceptance-policy {
   clear:both;
+  margin-top: 30px;
+  display: inline-block;
 }
 #organization-details #organization-name h1, .organization-details h3  {
   background: #54a038;
