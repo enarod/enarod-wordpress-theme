@@ -108,16 +108,19 @@ body #header span.site-desc {
 }
 
 #navigation ul li.menu-item-60 a {
-  width: 241px;
+  width: 197px;
 }
 #navigation ul li.menu-item-59 a {
-  width: 229px;
+  width: 187px;
+}
+#navigation ul li.menu-item-1090 a {
+  width: 177px;
 }
 #navigation ul li.menu-item-57 a {
-  width: 235px;
+  width: 187px;
 }
 #navigation ul li.menu-item-200 a {
-  width: 232px;
+  width: 187px;
 }
 
 body li.menu-item a {
