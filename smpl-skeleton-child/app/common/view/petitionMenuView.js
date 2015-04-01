@@ -46,6 +46,7 @@ define ( function(require){
 			'change [name=search-for]'			: 'resetPageNumber',
 			'change [name*=search-in-]'			: 'resetPageNumber',
 			'change input#search-advanced-checkbox' : 'toggleAdvancedSearchPanel',
+			'submit form'		: 'find',
 		},
 
         render: function () {
@@ -102,7 +103,8 @@ define ( function(require){
 		/*--------------------------
 			Petition search action
  		--------------------------*/
-        find: function () {
+        find: function (ev) {
+			ev.preventDefault()
 			var searchFor = this.prepareSearchQuery();
             this.parentView.router.navigate('/petition/search/'+searchFor, true);
 

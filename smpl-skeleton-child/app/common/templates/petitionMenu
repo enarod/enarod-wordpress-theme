@@ -3,7 +3,9 @@
 <button id="show-all-partners" class="search-for-petition">Показати всіх партнерів</button>
 <span id='search'>
 	<div id='petition-search-form'>
-      <input class="search-input-petition" name='search-for' placeholder='Введіть фразу, назву партнера або П.І.Б. автора' />
+		<form>
+			<input class="search-input-petition" name='search-for' placeholder='Введіть фразу, назву партнера або П.І.Б. автора' />
+		</form>
       <div id="search-line">
       <div id="organizations" class="search-div">
         <label for="id-search-in-organization">
@@ -12,10 +14,10 @@
         </label>
       </div>
       <div class="search-div">
-        <label for="id-search-in-petitions">
-          <input id="id-search-in-petitions" name="search-in-petitions" type="checkbox" value="1"/>
-          <span class='lavel-text'>в петиціях</span>
-        </label>
+		<label for="id-search-in-active">
+			<input id="id-search-in-active" name="search-in-active" type="checkbox" checked="checked"/>
+			<span class='lavel-text'>серед активних</span>
+		</label>
       </div>
       <div class="search-div search-div-new">
         <label for="id-search-in-new">
@@ -50,10 +52,10 @@
   </div>
 
   <div id="search-pib" class="search-div">
-    <label for="id-search-in-active">
-      <input id="id-search-in-active" name="search-in-active" type="checkbox" checked="checked"/>
-      <span class='lavel-text'>серед активних</span>
-    </label>
+        <label for="id-search-in-petitions">
+          <input id="id-search-in-petitions" name="search-in-petitions" type="checkbox" checked="checked" value="1"/>
+          <span class='lavel-text'>в петиціях</span>
+        </label>
   </div>
   <div id="search-date-creation" class="search-div">
     <label><span class='lavel-text'>Дата створення</span></label>
