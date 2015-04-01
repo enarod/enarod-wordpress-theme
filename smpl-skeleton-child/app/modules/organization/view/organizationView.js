@@ -57,8 +57,8 @@ define(
 			var searchInActive	= $('[name=search-in-active]').prop('checked');
 			var searchInNew		= $('[name=search-in-new]').prop('checked');
 
-			this.parentView.router.navigate('/petition/search/Text=&ShowActivePetitions='+searchInActive+
-					'&ShowInactivePetitions='+searchInNew+
+			this.parentView.router.navigate('/petition/search/Text=&ShowActivePetitions=true'+
+					'&ShowInactivePetitions=true'+
 					'&OrganizationId='+id, true);
 		},
 
