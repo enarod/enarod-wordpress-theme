@@ -10,23 +10,30 @@ define (
 		return Backbone.Model.extend ({
 			validation: {
 				FirstName	: [{
-					required: true,
-					msg: 'Необхідно вказати ім’я'
-				},
+						required: true,
+						msg: 'Необхідно вказати ім’я'
+					},
 					{
 						maxLength	: 255,
 						msg: 'Ім’я надто довге (максимум 255 символів)'
 					}],
-				MiddleName : {
-					required	: false,
-					maxLength	: 255,
-					msg: 'Значення надто довге (максимум 255 символів)'
-				},
-				LastName : {
-					required	: false,
-					maxLength	: 255,
-					msg: 'Значення надто довге (максимум 255 символів)'
-				},
+				MiddleName : [{
+						required	: true,
+						msg: 'Необхідно вказати ім’я по-батькові'
+					},
+					{
+						maxLength	: 255,
+						msg: 'Значення надто довге (максимум 255 символів)'
+					}
+					],
+				LastName : [{
+						required	: true,
+						msg: 'Необхідно вказати призвище'
+					},
+					{
+						maxLength	: 255,
+						msg: 'Значення надто довге (максимум 255 символів)'
+					}],
 				Email	: [
 					{
 						required	: true,
@@ -34,33 +41,42 @@ define (
 					},
 					{
 						pattern		: 'email',
-						msg: 'Слід ввести коректну адресу'
+						msg: 'Слід ввести коректну електронну адресу'
 					}
 				],
-				AddressLine1 : {
-					required	: false,
-					maxLength	: 255,
-					msg: 'Значення надто довге (максимум 255 символів)'
-				},
+				AddressLine1 : [{
+						required	: true,
+						msg: 'Слід вказати адресу'
+					},
+					{
+						maxLength	: 255,
+						msg: 'Значення надто довге (максимум 255 символів)'
+					}],
 				AddressLine2 : {
 					required	: false,
 					maxLength	: 255,
 					msg: 'Значення надто довге (максимум 255 символів)'
 				},
-				Region	: {
-					required	: false,
-					maxLength	: 255,
-					msg: 'Значення надто довге (максимум 255 символів)'
-				},
-				ZipCode:{
-					required	: false,
-					maxLength	: 255,
-					msg: 'Значення надто довге (максимум 255 символів)'
-				},
+				Region	: [{
+						required	: true,
+						msg: 'Слід вказати область'
+					},
+					{
+						maxLength	: 255,
+						msg: 'Значення надто довге (максимум 255 символів)'
+					}],
+				ZipCode:[{
+						required	: true,
+						msg: 'Слід вказати поштовий індекс'
+					},
+					{
+						maxLength	: 255,
+						msg: 'Значення надто довге (максимум 255 символів)'
+					}],
 				Country : {
-					required	: true,
-					msg: 'Слід вказати країну'
-				},
+						required	: true,
+						msg: 'Слід вказати країну'
+					},
 				City	: [
 					{
 						required	: true,

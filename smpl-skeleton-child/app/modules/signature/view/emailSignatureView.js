@@ -21,7 +21,7 @@ define(
 			},
 
 			bindings:{
-				'[name=Name]' : {
+				'[name=FirstName]' : {
 					observe: 'FirstName',
 					setOptions: {
 						validate: true
@@ -45,37 +45,37 @@ define(
 						validate: true
 					}
 				},
-				'[name=Address1]'	: {
+				'[name=AddressLine1]'	: {
 					observe : 'AddressLine1',
 					setOptions : {
 						validate : true
 					}
 				},
-				'[name=Address2]'	: { 
+				'[name=AddressLine2]'	: { 
 					observe : 'AddressLine2',
 					setOptions : { 
 						validate : true 
 					}
 				 },
-				'[name=Surname]' : {
+				'[name=LastName]' : {
 					observe : 'LastName',
 					setOptions : {
 						validate : true
 					}
 				},
-				'[name=Middle-name]' : { 
+				'[name=MiddleName]' : { 
 					observe : 'MiddleName',
 					setOptions : {
 						validate : true
 					}
 				},
-				'[name=Area]'	: { 
+				'[name=Region]'	: { 
 					observe : 'Region',
 					setOptions : {
 						validate : true
 					}
 				},
-				'[name=Zip-code]'	: { 
+				'[name=ZipCode]'	: { 
 					observe : 'ZipCode',
 					setOptions : {
 						validate : true
