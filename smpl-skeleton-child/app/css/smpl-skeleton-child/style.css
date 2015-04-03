@@ -123,22 +123,6 @@ body #header span.site-desc {
     padding: 11px 0px;
 }
 
-#navigation ul li.menu-item-60 a {
-    width: 241px;
-}
-
-#navigation ul li.menu-item-59 a {
-    width: 229px;
-}
-
-#navigation ul li.menu-item-57 a {
-    width: 235px;
-}
-
-#navigation ul li.menu-item-200 a {
-    width: 232px;
-}
-
 body li.menu-item a {
     border-bottom: none;
 }
@@ -1072,6 +1056,43 @@ p.sign-label2 {
     /*height: 130px !important; If you need this style, please, don't apply it globally*/
     box-shadow: 0 0 13px rgba(0,0,0,.5);
     border: 2px solid #BBB;
+	z-index: 1000;
+}
+.ui-dialog-titlebar{
+	padding-bottom: 18px;
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+}
+.ui-dialog .form-element-group {
+	padding-left: 8px;
+}
+.ui-dialog .form-element-group.col-sm-4, .ui-dialog .form-element-group.col-sm-3 {
+	width: 25.6%;
+}
+.control-label.col-sm-3 {
+	width: 28%;
+	padding-right:0px;
+}
+.control-label.col-sm-2  {
+	padding-right: 0px;
+}
+.control-label.col-sm-3[for="ZipCode"] {
+	padding-top:0px;
+}
+.control-label.col-sm-2[for="LastName"], .control-label.col-sm-2[for="Region"], .control-label.col-sm-2[for="Country"] {
+	padding-left:0px;
+}
+.col-sm-9.form-element-group {
+	width: 68%;
+}
+.ui-dialog .col-sm-offset-3.col-sm-9 {
+ width:100%;
+ text-align:center;
+ margin-left:0;
+}
+.ui-dialog .col-sm-offset-3.col-sm-9 input {
+	text-transform: uppercase;
 }
 button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-icon-only.ui-dialog-titlebar-close {
     position: absolute;
