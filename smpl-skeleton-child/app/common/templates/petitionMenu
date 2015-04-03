@@ -1,6 +1,9 @@
 ﻿<a class="create-petition-btn" href="#petition/new">Створити петицію</a>
 <button id="show-all-petitions" class="search-for-petition">Показати всі петиції</button>
 <button id="show-all-partners" class="search-for-petition">Показати всіх партнерів</button>
+
+<div id='div-search' hidden='hidden'>
+
 <span id='search'>
 	<div id='petition-search-form'>
 		<form>
@@ -85,7 +88,9 @@
 </div>
 
 
-  </span>
+</span>
+</div>
+
 <div style="clear: both;"></div>
 
 <div id='paging-settings' hidden='hidden'>

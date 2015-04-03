@@ -46,7 +46,7 @@ define ( function(require){
 			'change [name=search-for]'			: 'resetPageNumber',
 			'change [name*=search-in-]'			: 'resetPageNumber',
 			'change input#search-advanced-checkbox' : 'toggleAdvancedSearchPanel',
-			'submit form'		: 'find',
+			'submit form'		: 'findOnEnter',
 		},
 
         render: function () {
@@ -65,7 +65,7 @@ define ( function(require){
 		},
 
 		togglePagingSettings: function( hasPaging ){
-			$('#paging-settings, #app-footer').toggle(hasPaging);
+			$('#paging-settings, #app-footer, #div-search').toggle(hasPaging);
 		},
 
 		/*---------------------------
@@ -103,8 +103,12 @@ define ( function(require){
 		/*--------------------------
 			Petition search action
  		--------------------------*/
-        find: function (ev) {
-			ev.preventDefault()
+		findOnEnter: function(ev){
+			ev.preventDefault();
+			this.find();
+		}, 
+
+        find: function () {
 			var searchFor = this.prepareSearchQuery();
             this.parentView.router.navigate('/petition/search/'+searchFor, true);
 
