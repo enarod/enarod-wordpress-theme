@@ -22,7 +22,7 @@
         <div class="petition-form-item petition-form-item-address">
             <h3>Організація:</h3>
                 <select id="organization" name='organization'>
-						<option value=""></option>
+						<option value="">Оберіть організацію</option>
 					<% _.each( organizationList.models, function( organization, index, list ){ %>
 						<option value="<%=organization.get('ID')%>"><%=organization.get('Name')%></option>
 					<% }) %>
