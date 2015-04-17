@@ -41,8 +41,31 @@ define(
 			return model;
 		},	
 
-		validate: function(attrs){
-console.log(attrs);
+		validation: {
+			Organization: [{
+				required: true,
+				msg: 'Необхідно вибрати організацію'
+			}],
+			Subject: [{
+				required: true,
+				msg: 'Поле "Тема/Назва" петиції обов’язкове для заповнення'
+			}],
+			Text: [{
+				required: true,
+				msg: 'Поле "Опис проблеми" є обов’язкове для заповнення'
+			}],
+			Requirements: [{
+				required: true,
+				msg: 'Поле "Опис проблеми" є обов’язкове для заповнення'
+			}],
+			Category: [{
+				required: true,
+				msg: "Необхідно вибрати категорію петиції"
+			}],
+			KeyWords: [{
+				required: true,
+				msg: 'Поле "Ключові слова" є обов’язкове для заповнення'
+			}],
 
 		},
 
@@ -52,10 +75,6 @@ alert("Error!");
 
 		},		
 	
-		changeHandler: function(){
-console.log(" Petition model changed! ");
-		},
-
 		/*----------------------------------
 		* Preparing petition parameters
 		*----------------------------------*/
@@ -156,6 +175,29 @@ console.log(" Petition model changed! ");
 			var organizationList = new Organizations();
 			this.set( 'organizationList', organizationList);
 			organizationList.fetch();
+		},
+
+		setOrganization: function( id ){
+			var orgID;
+
+			if ( id ){
+				orgID = id;
+			}else if (this.get('organizationID') ){
+				orgID = this.get('organizationID');
+			}else{
+alert("Unable select organization in petition model #184 \nSystem is unable to finish your request.\n Please contact system administration!");
+			}
+
+			var Organization;
+			_.each (this.get('organizationList').models, function(el, index, list){
+				if ( el.get('ID') == orgID ){
+					Organization = el;
+				}
+			});
+
+			this.set('Organization', Organization);
+			this.unset('organizationID');
+			return Organization;
 		}
 
 

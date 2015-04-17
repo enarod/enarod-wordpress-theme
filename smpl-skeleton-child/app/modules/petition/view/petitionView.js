@@ -2,6 +2,7 @@ define( function(require){
     'use strict';
     var $	= require('jquery'),
         _		= require('underscore'),
+		stickit	= require('stickit'),
         Backbone= require('backbone'),
         SignatureSelector	= require('module/signature/view/signatureSelectorView'),
         OrganizationView	= require('module/organization/view/organizationView'),
@@ -25,13 +26,94 @@ define( function(require){
                 this.tmpl = Petition;
                 this.listenTo(this.model, 'sync', this.render);
             }
-        },
+        }, 
+
+		bindings:{
+			'[name=Organization]' : {
+				observe: 'Organization',
+				setOptions: {
+					validate: true
+				},
+				onGet: function(value, option){
+					if ( value !== undefined ){
+						return  value.get('ID') ;
+					}else{ 
+						return undefined ;
+					}
+				},
+				onSet: function(value, option){
+					if ( value && value !== '' ){
+						return this.model.setOrganization(value);
+					}else if (value == '' ){
+						if (this.childView ){
+							this.childView.close();
+						}
+						return undefined;
+					}else{
+						return undefined;
+					}
+				},
+				getVal: function($el, event, options){
+					return $el.val();
+				}, 
+				update: function($el, val, model, options){
+					if (val){
+						$el.val(val);
+						this.addOrganizationView(val);
+					}
+				},
+			},
+			'[name=Subject]': {
+				observe: 'Subject',
+				setOptions: {
+					validate: true
+				}
+			},
+			'[name=Text]': {
+				observe: 'Text',
+				setOptions: {
+					validate: true
+				}
+			},
+			'[name=Requirements]': {
+				observe: 'Requirements',
+				setOptions: {
+					validate: true
+				}
+			},
+			'[name=Category]':{
+				observe: 'Category',
+				setOptions: {
+					validate: true
+				},
+				onSet: function(value, option){
+					if ( value && value !== '' ){
+						return {Name: value};
+					}else{
+						return undefined;
+					}
+				},
+			},
+			'[name=KeyWords]':{
+				observe: 'KeyWords',
+				setOptions: {
+					validate: true
+				},
+				onSet: function(value, option){
+					if ( value && value !== '' ){
+						return value.split(','); 
+					}else{
+						return undefined;
+					}
+				},
+			},
+			
+		},
 
         events:{
             'click input[id=sign]'				: 'sign',
             'click input[id=publish_petition]'	: 'publishPetition',
             'click input[name=petition-level]'	: 'openRegionList',
-		    'change [name=organization]'		: 'updateOrganization'
         },
 
         render: function() {
@@ -43,20 +125,11 @@ define( function(require){
             }
 		
 			if ( this.model.get('organizationID') ){
-				var orgID = this.model.get('organizationID');
-				$('[name=organization]').val(this.model.get('organizationID'));
-				var Organization;
-				_.each (this.model.get('organizationList').models, function(el, index, list){
-					if ( el.get('ID') == orgID ){
-						Organization = el;
-					}
-				});
-
-				this.model.set( 'Organization', Organization );
-				this.addOrganizationView();
-				this.model.unset('organizationID');
+				this.model.setOrganization( this.model.get('organizationID') );
 			}
-	
+
+			this.stickit( this.model );
+
             return this;
         },
 
@@ -66,32 +139,44 @@ define( function(require){
         },
 
         publishPetition: function() {
-			      this.setModelParameters();
+			Backbone.Validation.bind ( this, {
+				model	: this.model,
+				valid	: function( view, attr, selector ){
 
-            var view = new SignatureSelector( {
+					var el	= view.$('[name='+attr+']'),
+					group	= el.closest('div.petition-form-item, div.petition-form-textarea');
+
+					group.removeClass('has-error');
+					group.find('.help-block').html('').addClass('hidden');
+
+				},
+				invalid	: function( view, attr, error, selector ){
+					var el	= view.$('[name='+attr+']'),
+					group	= el.closest('div.petition-form-item, div.petition-form-textarea');
+
+					group.addClass('has-error');
+					group.find('.help-block').html(error).removeClass('hidden');
+
+				}
+			} );
+
+			if ( this.model.isValid(true) ){
+				delete this.model.attributes.ID;
+
+		        var view = new SignatureSelector( {
 							signator: this.model.get("Author")
-						} );
-            view.render();
+				} );
+			    view.render();
 
-            this.listenTo(this.model.get("Author"), 'signed', this.storePetition ); //model.save() );
-            this.listenTo(this.model, 'sync', this.openStoredPetition);
+				this.listenTo(this.model.get("Author"), 'signed', this.storePetition ); //model.save() );
+				this.listenTo(this.model, 'sync', this.openStoredPetition);
+			}else{
+			}
+
         },
 		
-		setModelParameters: function( ){
-             this.model.set({
-                 Subject         :   $('#subject').val(),
-        //         Organization    :   $('#organization').val(),
-                 Text            :   $('#description').val(),
-                 Requirements    :	 $('#requirements').val(),
-                 Category        :   { Name  : $('input[name=petition-category]:checked').val() },
-                 Level           :   { ID    : $('input[name=petition-level]:checked').val() },
-                 KeyWords        :   $('#keywords').val().split(',')
-             }); 
-             delete this.model.attributes.ID;
-
-		},
-
 		storePetition: function(){
+			this.unstickit(this.model);
 			this.model.set( 'Email', this.model.get("Author").get("Email") );
 			this.model.save();
 		},	
@@ -112,17 +197,12 @@ define( function(require){
             }
         },
 
-		updateOrganization: function( event ){
-			var selectedOrgIndex = event.target.selectedIndex - 1;
-			this.model.set("Organization", this.model.get('organizationList').models[selectedOrgIndex]);
-			this.addOrganizationView();
-		},
+		addOrganizationView: function( val ){
 
-		addOrganizationView: function(){
 			if (this.childView ){
 				this.childView.close();
 			}
-
+			
 			this.childView = new OrganizationView ( {model: this.model.get('Organization'), tmpl: 'organizationInPetition'} );
 			this.moduleNode = '#organization-details';
 			this.childView.parentView = this;
@@ -148,6 +228,7 @@ define( function(require){
         },
 
         close: function(){
+			Backbone.Validation.unbind(this);
             this.remove();
             this.unbind();
         }
