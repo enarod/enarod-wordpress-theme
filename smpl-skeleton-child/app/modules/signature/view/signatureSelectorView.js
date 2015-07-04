@@ -9,6 +9,9 @@ define(
 			emailSignatorModel	= require('module/signature/model/emailSignatorModel'),
 			emailSignatureModel	= require('module/signature/model/emailSignatureModel'),
 			emailSignatureView	= require('module/signature/view/emailSignatureView'),
+			fbSignatureModel	= require('module/signature/model/fbSignatureModel'),
+
+			userModel			= require('module/user/model/userModel'),
 			signatureSelector	= require('text!modules/signature/templates/signatureSelector.html')
 			;
 
@@ -27,6 +30,7 @@ define(
 				events: {
 					'click input#certificate'		: 'selectCertificate',
 					'click input#e-mail'			: 'selectEmail', 
+					'click input#fb-profile'		: 'selectFB', 
 				},
 
 				render: function(){
@@ -35,7 +39,7 @@ define(
 					$("div.app").append( $(this.el).html( this.template() ) );
 					$('.signatureSelector').dialog({
 						modal: true,
-						height: 150,
+						height: 200,
 						width: 450,
 						title:"Вибрати спосіб голосування",
 						closeText: "&times;",
@@ -61,10 +65,34 @@ console.log('select certificate');
 					signatureView.render();
 				},	
 
+				selectFB: function(){
+					if ( !this.signator ){
+						this.signator = new userModel();
+					}
+					this.signator.fbLogIn();
+					this.listenTo ( this.signator, 'userProfileReady', this.signWithFB ); 
+
+				},
+
+				signWithFB: function(){
+					this.signatureModel	= new fbSignatureModel({ 'ID': this.petitionID, 'Signer' : this.signator });
+					this.listenTo ( this.signatureModel, 'sync', this.close );
+
+					this.signatureModel.save();
+					
+				},
+
 				close: function(){
 					$('.signatureSelector').dialog('destroy');
 					this.remove();
 					this.unbind();
+
+					if ( this.signatureModel.get('ID') !== ''){
+						if ( typeof this.signatureModel.get('Message') !== undefined ){
+							alert ( this.signatureModel.get('Message') );
+						} 
+					}
+
 				},
 
 			

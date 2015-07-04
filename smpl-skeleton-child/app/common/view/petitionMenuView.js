@@ -46,7 +46,7 @@ define ( function(require){
 			'change [name=search-for]'			: 'resetPageNumber',
 			'change [name*=search-in-]'			: 'resetPageNumber',
 			'change input#search-advanced-checkbox' : 'toggleAdvancedSearchPanel',
-			'submit form'		: 'findOnEnter',
+			'submit form'						: 'findOnEnter',
 		},
 
         render: function () {

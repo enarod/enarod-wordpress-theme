@@ -14,7 +14,7 @@ require.config ({
 			jqte		: 'libs/jqte/jquery-te-1.4.0',
             validation  : 'libs/backbone-validation-amd',
             stickit     : 'libs/backbone.stickit',
-			
+			facebook	: '//connect.facebook.net/en_US/sdk',
 	}, 
 
 	shim: {
@@ -30,6 +30,9 @@ require.config ({
 			'jqueryui':{
 				deps: ['jquery'],
 				exports:	'jqueryui'
+			},
+			'facebook' : {
+				exports: 'FB'
 			}
 	}
 });
