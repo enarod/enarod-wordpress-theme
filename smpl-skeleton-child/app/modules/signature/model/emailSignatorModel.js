@@ -4,7 +4,9 @@ define (
 
 		var $	= require ('jquery'),
 		_		= require ('underscore'),
-		Backbone= require ('backbone');
+		Backbone= require ('backbone'),
+		addressRegexp = /^([0-9a-z\u0400-\u04FF]+?)([\s\-\.,:;#u2116]*?)([0-9a-z\u0400-\u04FF\s\-\.,:;#\u2116]*?)$/gi,
+		;
 
 
 		return Backbone.Model.extend ({
@@ -61,7 +63,7 @@ define (
 						msg: 'Слід вказати адресу'
 					},
 					{
-						pattern: /^([0-9a-z\s\-]+?|[0-9\u0400-\u04FF\s\-]+)$/gi,
+						pattern: addressRegexp,
 						msg: 'Адреса містить недозволені символи'
 					},
 					{
@@ -74,7 +76,7 @@ define (
 					msg: 'Значення надто довге (максимум 255 символів)'
 					},
 					{
-						pattern: /^([0-9a-z\s\-]+?|[0-9\u0400-\u04FF\s\-]+)$/gi,
+						pattern: addressRegexp,
 						msg: 'Адреса містить недозволені символи'
 					}],
 				Region	: [{
