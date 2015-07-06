@@ -84,7 +84,8 @@ define (
 						msg: 'Слід вказати область'
 					},
 					{
-						pattern: /^([a-z\s\-]+?|[\u0400-\u04FF\s\-]+)$/gi,
+//						pattern: /^([a-z\s\-]+?|[\u0400-\u04FF\s\-]+)$/gi,
+						pattern: addressRegexp,
 						msg: 'Назва області містить недозволені символи'
 					},
 					{
@@ -116,7 +117,8 @@ define (
 						msg: 'Слід вказати місто'
 					},
 					{
-						pattern: /^([a-z\s\-]+?|[\u0400-\u04FF\s\-]+)$/gi,
+//						pattern: /^([a-z\s\-]+?|[\u0400-\u04FF\s\-]+)$/gi,
+						pattern: addressRegexp,						
 						msg: 'Назва міста містить недозволені символи'
 					},
 					{
