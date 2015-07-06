@@ -87,7 +87,7 @@ console.log('select certificate');
 					this.remove();
 					this.unbind();
 
-					if ( this.signatureModel.get('ID') !== ''){
+					if ( this.signatureModel && this.signatureModel.get('ID') !== ''){
 						if ( typeof this.signatureModel.get('Message') !== undefined ){
 							alert ( this.signatureModel.get('Message') );
 						} 
