@@ -5,7 +5,7 @@ define (
 		var $	= require ('jquery'),
 		_		= require ('underscore'),
 		Backbone= require ('backbone'),
-		addressRegexp = /^([0-9a-z\u0400-\u04FF]+?)([\s\-\.,:;#u2116]*?)([0-9a-z\u0400-\u04FF\s\-\.,:;#\u2116]*?)$/gi,
+		addressRegexp = /^([0-9a-z\u0400-\u04FF]+?)([\s\-\.,:;#u2116]*?)([0-9a-z\u0400-\u04FF\s\-\.,:;#\u2116]*?)$/gi
 		;
 
 
