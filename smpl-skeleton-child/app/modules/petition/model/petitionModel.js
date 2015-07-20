@@ -92,6 +92,12 @@ alert("Error!");
 				data.EffectiveTo = this.formatDate( effectiveDate );
 			}
 
+			if ( data.EffectiveFrom ){
+				var effectiveDate = new Date( data.EffectiveFrom );
+				this.setDaysLeft( effectiveDate );
+				data.EffectiveFrom = this.formatDate( effectiveDate );
+			}
+
 			if( data.CreatedDate ){
 				var createdDate = new Date( data.CreatedDate );
 				data.CreatedDate =  this.formatDate( createdDate ) ;
