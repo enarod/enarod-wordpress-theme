@@ -2,7 +2,9 @@ define( 	function( require ){
 	"use strict";
 
 	var $				= require ('jquery'),
-	Backbone			= require ('backbone');
+	Backbone			= require ('backbone'),
+	defPetitionSearchURL= 'Text=&SearchInPetitions=true&ShowActivePetitions=true&CreatedDateStart=&CreatedDateEnd=&FinishDateStart=&FinishDateEnd=&OrderBy=Subject&OrderDirection=ASC&PageNumber=1&PageSize=10'
+	;
 
 
 	return Backbone.Router.extend({
@@ -14,7 +16,7 @@ define( 	function( require ){
 
 		routes:{
 			""						:	"home",
-			"petition"				:	"listPetitions",
+			"petition"				:	"searchPetitions",
 			"petition/search"		:	"listPetitions",
 			"petition/search/(:query)"		:	"searchPetitions",
 			"petition/new(/:organization)"	:	"createPetition",
@@ -99,7 +101,8 @@ console.log("Home!!!");
 
 		searchPetitions: function( query ){
             var PetitionCollection  = require ('module/petition/collection/petitionCollection');
-            var Petitions = new PetitionCollection({search: query});
+			var searchQuery = ( query ? query : defPetitionSearchURL );
+            var Petitions = new PetitionCollection({search: searchQuery});
         
             this.appView.addChildView({
                 module: 'petition',
