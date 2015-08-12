@@ -2,13 +2,15 @@ define( function(require){
     'use strict';
     var $	= require('jquery'),
         _		= require('underscore'),
+		zClip   = require('zclip'),
 		stickit	= require('stickit'),
         Backbone= require('backbone'),
         SignatureSelector	= require('module/signature/view/signatureSelectorView'),
         OrganizationView	= require('module/organization/view/organizationView'),
         Petition		= require('text!module/petition/templates/petition.html'),
         PetitionNew		= require('text!module/petition/templates/petitionNew.html'),
-        PetitionItem	= require('text!module/petition/templates/petitionItem.html');
+        PetitionItem	= require('text!module/petition/templates/petitionItem.html'),
+		PetitionWidgetPage = require('text!module/petition/templates/petitionWidgetPage.html');
 
     return Backbone.View.extend({
         initialize: function(data) {
@@ -25,7 +27,10 @@ define( function(require){
             } else if (data.tmpl === 'petition'){
                 this.tmpl = Petition;
                 this.listenTo(this.model, 'sync', this.render);
-            }
+            }else if ( data.tmpl === 'widget' ){
+				this.tmpl = PetitionWidgetPage;
+				this.listenTo(this.model, 'sync', this.render);
+			}
         }, 
 
 		bindings:{
@@ -128,6 +133,16 @@ define( function(require){
 				this.model.setOrganization( this.model.get('organizationID') );
 			}
 
+			if ( $('[name^=copy-to-clipboard-]') ){
+				$('[name^=copy-to-clipboard-]').zclip({
+					path: './libs/ZeroClipboard.swf',
+					copy: function(){
+						var element = ev.currentTarget.name.replace(/(copy-to-clipboard-)(.*)/, 'source-$2');
+						return $('#'+element).text();
+					},
+				});
+			}
+
 			this.stickit( this.model );
 
             return this;
@@ -216,7 +231,9 @@ define( function(require){
                 alert("Ваш голос зараховано!");
             } else if ( state == 'error' ){
                 alert("Сталася помилка!");
-            }
+            } else if ( state == 'sign' ){
+				this.sign();
+			}
         },
 		
         onceAll: function(sources, eventName, handler, context){

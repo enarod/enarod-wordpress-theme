@@ -22,6 +22,7 @@ define( 	function( require ){
 			"petition/new(/:organization)"	:	"createPetition",
 			"petition/tag/:tag"		:	"listPetitions",
 			"petition/:id"			:	"openPetition",
+			"petition/:id/widget"	:   "openPetitionWidgetPage",
 			"petition/:id/(:state)"	:	"openPetition",
 
 			"organization"			:   "listOrganizations",
@@ -56,6 +57,21 @@ console.log("Home!!!");
 	
 		}, 
 
+		openPetitionWidgetPage: function(id){
+			var Petition = require('module/petition/model/petitionModel');
+			Petition = new Petition({"ID" : id});
+			Petition.set("id" , id);
+			Petition.set("unfold" , 1);
+
+			this.appView.addChildView({
+				module: 'petition',
+				type : 'petition', 
+				settings : {model: Petition, tmpl : 'widget'}
+		   	});
+
+			Petition.fetch();
+
+		},
 
 		createPetition: function( organizationID ){
 			var Petition = require('module/petition/model/petitionModel');

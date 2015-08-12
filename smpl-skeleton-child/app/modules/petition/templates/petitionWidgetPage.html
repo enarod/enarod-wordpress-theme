@@ -1,0 +1,59 @@
+<div>
+    <div id="petition-header">
+        <div class="petition-header-inner">
+            <h2><%=Subject%></h2>
+        </div>
+    </div>
+
+	<% _.each(['lg', 'sm', 'smp'], function(el, idx, list){ %>
+
+	<div class='enarod-pet-container enarod-pet-w-<%=el%>'>
+		<div id='enarod-pet-partner-logo'> 
+			<a href="#organization/<%=Organization.ID%>">
+				<img src='<%=Organization.Logo%>'> 
+			</a>
+		</div> 
+
+		<div id='enarod-pet-subject'>
+			<a target='_blank' href='#petition/<%=ID%>'><%=Subject%></a>
+		</div>
+
+		<% if (el=='lg'){ %>
+			<div class='enarod-pet-text'>
+			 <%= Requirements.substr(0,300)+"..."%>
+			</div>
+		<%}%>
+
+		<div id='enarod-pet-footer'> 
+			<span>
+				<%= daysLeft %> днів <%= hoursLeft %> годин <%=minutesLeft%> хвилин
+			</span> 
+			<span> 
+			<p id='enarod-pet-votes-collected'><%=VotesCount%></p><p>підписів зібрано </p> 
+			<p id='enarod-pet-votes-left'><%=(Level.Limit-VotesCount)%></p><p>залишилось зібрати </p> 
+			</span> 
+			<span>
+				<a target='_blank' href='#petition/<%=ID%>/sign'> 
+					<img src='../wp-content/themes/smpl-skeleton-child/app/images/sign.jpg'> 
+				</a> 
+			</span> 
+		</div>
+	</div>
+
+	<div class='code-snippet'>
+		<pre>
+		<code id='source-<%=el%>'>
+			&lt;div id='enarod-pet-id-<%=ID%>' class='enarod-pet-container'&gt;
+			&lt;script type="text/javascript" src="http://devb.enarod.org/wp-content/themes/smpl-skeleton-child/app/public/enarod-petition-widget.js" data-id='<%=ID%>' data-size='<%=el%>'&gt;&lt;/script&gt;
+			&lt;/div&gt;
+		</code>
+		</pre>
+		
+		<button name='copy-to-clipboard-<%=el%>'>Копіювати код'</button>
+	</div>
+
+	<%});%>
+
+
+
+</div>
