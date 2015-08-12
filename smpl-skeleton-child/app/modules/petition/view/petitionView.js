@@ -137,7 +137,6 @@ define( function(require){
 				$('[name^=copy-to-clipboard-]').zclip({
 					path: '../wp-content/themes/smpl-skeleton-child/app/libs/ZeroClipboard.swf',
 					copy: function(ev){
-console.log('Here');
 						var element = ev.currentTarget.name.replace(/(copy-to-clipboard-)(.*)/, 'source-$2');
 						return $('#'+element).text();
 					},
