@@ -2,6 +2,7 @@ define( function(require){
     'use strict';
     var $	= require('jquery'),
         _		= require('underscore'),
+        ZeroClipboard  = require('zeroClip'),
 		stickit	= require('stickit'),
         Backbone= require('backbone'),
         SignatureSelector	= require('module/signature/view/signatureSelectorView'),
@@ -118,7 +119,6 @@ define( function(require){
             'click input[id=sign]'				: 'sign',
             'click input[id=publish_petition]'	: 'publishPetition',
             'click input[name=petition-level]'	: 'openRegionList',
-            'click button[name^=copy-to-clipboard-]' : 'copyToClipboard', 
         },
 
         render: function() {
@@ -134,6 +134,7 @@ define( function(require){
 			}
 
 			this.stickit( this.model );
+            this.addClipboardHandler();
 
             return this;
         },
@@ -226,7 +227,10 @@ define( function(require){
 			}
         },
 		
-        copyToClipboard: function(ev){
+        addClipboardHandler: function(){
+            var client = new ZeroClipboard( 
+                $('#copy-to-clipboard-lg,#copy-to-clipboard-sm,#copy-to-clipboard-smp')
+            );
         },
 
         onceAll: function(sources, eventName, handler, context){

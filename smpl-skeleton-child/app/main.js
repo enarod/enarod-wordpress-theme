@@ -15,6 +15,7 @@ require.config ({
             validation  : 'libs/backbone-validation-amd',
             stickit     : 'libs/backbone.stickit',
 			facebook	: '//connect.facebook.net/en_US/sdk',
+            zeroClip   : 'libs/components/zeroclipboard/dist/ZeroClipboard.min',
 	}, 
 
 	shim: {
