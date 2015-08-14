@@ -1,0 +1,11 @@
+{
+  "name": "enarod.org ",
+  "version": "0.0.1",
+  "authors": [
+    "eugen.jaskal@gmail.com"
+  ],
+  "description": "enarod.org - чесне волевиявлення без шин та коктейлів",
+  "dependencies": {
+    "zeroclipboard": "~2.2.0"
+  }
+}
