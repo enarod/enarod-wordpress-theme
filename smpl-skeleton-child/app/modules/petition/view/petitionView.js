@@ -2,7 +2,6 @@ define( function(require){
     'use strict';
     var $	= require('jquery'),
         _		= require('underscore'),
-		zClip   = require('zclip'),
 		stickit	= require('stickit'),
         Backbone= require('backbone'),
         SignatureSelector	= require('module/signature/view/signatureSelectorView'),
@@ -119,6 +118,7 @@ define( function(require){
             'click input[id=sign]'				: 'sign',
             'click input[id=publish_petition]'	: 'publishPetition',
             'click input[name=petition-level]'	: 'openRegionList',
+            'click button[name^=copy-to-clipboard-]' : 'copyToClipboard', 
         },
 
         render: function() {
@@ -131,16 +131,6 @@ define( function(require){
 		
 			if ( this.model.get('organizationID') ){
 				this.model.setOrganization( this.model.get('organizationID') );
-			}
-
-			if ( $('[name^=copy-to-clipboard-]') ){
-				$('[name^=copy-to-clipboard-]').zclip({
-					path: '../wp-content/themes/smpl-skeleton-child/app/libs/ZeroClipboard.swf',
-					copy: function(ev){
-						var element = ev.currentTarget.name.replace(/(copy-to-clipboard-)(.*)/, 'source-$2');
-						return $('#'+element).text();
-					},
-				});
 			}
 
 			this.stickit( this.model );
@@ -236,6 +226,9 @@ define( function(require){
 			}
         },
 		
+        copyToClipboard: function(ev){
+        },
+
         onceAll: function(sources, eventName, handler, context){
             handler = _.after( sources.length, handler);
             context = context || this;

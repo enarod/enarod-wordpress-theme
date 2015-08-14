@@ -15,7 +15,6 @@ require.config ({
             validation  : 'libs/backbone-validation-amd',
             stickit     : 'libs/backbone.stickit',
 			facebook	: '//connect.facebook.net/en_US/sdk',
-			zclip		: 'libs/jquery.zclip.min',
 	}, 
 
 	shim: {
@@ -34,9 +33,6 @@ require.config ({
 			},
 			'facebook' : {
 				exports: 'FB'
-			},
-			'zclip' : {
-				deps: ['jquery'],
 			}
 	}
 });
