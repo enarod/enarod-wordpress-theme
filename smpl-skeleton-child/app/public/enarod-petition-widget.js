@@ -64,7 +64,7 @@
 			var petitionId = $(scriptTag).attr('data-id');
 			
 			/********* load CSS for petition **********/
-			//loadCss("http://dev.enarod.org");
+			loadCss(baseUrl+"/wp-content/themes/smpl-skeleton-child/app/public/css/edem-widget.css");
 
             var jsonp_url = "http://dev.enarod.org/api/petition/"+petitionId;
             jQuery.getJSON(jsonp_url, function(result){
