@@ -1,4 +1,4 @@
-<div>
+<div class="petition-widget">
     <div id="petition-header">
         <div class="petition-header-inner">
             <h2><%=Subject%></h2>
@@ -8,13 +8,13 @@
 	<% _.each(['lg', 'sm', 'smp'], function(el, idx, list){ %>
 
 	<div class='enarod-pet-container enarod-pet-w-<%=el%>'>
-		<div id='enarod-pet-partner-logo'> 
+		<div class='enarod-pet-partner-logo'>
 			<a href="#organization/<%=Organization.ID%>">
 				<img src='<%=Organization.Logo%>'> 
 			</a>
 		</div> 
 
-		<div id='enarod-pet-subject'>
+		<div class='enarod-pet-subject'>
 			<a target='_blank' href='#petition/<%=ID%>'><%=Subject%></a>
 		</div>
 
@@ -24,19 +24,20 @@
 			</div>
 		<%}%>
 
-		<div id='enarod-pet-footer'> 
-			<span>
-				<%= daysLeft %> днів <%= hoursLeft %> годин <%=minutesLeft%> хвилин
-			</span> 
-			<span> 
-			<p id='enarod-pet-votes-collected'><%=VotesCount%></p><p>підписів зібрано </p> 
-			<p id='enarod-pet-votes-left'><%=(Level.Limit-VotesCount)%></p><p>залишилось зібрати </p> 
-			</span> 
-			<span>
+		<div class='enarod-pet-footer'> 
+      <% if (el=='lg'){ %>
+			 <span class="enarod-pet-time">
+				 <span><%= daysLeft %></span> днів <span><%= hoursLeft %></span> годин <span><%=minutesLeft%></span> хвилин
+			 </span>
+			 <p id='enarod-pet-votes-collected'><span class="enarod-pet-votes-collected-number"><%=VotesCount%></span><span>підписів зібрано</span></p>
+			 <p id='enarod-pet-votes-left'><span class="enarod-pet-votes-left-number"><%=(Level.Limit-VotesCount)%></span><span>залишилось зібрати</span></p>
+      <%} else {%>
+        <p>Підтримали: <%=VotesCount%>, потрібно ще: <%=(Level.Limit-VotesCount)%><br/>
+        У нас  <%= daysLeft %> дн. <%= hoursLeft %> год. <%=minutesLeft%> хв.</p>
+      <%}%>
 				<a target='_blank' href='#petition/<%=ID%>/sign'> 
-					<img src='../wp-content/themes/smpl-skeleton-child/app/images/sign.jpg'> 
-				</a> 
-			</span> 
+					<img src='../wp-content/themes/smpl-skeleton-child/app/images/sign.jpg'>
+				</a>
 		</div>
 	</div>
 
@@ -52,6 +53,7 @@
     <button id='copy-to-clipboard-<%=el%>' data-clipboard-target="source-<%=el%>">Копіювати код</button>
 
 	</div>
+  <div class="clear"></div>
 
 	<%});%>
 
