@@ -1,6 +1,8 @@
 ﻿<a class="create-petition-btn" href="#petition/new">Створити петицію</a>
 <button id="show-all-petitions" class="search-for-petition">Показати всі петиції</button>
 <button id="show-all-partners" class="search-for-petition">Показати всіх партнерів</button>
+<button id="login" class="search-for-petition">Увійти</button>
+<button id="logout" class="search-for-petition">Вийти</button>
 
 <div id='div-search' hidden='hidden'>
 

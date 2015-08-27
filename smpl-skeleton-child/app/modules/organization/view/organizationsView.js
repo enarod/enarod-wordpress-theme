@@ -28,6 +28,8 @@ define(function(require){
       _.each( this.organizationsViewList, function (organization){
         organization.remove();
       });
+
+      $('#spinner').hide();
     },
     unbind: function(){
       _.each( this.organizationsViewList, function (organization){

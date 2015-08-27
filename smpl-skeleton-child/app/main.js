@@ -42,13 +42,23 @@ require.config ({
 require(['jquery', 'backbone', 'router', 'common/view/mainView', 'validation', 'config' ], 
 
 	function ( $, Backbone, Router, MainView ){
+		var appView = new MainView();
 
         //Add custom header to HTTP request
         var defaultBackboneSync = Backbone.sync;
         Backbone.sync = function ( method, model, options ){
-            options.headers = {
-                'api-version': 2
-            };
+            options.headers = options.headers || {};
+            _.extend(options.headers, { 'api-version' : 2 });
+
+            if (appView.User){
+                var token = appView.User.getToken();
+                if ( token ){
+                    _.extend(
+                        options.headers, 
+                        { 'Authorization' : appView.User.getToken() }
+                    );
+                }
+            }
             defaultBackboneSync( method, model, options );
         };
 

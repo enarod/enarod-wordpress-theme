@@ -29,17 +29,19 @@ define(function(require){
             }else{
 				this.appendPetitions( this.petitions );	
             }
+
+            $('#spinner').hide();
         },
 
 		appendPetitions: function( petitions ){
-                var parentView = this.parentView;
-                petitions.each(function(petition){
-                    var item = new PetitionView ({ tmpl: 'item', model: petition });
-                    item.parentView = parentView;
-                    item.render();
-                    this.petitionsViewList.push(item);
-                }, this);
-
+            var parentView = this.parentView;
+            petitions.each(function(petition){
+                var item = new PetitionView ({ tmpl: 'item', model: petition });
+                item.parentView = parentView;
+                item.render();
+                this.petitionsViewList.push(item);
+            }, this);
+            $('#spinner').hide();
 		},
 
         remove: function(){

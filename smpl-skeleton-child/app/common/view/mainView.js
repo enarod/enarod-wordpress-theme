@@ -11,7 +11,10 @@ define(function (require) {
         PetitionsView = require('module/petition/view/petitionsView'),
 
         OrganizationView = require('module/organization/view/organizationView'),
-        OrganizationsView = require('module/organization/view/organizationsView')
+        OrganizationsView = require('module/organization/view/organizationsView'),
+
+        User             = require('module/user/model/userModel'),
+        UserView         = require('module/user/view/userView')
 		;
 
     return Backbone.View.extend({
@@ -66,6 +69,8 @@ define(function (require) {
         },
 
         addChildView: function (view) {
+            $('#spinner').show();
+
 			this.subMenuPaging = ( view.hasPaging ? view.hasPaging : false );
 			this.trigger( 'hasPaging', this.subMenuPaging );
 
@@ -83,6 +88,8 @@ define(function (require) {
         },
 
 		showMore: function(){
+            $('#spinner').show();
+
 			var query = this.submenu.showMore();
             var PetitionCollection  = require ('module/petition/collection/petitionCollection');
             var Petitions = new PetitionCollection({search: query});
@@ -94,6 +101,17 @@ define(function (require) {
 		readyForAppend: function(){
 			this.trigger( 'appendPetitions', this.morePetitions );
 		},
+
+        //User handling
+        addUser: function(){
+            this.User = new User();
+            var view = new UserView({model: this.User, mode: 'logIn'});
+            view.render();
+        },
+
+        removeUser: function(){
+            this.User = undefined;
+        },
 
         //Clean
         cleanUp: function () {

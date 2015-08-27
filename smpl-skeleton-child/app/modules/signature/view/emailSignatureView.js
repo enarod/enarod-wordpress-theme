@@ -133,6 +133,7 @@ define(
 				} );
 
 				if ( this.model.get('Signer').isValid(true) ){
+                    $('#spinner').show();
 					if ( this.model.get('ID') !== '' ){
 						this.model.save();
 					}else{
@@ -159,6 +160,7 @@ define(
 			
 
 			close: function(){
+                $('#spinner').hide();
 				$('.emailForm').dialog('destroy');
 				Backbone.Validation.unbind(this);
 				this.remove();

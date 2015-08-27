@@ -8,7 +8,7 @@ define ( function(require){
     OrganizationView = require('module/organization/view/organizationView'),
     OrganizationsView = require('module/organization/view/organizationsView'),
 	Organizations	 = require('module/organization/collection/organizationCollection'),
-	Categories		 = require( 'module/petition/collection/petitionCategoryCollection' )
+	Categories		 = require('module/petition/collection/petitionCategoryCollection' )
 	;
 
 
@@ -47,12 +47,15 @@ define ( function(require){
 			'change [name*=search-in-]'			: 'resetPageNumber',
 			'change input#search-advanced-checkbox' : 'toggleAdvancedSearchPanel',
 			'submit form'						: 'findOnEnter',
+            'click button#login'                : 'userLogIn',
+            'click button#logout'               : 'userLogOut',
 		},
 
         render: function () {
             this.$el.html(this.template({data: this}));
 			this.parentView.appendSubmenu();
 			this.togglePagingSettings( this.parentView.subMenuPaging );
+            this.logStatusChanged();
             return this;
         },
 
@@ -213,6 +216,34 @@ define ( function(require){
 				$('div#search-advanced').hide();
 			}
 		},
+
+        /*------------------------------
+         * Handling user authentication
+         *-----------------------------*/
+        userLogIn: function(){
+            this.parentView.addUser();
+			this.listenTo ( this.parentView.User, 'loggedIn', this.logStatusChanged );
+        },
+
+
+        userLogOut: function(){
+            this.parentView.removeUser();
+            this.logStatusChanged();
+        },
+
+        logStatusChanged: function(){
+            if ( this.parentView.User ){
+                $('#logout').show();
+                $('#login').hide();
+            }else{
+                $('#logout').hide();
+                $('#login').show();
+            }
+        }, 
+
+        logOuthanges: function(){
+        },
+
 
 		close: function(){
 			this.remove();
