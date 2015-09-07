@@ -1284,11 +1284,9 @@ height: 12px;}
 .petition-widget .enarod-pet-w-sm {
   width: 480px;
   height: 180px;
-  margin-left:5%;
 }
 .petition-widget .enarod-pet-w-smp {
   width:300px;
-  margin-left:10%;
 }
 
 .petition-widget .enarod-pet-w-smp .enarod-pet-footer p, .petition-widget .enarod-pet-w-sm .enarod-pet-footer p  {
@@ -1298,12 +1296,12 @@ height: 12px;}
   clear:both;
 }
 .petition-widget .code-snippet {
-  float:right;
-  width:30%;
+  float:left;
+  width:800px;
   margin-top:30px;
 }
 .petition-widget .code-snippet code {
-  font-size:8px;
+  font-size:12px;
 }
 
 .petition-widget .enarod-pet-subject a {
