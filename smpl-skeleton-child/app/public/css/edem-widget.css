@@ -16,7 +16,8 @@
   margin-top: 30px;
 }
 .petition-widget .enarod-pet-w-lg {
-  width: 66%;
+  width: 800px;
+  height: 210px;
 }
 .petition-widget .enarod-pet-w-sm {
   width:56%;
@@ -27,10 +28,10 @@
   margin-left:10%;
 }
 
-.petition-widget .enarod-pet-w-smp .enarod-pet-footer p, .petition-widget .enarod-pet-w-sm .enarod-pet-footer p  {
+.petition-widget .enarod-pet-w-smp #enarod-pet-footer p, .petition-widget .enarod-pet-w-sm #enarod-pet-footer p  {
   float:left;
 }
-.petition-widget .enarod-pet-w-smp .enarod-pet-footer {
+.petition-widget .enarod-pet-w-smp #enarod-pet-footer {
   clear:both;
 }
 .petition-widget .code-snippet {
@@ -42,35 +43,39 @@
   font-size:8px;
 }
 
-.petition-widget .enarod-pet-subject a {
+.petition-widget #enarod-pet-subject a {
   color: #333;
   font-weight:bold;
   font-size:16px;
+}
+
+.petition-widget .enarod-pet-text {
+  height:100px;
 }
 
 .petition-widget .enarod-pet-container .enarod-pet-partner-logo {
   float:left;
   margin-right:20px;
 }
-.petition-widget .enarod-pet-w-lg  .enarod-pet-partner-logo img {
+.petition-widget .enarod-pet-w-lg  #enarod-pet-partner-logo img {
   width:188px;
 }
-.petition-widget .enarod-pet-w-sm  .enarod-pet-partner-logo img {
+.petition-widget .enarod-pet-w-sm  #enarod-pet-partner-logo img {
     width: 150px;
 }
-.petition-widget .enarod-pet-w-smp  .enarod-pet-partner-logo img {
+.petition-widget .enarod-pet-w-smp  #enarod-pet-partner-logo img {
    width: 120px;
 }
-.petition-widget .enarod-pet-time {
+.petition-widget #enarod-pet-time {
   margin-top: 12px;
   color: #999;
-  font-size: 8px;
+  font-size: 10px;
   display: block;
   margin-right: 10px;
   float: left;
 }
-.petition-widget .enarod-pet-time span {
-  font-size:16px;
+.petition-widget #enarod-pet-time span {
+  font-size: 22px;
 }
 .petition-widget #enarod-pet-votes-collected {
   color: #55a039;
@@ -101,11 +106,11 @@
   font-size: 18px;
   text-align:center;
 }
-.petition-widget .enarod-pet-footer a {
+.petition-widget #enarod-pet-footer a {
   display:block;
   float:right;
   margin-top:2px;
 }
-.petition-widget .enarod-pet-footer img {
+.petition-widget #enarod-pet-footer img {
   width:65px;
 }
