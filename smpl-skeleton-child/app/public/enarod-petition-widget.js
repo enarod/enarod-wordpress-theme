@@ -117,24 +117,27 @@
 
 	function addPetition(widgetSize, timeLeft, data){
 		var petitionText = '';
+		var voteDetails = '';
+		var needVotes = data.Data.Level.Limit - data.Data.VotesCount ;
 		if (widgetSize == 'lg' ){
-			petitionText = "<div class='enarod-pet-text'>"+data.Data.Requirements.substr(0,300)+"...</dev>";
+			petitionText = "<div class='enarod-pet-text'>"+data.Data.Requirements.substr(0,300)+"...</div>";
+			voteDetails = "<span class='enarod-pet-time'> \
+								<span>"+timeLeft.daysLeft+" </span> днів <span> "+timeLeft.hoursLeft+" </span> годин <span> "+timeLeft.minutesLeft+" </span> хвилин \
+							</span> \
+							<p id='enarod-pet-votes-collected'><span class='enarod-pet-votes-collected-number'>"+data.Data.VotesCount+"</span> <span>підписів зібрано </span> </p> \
+							<p id='enarod-pet-votes-left'><span class='enarod-pet-votes-left-number'>"+ needVotes +"</span><span>залишилось зібрати </span> </p>";
+		}else{
+			voteDetails = "<p> Підтримали: "+data.Data.VotesCount + ", потрібно ще: "+ needVotes + "<br> у нас ще " + timeLeft.daysLeft + " дн. " + timeLeft.hoursLeft + " год. " + timeLeft.minutesLeft + " хв. </p>"  ;
 		}
 
 		var petitionView = "<div id='enarod-pet-partner-logo'> \
 							<a href='"+baseUrl+"/petition/#organization/"+data.Data.Organization.ID+"'> \
-								<img src='"+baseUrl+"/"+data.Data.Organization.Logo+"'> </div> \
+								<img src='"+baseUrl+"/"+data.Data.Organization.Logo+"'> \
 							</a> \
-						<div id='enarod-pet-subject'><a target='_blank' href='"+baseUrl+"/petition/#petition/"+data.Data.ID+"'>"+data.Data.Subject+"</a></div>"+petitionText+" \
-						<div id='enarod-pet-footer'> \
-							<span>"+timeLeft.daysLeft+" днів "+timeLeft.hoursLeft+" годин "+timeLeft.minutesLeft+" хвилин </span> \
-							<span> \
-								<p id='enarod-pet-votes-collected'>"+data.Data.VotesCount+"</p><p>підписів зібрано </p> \
-								<p id='enarod-pet-votes-left'>"+( data.Data.Level.Limit - data.Data.VotesCount )+"</p><p>залишилось зібрати </p> \
-							</span> \
-							<span> \
-								<a target='_blank' href='"+baseUrl+"/petition/#petition/"+data.Data.ID+"/sign'> <img src='"+baseUrl+"/wp-content/themes/smpl-skeleton-child/app/images/sign.jpg'> </a> \
-							<span> \
+						</div> \
+						<div class='enarod-pet-subject'><a target='_blank' href='"+baseUrl+"/petition/#petition/"+data.Data.ID+"'>"+data.Data.Subject+"</a></div>"+petitionText+" \
+						<div class='enarod-pet-footer'>"+voteDetails+" \
+							<a target='_blank' href='"+baseUrl+"/petition/#petition/"+data.Data.ID+"/sign'> <img src='"+baseUrl+"/wp-content/themes/smpl-skeleton-child/app/images/sign.png'> </a> \
 						</div>";
 
 		return petitionView;
