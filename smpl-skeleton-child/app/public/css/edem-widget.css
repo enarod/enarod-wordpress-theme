@@ -1,6 +1,17 @@
 /*
  * Stylesheet for e-democracy petition widget
  */
+ .enarod-pet-container {
+  float:left;
+  margin-right:30px;
+  margin-top: 30px;
+  background-color: #d9ffcb;
+  padding: 10px;
+  border-style: solid;
+  border-width: 3px;
+  border-color: #6bbb4d;
+}
+
 .enarod-pet-container #petition-header {
   text-align:center;
 }
