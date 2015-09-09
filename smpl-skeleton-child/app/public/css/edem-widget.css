@@ -38,6 +38,19 @@
   width:300px;
 }
 
+.enarod-pet-w-lg {
+  width: 800px;
+  height: 210px;
+}
+.enarod-pet-w-sm {
+  width: 480px;
+  height: 180px;
+}
+
+.enarod-pet-w-smp {
+  width:300px;
+}
+
 .enarod-pet-container .enarod-pet-w-smp #enarod-pet-footer p, .enarod-pet-container .enarod-pet-w-sm #enarod-pet-footer p  {
   float:left;
 }
