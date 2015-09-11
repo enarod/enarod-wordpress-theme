@@ -11,7 +11,7 @@ define(
 			model: Organization,
 
 			url: function(){
-				return BASE_URL + '/Organization';
+				return BASE_URL + 'Organizations/all';
 			}, 
 			
 			parse: function(response){

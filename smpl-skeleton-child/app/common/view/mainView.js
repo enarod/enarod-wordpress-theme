@@ -14,7 +14,9 @@ define(function (require) {
         OrganizationsView = require('module/organization/view/organizationsView'),
 
         User             = require('module/user/model/userModel'),
-        UserView         = require('module/user/view/userView')
+        UserView         = require('module/user/view/userView'),
+
+        ReCaptcha   = require('recaptcha')
 		;
 
     return Backbone.View.extend({
@@ -105,12 +107,28 @@ define(function (require) {
         //User handling
         addUser: function(){
             this.User = new User();
-            var view = new UserView({model: this.User, mode: 'logIn'});
+            var view = new UserView({
+                model: this.User, 
+                mode: 'logIn', 
+                parentView: this
+            });
             view.render();
         },
 
         removeUser: function(){
             this.User = undefined;
+        },
+
+        //Captcha handling
+        addCaptcha: function( idSelector ){
+            grecaptcha.render(
+                idSelector,
+                {
+                    theme: 'clean', 
+                    sitekey: RECAPTCHA_SITEKEY
+                }
+            );                
+
         },
 
         //Clean

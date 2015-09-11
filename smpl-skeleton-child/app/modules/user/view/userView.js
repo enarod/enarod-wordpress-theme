@@ -18,6 +18,7 @@ define(function(require){
 					if (data){
 						this.model = data.model;
                         this.mode = data.mode;
+                        this.parentView = data.parentView;
 					}
 
                     this.listenTo( this.model, 'loggedIn', this.close );
@@ -91,6 +92,10 @@ define(function(require){
 							that.close();
 						}
 					});
+
+                    if ( $('#captcha').length ){
+                        this.parentView.addCaptcha('captcha');
+                    }        
 
                     this.stickit();
 					return this;

@@ -13,7 +13,7 @@ define(function(require){
     },
     render: function(){
       if ( this.organizations.length == 0 ){
-        alert('Організацій-партнерів не знайдено.');
+        alert('Не знайдено жодного адресата.');
       }else{
         var parentView = this.parentView;
         this.organizations.each(function(organization){

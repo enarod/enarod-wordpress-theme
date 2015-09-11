@@ -15,7 +15,8 @@ require.config ({
             validation  : 'libs/backbone-validation-amd',
             stickit     : 'libs/backbone.stickit',
 			facebook	: '//connect.facebook.net/en_US/sdk',
-            zeroClip   : 'libs/components/zeroclipboard/dist/ZeroClipboard.min',
+            zeroClip    : 'libs/components/zeroclipboard/dist/ZeroClipboard.min',
+            recaptcha   : 'https://www.google.com/recaptcha/api',
 	}, 
 
 	shim: {
@@ -34,7 +35,10 @@ require.config ({
 			},
 			'facebook' : {
 				exports: 'FB'
-			}
+			},
+            'recaptcha' : {
+                exports: 'grecaptcha'
+            }
 	}
 });
 

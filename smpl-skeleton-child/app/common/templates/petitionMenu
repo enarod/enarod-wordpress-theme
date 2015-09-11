@@ -1,6 +1,6 @@
 ﻿<a class="create-petition-btn" href="#petition/new">Створити петицію</a>
 <button id="show-all-petitions" class="search-for-petition">Показати всі петиції</button>
-<button id="show-all-partners" class="search-for-petition">Показати всіх партнерів</button>
+<button id="show-all-partners" class="search-for-petition">Всі адресати</button>
 <button id="login" class="search-for-petition">Увійти</button>
 <button id="logout" class="search-for-petition">Вийти</button>
 
@@ -9,13 +9,13 @@
 <span id='search'>
 	<div id='petition-search-form'>
 		<form>
-			<input class="search-input-petition" name='search-for' placeholder='Введіть фразу, назву партнера або П.І.Б. автора' />
+			<input class="search-input-petition" name='search-for' placeholder='Введіть фразу, адресата або П.І.Б. автора петиції' />
 		</form>
       <div id="search-line">
       <div id="organizations" class="search-div">
         <label for="id-search-in-organization">
           <input id="id-search-in-organization" name="search-in-organization" type="checkbox" value="1"/>
-          <span class='lavel-text'>в назві партнера</span>
+          <span class='lavel-text'>в назві адресата</span>
         </label>
       </div>
       <div class="search-div">
