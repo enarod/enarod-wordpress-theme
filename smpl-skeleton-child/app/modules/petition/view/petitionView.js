@@ -189,6 +189,7 @@ define( function(require){
 
 			this.unstickit(this.model);
 			this.model.set( 'Email', this.model.get("Author").get("Email") );
+			this.model.set( 'CreatedBy', this.model.get("Author") );
 			this.model.save();
 		},	
 	

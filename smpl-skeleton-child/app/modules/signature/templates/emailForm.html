@@ -1,26 +1,26 @@
 <div class="form-group" id='email-form'>
 	<div class="email-form-list form-horizontal">
 		<div class="form-group">
-			 <label class="control-label  col-sm-3" class="control-label  col-sm-2" for="Email">Ваш email:</label>
+			 <label class="control-label  col-sm-3" class="control-label  col-sm-2" for="Email">Ваш email*:</label>
 			<div class="col-sm-9 form-element-group">
 				<input id='Email' name='Email' class="form-control">
 				<span class="help-block"></span>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-sm-3" for="FirstName">Ім’я:</label>
+			<label class="control-label col-sm-3" for="FirstName">Ім’я*:</label>
 			<div class="col-sm-3 form-element-group">
 				<input id='FirstName' name='FirstName' class="form-control">
 				<span class="help-block"></span>
 			</div>
-			<label class="control-label  col-sm-2" for="LastName">Прізвище:</label>
+			<label class="control-label  col-sm-2" for="LastName">Прізвище*:</label>
 			<div class="col-sm-4 form-element-group">
 				<input id='LastName' name='LastName' class="form-control">
 				<span class="help-block"></span>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label  col-sm-3" for="MiddleName">По-батькові:</label>
+			<label class="control-label  col-sm-3" for="MiddleName">По-батькові*:</label>
 			<div class="col-sm-9 form-element-group">
 				<input id='MiddleName' name='MiddleName' class="form-control">
 				<span class="help-block"></span>
@@ -46,7 +46,7 @@
 				<input id='City' name='City' class="form-control">
 				<span class="help-block"></span>
 			</div>
-			<label class="control-label  col-sm-2" for="Region">Область:</label>
+			<label class="control-label  col-sm-2" for="Region">Область*:</label>
 			<div class="col-sm-3 form-element-group">
 				<input id='Region' name='Region' class="form-control">
 				<span class="help-block"></span>
@@ -58,13 +58,13 @@
 				<input id='ZipCode' name='ZipCode' class="form-control">
 				<span class="help-block"></span>
 			</div>
-			<label class="control-label  col-sm-2" for="Country">Країна:</label>
+			<label class="control-label  col-sm-2" for="Country">Країна*:</label>
 			<div class="col-sm-4 form-element-group">
 				<input id='Country' name='Country' class="form-control">
 				<span class="help-block"></span>
 			</div>
 		</div>
-    <div class="form-group">
+    <div class="form-group form-element-group">
       <div id='captcha'></div>
     </div>
 		<div class="form-group form-element-group">
@@ -75,7 +75,13 @@
 			<div class="col-sm-2">
 				<input type="checkbox" name="privacyConfirm" value="true" checked="checked" id="privacyConfirm" class="form-control" />
 			</div>
-		</div>
+    </div>
+  
+    <div class="form-group form-element-group">
+      * - обов'язкові поля
+    </div>
+
+
 		<div class="form-group">
 			<div class="col-sm-offset-3 col-sm-9">
 				<input type='button' class="btn" id='vote-with-email' value='Проголосувати' >
