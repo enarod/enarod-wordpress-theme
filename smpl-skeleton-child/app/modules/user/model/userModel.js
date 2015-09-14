@@ -9,6 +9,7 @@ define(function(require){
 
 	return Backbone.Model.extend({
 
+
         validation: {
 			UserEmail	: [
 				{
@@ -77,6 +78,14 @@ define(function(require){
 
         logInSuccess: function(data){
             this.set({Token : data});
+            var that = this;
+            localStorage.setItem(
+                'edemUser', 
+                JSON.stringify({
+                    'Token'     : that.get('Token'),
+                    'UserEmail' : that.get('UserEmail'),
+                })
+            );
             this.trigger('loggedIn');
         },
 

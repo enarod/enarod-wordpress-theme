@@ -28,6 +28,17 @@ define(function (require) {
 		
 		submenuNode: '.submenu',
 
+        initialize: function(){
+            if ( localStorage.edemUser ) {
+                var userData = JSON.parse( localStorage.getItem('edemUser') );
+                this.User = new User();
+                this.User.set({
+                    'Token'     : userData.Token,
+                    'UserEmail' : userData.UserEmail
+                });
+            }
+        },
+
         events: {
 			'click #show-more' : 'showMore',
 		},
@@ -117,6 +128,7 @@ define(function (require) {
 
         removeUser: function(){
             this.User = undefined;
+            localStorage.removeItem('edemUser');
         },
 
         //Captcha handling
