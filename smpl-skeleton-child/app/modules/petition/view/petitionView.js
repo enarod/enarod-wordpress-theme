@@ -142,7 +142,10 @@ define( function(require){
         },
 
         sign: function() {
-            var view = new SignatureSelector( {petitionID : this.model.get('ID')} );
+            var view = new SignatureSelector({
+                petitionID : this.model.get('ID'),
+                parentView : this.parentView
+            });
             view.render();
         },
 

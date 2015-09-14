@@ -25,6 +25,10 @@ define(
 					if ( data.signator ){
 						this.signator = data.signator;
 					}
+                    if ( data.parentView ){
+                        this.parentView = data.parentView;
+                    }
+
 				},
 
 				events: {
@@ -60,7 +64,8 @@ console.log('select certificate');
 						this.signator	= new emailSignatorModel();
 					}
 					var signatureModel	= new emailSignatureModel({ 'PetitionID': this.petitionID, 'Signer' : this.signator });
-					var signatureView	= new emailSignatureView({model: signatureModel});
+					var signatureView	= new emailSignatureView({ model: signatureModel });
+                    signatureView.parentView = this.parentView;
 					this.close();
 					signatureView.render();
 				},	

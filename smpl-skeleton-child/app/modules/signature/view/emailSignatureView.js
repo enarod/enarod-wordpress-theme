@@ -105,9 +105,9 @@ define(
 					}
 				});
 
-//                if ( $('#captcha').length ){
-//                    this.parentView.addCaptcha('captcha');
-//                }
+                if ( $('#captcha').length ){
+                    this.parentView.addCaptcha('captcha');
+                }
 
 				this.stickit( this.model.get('Signer') );
 				return this;
