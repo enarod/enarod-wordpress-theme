@@ -116,6 +116,7 @@ define(function(require){
 
 				signIn: function(){
                     this.model.signIn();
+                    $('#spinner').hide();
 				},
 
                 signUp: function(){
@@ -128,8 +129,9 @@ define(function(require){
                     this.addValidation();
 
     				if ( this.model.isValid(true) ){
+                        $('#spinner').show();
+                        this.listenTo ( this.model, 'sync', this.signIn );
                         this.model.register();
-                        this.listenTo ( this.model, 'sync', this.model.signIn() );
     				}
                 },
 

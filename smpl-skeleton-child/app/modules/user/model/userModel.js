@@ -59,7 +59,6 @@ define(function(require){
             $.ajax({
                 method: 'POST',
                 url: BASE_URL+'Account/Signin',
-//                url: 'http://dev.enarod.org/token',
                 contentType: 'application/x-www-form-urlencoded',
                 accepts: 'application/json',
                 data:{
