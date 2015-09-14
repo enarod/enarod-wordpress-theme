@@ -59,7 +59,7 @@ console.log('select certificate');
 					if ( !this.signator ){
 						this.signator	= new emailSignatorModel();
 					}
-					var signatureModel	= new emailSignatureModel({ 'ID': this.petitionID, 'Signer' : this.signator });
+					var signatureModel	= new emailSignatureModel({ 'PetitionID': this.petitionID, 'Signer' : this.signator });
 					var signatureView	= new emailSignatureView({model: signatureModel});
 					this.close();
 					signatureView.render();
@@ -75,7 +75,7 @@ console.log('select certificate');
 				},
 
 				signWithFB: function(){
-					this.signatureModel	= new fbSignatureModel({ 'ID': this.petitionID, 'Signer' : this.signator });
+					this.signatureModel	= new fbSignatureModel({ 'PetitionID': this.petitionID, 'Signer' : this.signator });
 					this.listenTo ( this.signatureModel, 'sync', this.close );
 
 					this.signatureModel.save();
@@ -87,7 +87,7 @@ console.log('select certificate');
 					this.remove();
 					this.unbind();
 
-					if ( this.signatureModel && this.signatureModel.get('ID') !== ''){
+					if ( this.signatureModel && this.signatureModel.get('PetitionID') !== ''){
 						if ( typeof this.signatureModel.get('Message') !== undefined ){
 							alert ( this.signatureModel.get('Message') );
 						} 

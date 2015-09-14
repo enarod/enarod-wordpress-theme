@@ -138,7 +138,7 @@ define(
 
 				if ( this.model.get('Signer').isValid(true) ){
                     $('#spinner').show();
-					if ( this.model.get('ID') !== '' ){
+					if ( this.model.get('PetitionID') !== '' ){
 						this.model.save();
 					}else{
 						this.model.get('Signer').trigger( 'signed' );
