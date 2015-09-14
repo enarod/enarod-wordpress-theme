@@ -9,7 +9,7 @@ define(
 
 
     return Backbone.Model.extend({
-        urlRoot: BASE_URL + "Organization",
+        urlRoot: BASE_URL + "Organizations",
 
 		initialize: function(){
 			var id = this.get('ID');

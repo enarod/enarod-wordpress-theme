@@ -8,10 +8,10 @@ define(
 		;
 
 		return Backbone.Model.extend({
-			urlRoot: BASE_URL+"petition/v2/emailVote",
+			urlRoot: BASE_URL+"petition/emailVote",
 
 			defaults:{
-				ID: ''
+				PetitionID: ''
 			}
 		
 		

@@ -59,16 +59,13 @@ define (
 					}
 				],
 				AddressLine1 : [{
-						required	: true,
-						msg: 'Слід вказати адресу'
+						required	: false,
+						maxLength	: 255,
+						msg: 'Значення надто довге (максимум 255 символів)'
 					},
 					{
 						pattern: addressRegexp,
 						msg: 'Адреса містить недозволені символи'
-					},
-					{
-						maxLength	: 255,
-						msg: 'Значення надто довге (максимум 255 символів)'
 					}],
 				AddressLine2 : [{
 					required	: false,
@@ -93,10 +90,7 @@ define (
 						msg: 'Значення надто довге (максимум 255 символів)'
 					}],
 				ZipCode:[{
-						required	: true,
-						msg: 'Слід вказати поштовий індекс',
-					},
-					{
+						required	: false,
 						maxLength	: 255,
 						msg: 'Значення надто довге (максимум 255 символів)'
 					},
@@ -113,17 +107,13 @@ define (
 						msg: 'Назва країни містить недозволені символи'
 					}],
 				City	: [{
-						required	: true,
-						msg: 'Слід вказати місто'
-					},
-					{
-//						pattern: /^([a-z\s\-]+?|[\u0400-\u04FF\s\-]+)$/gi,
-						pattern: addressRegexp,						
-						msg: 'Назва міста містить недозволені символи'
-					},
-					{
+						required	: false,
 						maxLength	: 255,
 						msg: 'Значення надто довге (максимум 255 символів)'
+					},
+					{
+						pattern: addressRegexp,						
+						msg: 'Назва міста містить недозволені символи'
 					}],
 				privacyConfirm : {
 					acceptance: true,

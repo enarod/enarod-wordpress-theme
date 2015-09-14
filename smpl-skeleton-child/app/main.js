@@ -15,7 +15,8 @@ require.config ({
             validation  : 'libs/backbone-validation-amd',
             stickit     : 'libs/backbone.stickit',
 			facebook	: '//connect.facebook.net/en_US/sdk',
-            zeroClip   : 'libs/components/zeroclipboard/dist/ZeroClipboard.min',
+            zeroClip    : 'libs/components/zeroclipboard/dist/ZeroClipboard.min',
+            recaptcha   : 'https://www.google.com/recaptcha/api',
 	}, 
 
 	shim: {
@@ -34,7 +35,10 @@ require.config ({
 			},
 			'facebook' : {
 				exports: 'FB'
-			}
+			},
+            'recaptcha' : {
+                exports: 'grecaptcha'
+            }
 	}
 });
 
@@ -42,13 +46,23 @@ require.config ({
 require(['jquery', 'backbone', 'router', 'common/view/mainView', 'validation', 'config' ], 
 
 	function ( $, Backbone, Router, MainView ){
+		var appView = new MainView();
 
         //Add custom header to HTTP request
         var defaultBackboneSync = Backbone.sync;
         Backbone.sync = function ( method, model, options ){
-            options.headers = {
-                'api-version': 2
-            };
+            options.headers = options.headers || {};
+            _.extend(options.headers, { 'api-version' : 2 });
+
+            if (appView.User){
+                var token = appView.User.getToken();
+                if ( token ){
+                    _.extend(
+                        options.headers, 
+                        { 'Authorization' : appView.User.getToken() }
+                    );
+                }
+            }
             defaultBackboneSync( method, model, options );
         };
 

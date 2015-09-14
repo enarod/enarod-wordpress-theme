@@ -1257,7 +1257,6 @@ height: 12px;}
 }
 /*petitions end */
 
-
 /*
  * Stylesheet for e-democracy petition widget
  */
@@ -1384,4 +1383,16 @@ height: 12px;}
 }
 .petition-widget  .enarod-pet-footer p {
   font-size: 14px;
+/*
+ * Add spinner
+ */
+#spinner{
+    display: none;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url(./images/loading_big.gif) 50% 50% no-repeat rgba(237,237,237,0.5);
 }

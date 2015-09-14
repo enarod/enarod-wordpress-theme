@@ -105,6 +105,10 @@ define(
 					}
 				});
 
+                if ( $('#captcha').length ){
+                    this.parentView.addCaptcha('captcha');
+                }
+
 				this.stickit( this.model.get('Signer') );
 				return this;
 			},
@@ -133,7 +137,8 @@ define(
 				} );
 
 				if ( this.model.get('Signer').isValid(true) ){
-					if ( this.model.get('ID') !== '' ){
+                    $('#spinner').show();
+					if ( this.model.get('PetitionID') !== '' ){
 						this.model.save();
 					}else{
 						this.model.get('Signer').trigger( 'signed' );
@@ -159,6 +164,7 @@ define(
 			
 
 			close: function(){
+                $('#spinner').hide();
 				$('.emailForm').dialog('destroy');
 				Backbone.Validation.unbind(this);
 				this.remove();

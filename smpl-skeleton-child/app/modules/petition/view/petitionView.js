@@ -136,11 +136,16 @@ define( function(require){
 			this.stickit( this.model );
             this.addClipboardHandler();
 
+            $('#spinner').hide();
+
             return this;
         },
 
         sign: function() {
-            var view = new SignatureSelector( {petitionID : this.model.get('ID')} );
+            var view = new SignatureSelector({
+                petitionID : this.model.get('ID'),
+                parentView : this.parentView
+            });
             view.render();
         },
 
@@ -177,13 +182,17 @@ define( function(require){
 				this.listenTo(this.model.get("Author"), 'signed', this.storePetition ); //model.save() );
 				this.listenTo(this.model, 'sync', this.openStoredPetition);
 			}else{
+                //do nothing if petition invalid
 			}
 
         },
 		
 		storePetition: function(){
+            $('#spinner').show();
+
 			this.unstickit(this.model);
 			this.model.set( 'Email', this.model.get("Author").get("Email") );
+			this.model.set( 'CreatedBy', this.model.get("Author") );
 			this.model.save();
 		},	
 	

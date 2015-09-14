@@ -31,7 +31,6 @@ define( 	function( require ){
 	
 	
 		home: function(){
-console.log("Home!!!");
 			this.appView.cleanUp();
 			this.appView.removeModuleMenu();
 		},

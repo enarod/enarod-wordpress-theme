@@ -49,6 +49,9 @@ define(
             if ( this.model.attributes.state ){
                 this.checkState( this.model.get('state') );
             }
+
+            $('#spinner').hide();
+
             return this;
         },
    
