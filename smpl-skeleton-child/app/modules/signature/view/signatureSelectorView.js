@@ -62,6 +62,7 @@ console.log('select certificate');
 				selectEmail: function(){
 					if ( !this.signator ){
 						this.signator	= new emailSignatorModel();
+                        this.signator.set('Email', this.parentView.User.get('UserEmail'));
 					}
 					var signatureModel	= new emailSignatureModel({ 'PetitionID': this.petitionID, 'Signer' : this.signator });
 					var signatureView	= new emailSignatureView({ model: signatureModel });
