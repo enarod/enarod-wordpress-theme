@@ -1072,7 +1072,8 @@ p.sign-label2 {
 }
 .control-label.col-sm-3 {
 	width: 28%;
-	padding-right:0px;
+	text-align: left;
+    	padding-left: 35px;
 }
 .control-label.col-sm-2  {
 	padding-right: 0px;
