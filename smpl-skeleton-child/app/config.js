@@ -13,3 +13,7 @@ if (document.location.href.match(/^http:\/\/local\.enarod\.org/)) {
   BASE_URL = "http://dev.enarod.org/api/";
   SITE_BASE = "http://local.enarod.org/";
 }
+if (document.location.href.match(/^http:\/\/devb\.enarod\.org/)) {
+  BASE_URL = "http://dev.enarod.org/api/";
+  SITE_BASE = "http://devb.enarod.org/";
+}
