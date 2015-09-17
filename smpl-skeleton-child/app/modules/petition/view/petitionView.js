@@ -118,7 +118,7 @@ define( function(require){
         events:{
             'click input[id=sign]'				: 'sign',
             'click input[id=publish_petition]'	: 'publishPetition',
-            'click input[name=petition-level]'	: 'openRegionList',
+            'click input[name=petition-level]'	: 'openRegionList'
         },
 
         render: function() {
@@ -137,7 +137,9 @@ define( function(require){
             this.addClipboardHandler();
 
             $('#spinner').hide();
-
+          try{
+            FB.XFBML.parse();
+          }catch(ex){}
             return this;
         },
 
