@@ -32,10 +32,10 @@
     </div>
 
 
-    <div class="login-form-list form-horizontal">
+    <div id='fb-login-btn' class="login-form-list form-horizontal">
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-9">
-          <input type='button' class="btn" id='fb-login' value='Увійти FB' >
+          <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false" onlogin="checkFBLoginState()"></div>
         </div>
       </div>
     </div>

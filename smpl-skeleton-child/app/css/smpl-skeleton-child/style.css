@@ -584,6 +584,15 @@ span#search {
   background: #f5f5f5;
   margin-bottom: 12px;
 }
+#search-advanced .status-line-div {
+    width: 99%;
+}
+.float-left{
+    float:left;
+}
+.quarter-width{
+    width: 25.00%;
+}
 #categories-list {
   float: left;
   width:62.7%;

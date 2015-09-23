@@ -7,8 +7,9 @@ define ( function(require){
     petitionMenu = require('text!common/templates/petitionMenu'),
     OrganizationView = require('module/organization/view/organizationView'),
     OrganizationsView = require('module/organization/view/organizationsView'),
-	Organizations	 = require('module/organization/collection/organizationCollection'),
-	Categories		 = require('module/petition/collection/petitionCategoryCollection' )
+	Organizations= require('module/organization/collection/organizationCollection'),
+	Statuses     = require('module/petition/collection/petitionStatusCollection'),
+	Categories	 = require('module/petition/collection/petitionCategoryCollection' )
 	;
 
 
@@ -28,16 +29,22 @@ define ( function(require){
 
 			this.OrganizationsList = new Organizations();
 			this.CategoriesList = new Categories();
+            this.StatusesList   = new Statuses();
 
 			//render view once OrganizationsList and CategoriesList are loaded
-	        this.onceAll ( [this.OrganizationsList, this.CategoriesList ], 'sync', this.render, this );
+	        this.onceAll ( 
+                [this.OrganizationsList, this.CategoriesList, this.StatusesList ], 
+                'sync', 
+                this.render, 
+                this 
+            );
 			this.listenTo ( this.parentView, 'hasPaging', this.togglePagingSettings );
 			this.listenTo ( this.parentView, 'cleanup', this.resetPageNumber );
 		},
 		
 		events: {		
             'click button#find'					: 'find',
-            'click button#show-all-petitions'	: 'showAllPetitions',
+            'click button#show-all-petitions'	: 'find',
             'click button#show-all-partners'	: 'showAllPartners',
 			'click button#show-more'			: 'showMore',
 			'change [name=items-per-page]'		: 'updatePageSize',
@@ -122,6 +129,7 @@ define ( function(require){
 			searchText = 'Text=', 
 			searchOrganization = '', 
 			searchCategory = '', 
+			searchStatus = '', 
 			searchInNew = '',
 			searchInActive = '',
 			searchInOrganizations = '', 
@@ -163,6 +171,12 @@ define ( function(require){
 				}
 			});
 
+			$('input[name^=search-status-]').each( function(){
+				if ( $(this).prop('checked') ){
+					searchStatus += '&StatusID=' + $(this).val();
+				}
+			});
+
 			
 			if ( $('input[name=search-in-date-creation-from]') ){
 				createDateStart = '&CreatedDateStart=' + $('input[name=search-in-date-creation-from]').val();
@@ -184,6 +198,7 @@ define ( function(require){
 	
 			searchFor =  searchText + 
 						searchCategory + 
+						searchStatus + 
 						searchOrganization + 
 						searchInOrganizations +
 						searchInPetitions + 

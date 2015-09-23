@@ -143,6 +143,10 @@ define(function (require) {
 
         },
 
+        getCaptchaResponse: function(){
+            return grecaptcha.getResponse();
+        },
+
         //Clean
         cleanUp: function () {
 			this.trigger( 'cleanup' );

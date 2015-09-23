@@ -9,6 +9,13 @@ define(function(require){
 
 	return Backbone.Model.extend({
 
+        initialize: function(){
+			FB.init({
+				appId: 770731953025405,
+				version: 'v2.3'
+			});
+        },
+
 
         validation: {
 			UserEmail	: [
@@ -115,6 +122,13 @@ define(function(require){
 			});
 
 		},
+
+        checkFBLoginState(){
+            var that = this;
+			FB.getLoginStatus( function(response){
+				that.statusChangeCallback(response);
+			});
+        },
 
 		initFBConnection: function(){
 			FB.init({

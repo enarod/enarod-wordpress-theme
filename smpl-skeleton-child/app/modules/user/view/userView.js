@@ -94,8 +94,10 @@ define(function(require){
 					});
 
                     if ( $('#captcha').length ){
-                        this.parentView.addCaptcha('captcha');
-                    }        
+//                        this.parentView.addCaptcha('captcha');
+                    }
+
+//                    FB.XFBML.parse(document.getElementById('fb-login-btn'));
 
                     this.stickit();
 					return this;
