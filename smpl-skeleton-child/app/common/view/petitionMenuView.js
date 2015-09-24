@@ -173,7 +173,7 @@ define ( function(require){
 
 			$('input[name^=search-status-]').each( function(){
 				if ( $(this).prop('checked') ){
-					searchStatus += '&StatusID=' + $(this).val();
+					searchStatus += '&PetitionStatusID=' + $(this).val();
 				}
 			});
 
