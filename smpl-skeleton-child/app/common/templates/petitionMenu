@@ -45,7 +45,7 @@
         <%_.each(data.StatusesList.models, function(el,idx,list){%>
           <div class="search-div float-left quarter-width">
     		<label>
-    			<input name="search-status-<%=el.get('ID')%>" type="checkbox" value="<%el.get('ID')%>"/>
+    			<input name="search-status-<%=el.get('ID')%>" type="checkbox" value="<%=el.get('ID')%>"/>
     			<span class='lavel-text'><%=el.get('Name')%></span>
     		</label>
           </div>
