@@ -56,6 +56,7 @@ define ( function(require){
 			'submit form'						: 'findOnEnter',
             'click button#login'                : 'userLogIn',
             'click button#logout'               : 'userLogOut',
+            'click button#profile'              : 'userProfile',
 		},
 
         render: function () {
@@ -246,12 +247,18 @@ define ( function(require){
             this.logStatusChanged();
         },
 
+        userProfile: function(){
+			this.parentView.router.navigate('/user', true);
+        },
+
         logStatusChanged: function(){
             if ( this.parentView.User ){
                 $('#logout').show();
+                $('#profile').show();
                 $('#login').hide();
             }else{
                 $('#logout').hide();
+                $('#profile').hide();
                 $('#login').show();
             }
         }, 

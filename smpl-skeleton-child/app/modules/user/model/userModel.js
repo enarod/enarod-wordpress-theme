@@ -16,6 +16,10 @@ define(function(require){
 			});
         },
 
+        getProfile: function(){
+            this.url = BASE_URL+'users/current';
+            this.fetch();
+        },
 
         validation: {
 			UserEmail	: [

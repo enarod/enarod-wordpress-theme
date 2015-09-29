@@ -6,7 +6,8 @@ define(function(require){
 	Backbone= require('backbone'),
     stickit = require('stickit'),
 	logInForm	= require('text!modules/user/templates/userLogInForm.html'),
-	registerForm= require('text!modules/user/templates/userRegistrationForm.html')
+	registerForm= require('text!modules/user/templates/userRegistrationForm.html'),
+    profileForm = require('text!modules/user/templates/userProfilePage.html')
 	;
 
 	
@@ -23,6 +24,7 @@ define(function(require){
 
                     this.listenTo( this.model, 'loggedIn', this.close );
                     this.listenTo( this.model, 'logInError', this.logInError );
+                    this.listenTo( this.model, 'sync', this.render); 
 				},
 
                 addValidation: function(){
@@ -83,15 +85,18 @@ define(function(require){
 					var that = this;
                     this.setTemplate();
 					$("div.app").append( $(this.el).html( this.template() ) );
-					$('.logInSelector').dialog({
-						modal: true,
-						height: 380,
-						width: 450,
-						closeText: "&times;",
-						close: function(){
-							that.close();
-						}
-					});
+
+                    if ( this.mode != 'profile' ){
+                        $('.logInSelector').dialog({
+                            modal: true,
+                            height: 380,
+                            width: 450,
+                            closeText: "&times;",
+                            close: function(){
+                                that.close();
+                            }
+                        });
+                    }
 
                     if ( $('#captcha').length ){
 //                        this.parentView.addCaptcha('captcha');
@@ -108,6 +113,8 @@ define(function(require){
                         this.template = _.template(logInForm);
                     }else if ( this.mode == 'register' ) {
                         this.template = _.template(registerForm);
+                    }else if ( this.mode == 'profile' ){
+                        this.template = _.template(profileForm);
                     }
                 },
 

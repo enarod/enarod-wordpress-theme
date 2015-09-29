@@ -3,6 +3,7 @@
 <button id="show-all-partners" class="search-for-petition">Всі адресати</button>
 <button id="login" class="search-for-petition">Увійти</button>
 <button id="logout" class="search-for-petition">Вийти</button>
+<button id="profile" class="search-for-petition">Кабінет</button>
 
 <div id='div-search' hidden='hidden'>
 

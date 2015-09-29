@@ -61,6 +61,8 @@ define(function (require) {
     
             organization: OrganizationView,
             organizations: OrganizationsView,
+
+            user: UserView, 
         },
 
         setModuleMenu: function () {

@@ -27,6 +27,8 @@ define( 	function( require ){
 
 			"organization"			:   "listOrganizations",
 			"organization/:id"      :   "openOrganization",
+
+            "user"                  :   "userProfile"
 		},
 	
 	
@@ -158,7 +160,27 @@ define( 	function( require ){
 			});
 
 			Organizations.fetch();
-		}
+		},
+
+/*
+ * User profile routes
+ */ 
+        userProfile: function(){
+            var User = this.appView.User;
+            var mode = User ? 'profile' : 'LogIn';
+            this.appView.addChildView({
+                module: 'petition',
+                type:   'user',
+                settings: { 
+                    model: User,
+                    'mode': mode
+                }
+            });
+            
+            User.getProfile();
+
+        },
+
 
 	});
 
