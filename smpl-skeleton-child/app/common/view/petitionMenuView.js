@@ -245,6 +245,9 @@ define ( function(require){
         userLogOut: function(){
             this.parentView.removeUser();
             this.logStatusChanged();
+            if ( Backbone.history.getFragment() == 'user' ){
+                this.parentView.router.navigate('/petition', true);
+            }
         },
 
         userProfile: function(){
