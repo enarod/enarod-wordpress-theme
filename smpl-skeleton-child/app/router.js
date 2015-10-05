@@ -23,6 +23,7 @@ define( 	function( require ){
 			"petition/tag/:tag"		:	"listPetitions",
 			"petition/:id"			:	"openPetition",
 			"petition/:id/widget"	:   "openPetitionWidgetPage",
+            "petition/:id/votes(/:query)"   :   "listPetitionVotes",
 			"petition/:id/(:state)"	:	"openPetition",
 
 			"organization"			:   "listOrganizations",
@@ -130,6 +131,17 @@ define( 	function( require ){
 
             Petitions.fetch();
 		},
+
+        listPetitionVotes: function( id, query ){
+            this.appView.addChildView({
+                module: 'petition',
+                type:   'votes',
+                settings: {
+                    petitionID: id
+                }
+            });
+
+        },
 
 /*-----------------------
     Organization routes

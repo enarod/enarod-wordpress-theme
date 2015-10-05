@@ -1,0 +1,40 @@
+<div id='votes-list-page'>
+
+  <div id="petition-header">
+    <div class="petition-header-inner">
+      <h2>Список осіб, які підписали петицію</h2>
+      <div class="clear"></div>
+
+    </div>
+  </div>
+
+  <div id='votes-paging-settings'>
+    Кількість на сторінку:
+    <select name='votes-items-per-page'>
+      <option value="50">50</option>
+      <option value="100">100</option>
+      <option value="250">250</option>
+    </select>
+    <span>Впорядкувати за:</span>
+    <select name='votes-order-by'>
+      <option value="voteDate">Даті підпису</option>
+      <option value="Name">Ім'ям особи, яка проголосувала</option>
+    </select>
+
+    <input type='radio' name='votes-order-direction' value='ASC' checked='checked'>
+    від найменшого
+    <input type='radio' name='votes-order-direction' value='DESC'>
+    від найбільшого
+
+  </div>
+
+  <div>
+    <ul id='votes-list'></ul>
+  </div>
+
+  <div>
+    <button id='votes-show-more'>Показати ще >></button>
+  </div>
+
+</div>
+

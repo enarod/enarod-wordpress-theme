@@ -8,6 +8,7 @@ define(function (require) {
 
 		PetitionMenu = require('common/view/petitionMenuView'),
         PetitionView = require('module/petition/view/petitionView'),
+        PetitionVotesView = require('module/petition/view/petitionVotesView'),
         PetitionsView = require('module/petition/view/petitionsView'),
 
         OrganizationView = require('module/organization/view/organizationView'),
@@ -62,6 +63,8 @@ define(function (require) {
             organization: OrganizationView,
             organizations: OrganizationsView,
 
+            votes: PetitionVotesView, 
+
             user: UserView, 
         },
 
@@ -100,6 +103,7 @@ define(function (require) {
             var subView = new View(view.settings);
             this.childView = subView;
             subView.parentView = this;
+            subView.ViewType = view.type;
         },
 
 		showMore: function(){

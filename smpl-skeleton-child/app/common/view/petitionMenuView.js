@@ -76,7 +76,7 @@ define ( function(require){
 		},
 
 		togglePagingSettings: function( hasPaging ){
-			$('#paging-settings, #app-footer, #div-search').toggle(hasPaging);
+    	    $('#paging-settings, #app-footer, #div-search').toggle(hasPaging);
 		},
 
 		/*---------------------------
