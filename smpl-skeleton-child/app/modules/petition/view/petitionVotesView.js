@@ -9,25 +9,28 @@ define(function(require){
 
     return Backbone.View.extend({
 
-        pagingSettings:{
-            PageSize: 50,
-            OrderBy: 'voteDate',
-            OrderDirection: 'ASC',
-            PageNumber: 1
-        },
-
         initialize: function(options){
             this.petitionID = options.petitionID;
             this.votes = new VotesCollection({
                 petitionID: this.petitionID
             });
 
-            this.resetPageNumber();
+            this.defaultPagingSettings();
 
             this.loadVotes();
 
             this.listenTo(this.votes, 'sync', this.render);
         },
+        
+        defaultPagingSettings: function(){
+            this.pagingSettings = {
+                PageSize: 50,
+                OrderBy: 'voteDate',
+                OrderDirection: 'ASC',
+                PageNumber: 1
+            };
+        },
+        
 
         events: {
 			'click button#votes-show-more'			: 'showMore',
@@ -37,10 +40,12 @@ define(function(require){
         },
 
         render: function(){
-            if ( this.pagingSettings.PageNumber == 1 ){
+            if ( !this.alreadyLoaded ){
                 this.template = _.template(Template);
-                this.$el.html(this.template( ) );
+                this.$el.html( this.template() );
                 $(this.parentView.moduleNode).append(this.$el);
+
+                this.alreadyLoaded = true;
             }
 
             this.appendVotes();
@@ -71,6 +76,7 @@ define(function(require){
 
         resetPageNumber: function(){
             this.pagingSettings.PageNumber = 1;
+            this.cleanUpList();
         },
 
         updateOrderBy: function(){
@@ -98,6 +104,10 @@ define(function(require){
             });
 
             return settings;
+        },
+
+        cleanUpList: function(){
+           $('ul#votes-list>li').remove(); 
         },
 
         close: function(){
