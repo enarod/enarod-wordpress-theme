@@ -1393,6 +1393,27 @@ height: 12px;}
 }
 .petition-widget  .enarod-pet-footer p {
   font-size: 14px;
+}
+/* Votes list */
+#votes-paging-settings {
+    font-size: 14px;
+    padding-top: 20px;
+}
+#votes-paging-settings input[type="radio"] {
+    margin-left: 15px;
+    display: inline-block;
+}
+#votes-paging-settings span {
+    margin-left: 15px;
+    display: inline-block;
+}
+#votes-list {
+    list-style-type: decimal;
+}
+#votes-list li {
+    font-size: 13px;
+    padding: 4px 0 4px 20px;
+}
 /*
  * Add spinner
  */
