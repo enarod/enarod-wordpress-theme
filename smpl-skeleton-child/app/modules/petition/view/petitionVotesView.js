@@ -10,16 +10,31 @@ define(function(require){
     return Backbone.View.extend({
 
         initialize: function(options){
-            this.petitionID = options.petitionID;
-            this.votes = new VotesCollection({
-                petitionID: this.petitionID
-            });
-
             this.defaultPagingSettings();
 
-            this.loadVotes();
+            this.petition = options.petition;
+            this.votes = new VotesCollection({
+                petitionID: this.petition.get('ID')
+            });
 
+            if ( !this.petition.get('doPetitionLoad') ){
+                this.votes.petitionId = this.petition.get('ID');
+                this.listenTo(this.votes, 'sync', this.render);
+            }else{
+                this.votes.petitionId = options.petitionID;
+                this.onceAll ([
+                    this.petition, 
+                    this.votes
+                    ], 'sync', this.resetEventListen, this );
+            }
+
+            this.loadVotes();
+        },
+
+        resetEventListen: function(){
+            this.stopListening (this.petition, 'sync');
             this.listenTo(this.votes, 'sync', this.render);
+            this.render();
         },
         
         defaultPagingSettings: function(){
@@ -92,6 +107,7 @@ define(function(require){
         },
 
         loadVotes: function(){
+            $('#spinner').show();
             this.votes.search = this.getPageSettings();
             this.votes.fetch();
         },
@@ -108,6 +124,14 @@ define(function(require){
 
         cleanUpList: function(){
            $('ul#votes-list>li').remove(); 
+        },
+
+        onceAll: function(sources, eventName, handler, context){
+            handler = _.after( sources.length, handler);
+            context = context || this;
+            _.each(sources, function(source){
+                source.once(eventName, handler, context)
+            });
         },
 
         close: function(){

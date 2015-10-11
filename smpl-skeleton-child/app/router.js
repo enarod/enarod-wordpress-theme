@@ -133,10 +133,22 @@ define( 	function( require ){
 		},
 
         listPetitionVotes: function( id, query ){
+
+            var currentPetition;
+            if ( this.appView.childView ){
+                currentPetition = this.appView.childView.model;
+            }else{
+                var Petition = require('module/petition/model/petitionModel');
+                currentPetition = new Petition({"ID" : id});
+                currentPetition.set("unfold", 1);
+                currentPetition.set("doPetitionLoad", 1);
+                currentPetition.fetch();
+            }
             this.appView.addChildView({
                 module: 'petition',
                 type:   'votes',
                 settings: {
+                    petition: currentPetition,
                     petitionID: id
                 }
             });
