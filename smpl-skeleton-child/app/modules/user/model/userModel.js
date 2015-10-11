@@ -4,7 +4,8 @@ define(function(require){
   var Backbone	= require('backbone'),
       $   = require('jquery')
       ,
-      fb				= require('facebook')
+      fb				= require('facebook'),
+      addressRegexp = /^([0-9a-z\u0400-\u04FF]+?)([\s\-\.,:;#u2116]*?)([0-9a-z\u0400-\u04FF\s\-\.,:;#\u2116]*?)$/gi
       ;
 
   return Backbone.Model.extend({
@@ -21,48 +22,194 @@ define(function(require){
       this.fetch();
     },
 
+    parse: function(response){
+        return response.Data;
+    },
+
     /*
      * Overloading Backbone.isNew() method. In our case User.ID is not returned
      * by backend (security reason). Instead we using access_token validate if
      * user is stored in DB.
      */
     isNew: function(){
-      return this.get('Token').access_token ? false : true;
+        if ( this.get('Token') ){
+            return this.get('Token').access_token ? false : true;
+        }else{
+            return true;
+        }
     },
 
     validation: {
-      UserEmail	: [
-        {
-          required: true,
-          msg: 'Необхідно ввести Email'
+        UserEmail	: [{
+            required: function(){
+                return this.get('mode') == 'signingPetition' ? false : true; 
+            },
+            msg: 'Необхідно ввести Email'
         },
         {
-          pattern: 'email',
-          msg: 'Слід ввести коректну електронну адресу'
+            pattern: 'email',
+            msg: 'Слід ввести коректну електронну адресу'
+        }],
+        Email	: [{
+            required: function(){
+                return this.get('mode') == 'signingPetition' ? true : false ; 
+            },
+            msg: 'Необхідно ввести Email'
+        },
+        {
+            pattern: 'email',
+            msg: 'Слід ввести коректну електронну адресу'
+        }],
+        Password : [{
+            required: function(){
+                if ( this.get('mode') == 'signingPetition'){
+                    return false;
+                }else if ( this.get('Token') ){
+                    return false;
+                }else{
+                    return true;
+                }
+            },
+            msg: 'Необхідно вказати пароль'
+        },
+        {
+            pattern: /((?=.*\d)(?=.*[a-z])(?=.*[A-Z)(?=.*[@#_\-$]).{8,100})/,
+            msg: 'Пароль має складатись щонайменш з 8 символів і \
+                включати одину цифру, одну велику літеру \
+                та один спеціальний символ (-_#@$)'
+        }],
+        ConfirmPassword : [{
+            required: function(){
+                if ( this.get('mode') == 'signingPetition'){
+                    return false;
+                }else if ( this.get('Token') ){
+                    return false;
+                }else{
+                    return true;
+                }
+            },
+            msg: 'Повторіть введений пароль'
+        },
+        {
+            equalTo: 'Password',
+            msg: 'Введені значення не співпадають'
+        }],
+
+        FirstName	: [{
+            required: true,
+            msg: 'Необхідно вказати ім’я'
+        },
+        {
+            pattern: /^([a-z\s\-]+?|[\u0400-\u04FF\s\-]+)$/gi,
+            msg: 'Ім’я містить недозволені символи'
+        },
+        {
+            maxLength	: 255,
+            msg: 'Ім’я надто довге (максимум 255 символів)'
+        }],
+
+        MiddleName : [{
+            required	: true,
+            msg: 'Необхідно вказати ім’я по-батькові'
+        },
+        {
+            pattern: /^([a-z\s\-]+?|[\u0400-\u04FF\s\-]+)$/gi,
+            msg: 'Ім’я по-батькові містить недозволені символи'
+        },
+        {
+            maxLength	: 255,
+            msg: 'Значення надто довге (максимум 255 символів)'
+        }],
+
+        LastName : [{
+            required	: true,
+            msg: 'Необхідно вказати прізвище'
+        },
+        {
+            pattern: /^([a-z\s\-]+?|[\u0400-\u04FF\s\-]+)$/gi,
+            msg: 'Прізвище містить недозволені символи'
+        },
+        {
+            maxLength	: 255,
+            msg: 'Значення надто довге (максимум 255 символів)'
+        }],
+
+        AddressLine1 : [{
+            required	: false,
+            maxLength	: 255,
+            msg: 'Значення надто довге (максимум 255 символів)'
+        },
+        {
+            pattern: addressRegexp,
+            msg: 'Адреса містить недозволені символи'
+        }],
+
+        AddressLine2 : [{
+            required	: false,
+            maxLength	: 255,
+            msg: 'Значення надто довге (максимум 255 символів)'
+        },
+        {
+            pattern: addressRegexp,
+            msg: 'Адреса містить недозволені символи'
+        }],
+
+        Region	: [{
+            required	: true,
+            msg: 'Слід вказати область'
+        },
+        {
+            //pattern: /^([a-z\s\-]+?|[\u0400-\u04FF\s\-]+)$/gi,
+            pattern: addressRegexp,
+            msg: 'Назва області містить недозволені символи'
+        },
+        {
+            maxLength	: 255,
+            msg: 'Значення надто довге (максимум 255 символів)'
+        }],
+
+        ZipCode:[{
+            required	: false,
+            maxLength	: 255,
+            msg: 'Значення надто довге (максимум 255 символів)'
+        },
+        {
+            pattern: 'digits',
+            msg: 'Поштовий індекс містить недозволені символи'
+        }],
+
+        Country :[{
+            required	: true,
+            msg: 'Слід вказати країну'
+        },
+        {
+            pattern: /^([a-z\s\-]+?|[\u0400-\u04FF\s\-]+)$/gi,
+            msg: 'Назва країни містить недозволені символи'
+        }],
+
+        City	: [{
+            required	: false,
+            maxLength	: 255,
+            msg: 'Значення надто довге (максимум 255 символів)'
+        },
+        {
+            pattern: addressRegexp,						
+            msg: 'Назва міста містить недозволені символи'
+        }],
+
+        privacyConfirm : {
+            required: function(){
+                if ( this.get('mode') == 'signingPetition'){
+                    return true;
+                }else if ( this.get('Token') ){
+                    return false;
+                }else{
+                    return true;
+                }
+            },
+            acceptance: true,
+            msg: 'Ваша згода є необхідна для зарахування голосу'
         }
-      ],
-      Password : [
-        {
-          required: true,
-          msg: 'Необхідно вказати пароль'
-        },
-        {
-          pattern: /((?=.*\d)(?=.*[a-z])(?=.*[A-Z)(?=.*[@#_\-$]).{8,100})/,
-          msg: 'Пароль має складатись щонайменш з 8 символів і \
-                        включати одину цифру, одну велику літеру \
-                        та один спеціальний символ (-_#@$)'
-        }
-      ],
-      ConfirmPassword : [
-        {
-          required: true,
-          msg: 'Повторіть введений пароль'
-        },
-        {
-          equalTo: 'Password',
-          msg: 'Введені значення не співпадають'
-        },
-      ]
 
     },
 

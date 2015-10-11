@@ -7,7 +7,8 @@ define(function(require){
       stickit = require('stickit'),
       logInForm	= require('text!modules/user/templates/userLogInForm.html'),
       registerForm= require('text!modules/user/templates/userRegistrationForm.html'),
-      profileForm = require('text!modules/user/templates/userProfilePage.html')
+      profileForm = require('text!modules/user/templates/userProfilePage.html'),
+      restorePasswordForm = require('text!modules/user/templates/restorePasswordForm.html')
       ;
 
 
@@ -52,12 +53,15 @@ define(function(require){
 
     events: {
       'click input#fb-login'	: 'fbLogIn',
-      'click input#signIn'	: 'signIn',
+      'click input#signIn'	    : 'signIn',
       'click input#signUp'    : 'signUp',
       'click input#register'  : 'register',
       'input input#UserEmail' : 'logInInputChanged',
       'input input#Password'  : 'logInInputChanged',
-      'click input#profileSave'  : 'profileSave'
+      'click input#profileSave'  : 'profileSave',
+      'click input#openRestorePasswordForm' : 'openRestorePasswordForm',
+      'click input#restorePassword' : 'restorePassword',
+      'click input#saveNewPassword' : 'saveNewPassword'
     },
 
     bindings: {
@@ -80,6 +84,67 @@ define(function(require){
           validate: true
         }
       },
+
+      '[name=FirstName]' : {
+          observe: 'FirstName',
+          setOptions: {
+              validate: true
+          }
+      },
+      '[name=City]' : {
+          observe: 'City',
+          setOptions: {
+              validate: true
+          }
+      },
+      '[name=Country]' : {
+          observe: 'Country',
+          setOptions: {
+              validate: true
+          }
+      },
+      '[name=AddressLine1]'	: {
+          observe : 'AddressLine1',
+          setOptions : {
+              validate : true
+          }
+      },
+      '[name=AddressLine2]'	: { 
+          observe : 'AddressLine2',
+          setOptions : { 
+              validate : true 
+          }
+      },
+      '[name=LastName]' : {
+          observe : 'LastName',
+          setOptions : {
+              validate : true
+          }
+      },
+      '[name=MiddleName]' : { 
+          observe : 'MiddleName',
+          setOptions : {
+              validate : true
+          }
+      },
+      '[name=Region]'	: { 
+          observe : 'Region',
+          setOptions : {
+              validate : true
+          }
+      },
+      '[name=ZipCode]'	: { 
+          observe : 'ZipCode',
+          setOptions : {
+              validate : true
+          }
+      },
+      '[name=privacyConfirm]'	: {
+          observe : 'privacyConfirm',
+          setOptions : {
+              validate : true
+          }
+      }
     },
 
     render: function(){
@@ -90,7 +155,6 @@ define(function(require){
       if ( this.mode != 'profile' ){
         $('.logInSelector').dialog({
           modal: true,
-          height: 380,
           width: 450,
           closeText: "&times;",
           close: function(){
@@ -100,10 +164,10 @@ define(function(require){
       }
 
       if ( $('#captcha').length ){
-//                        this.parentView.addCaptcha('captcha');
+//  this.parentView.addCaptcha('captcha');
       }
 
-//                    FB.XFBML.parse(document.getElementById('fb-login-btn'));
+//  FB.XFBML.parse(document.getElementById('fb-login-btn'));
 
       this.stickit();
       $('#spinner').hide();
@@ -117,6 +181,8 @@ define(function(require){
         this.template = _.template(registerForm);
       }else if ( this.mode == 'profile' ){
         this.template = _.template(profileForm);
+      }else if ( this.mode == 'resetPassword'){
+        this.template = _.template(restorePasswordForm);
       }
     },
 
@@ -126,19 +192,30 @@ define(function(require){
     },
 
     signIn: function(){
+      $('#spinner').show();
       this.model.signIn();
       $('#spinner').hide();
     },
 
     signUp: function(){
+      $('#spinner').show();
       $('.logInSelector').dialog('destroy');
       this.mode = 'register';
       this.render();
     },
 
     profileSave: function(){
-      this.model.save();
-      $('#spinner').hide();
+/*
+        this.model.save();
+        $('#spinner').hide();
+*/
+
+      this.addValidation();
+      if ( this.model.isValid(true) ){
+        this.model.save();
+        $('#spinner').hide();
+      }
+
     },
 
     register: function(){
@@ -175,6 +252,23 @@ define(function(require){
           .addClass('has-error')
           .find('.help-block')
           .html(data.msg);
+    },
+
+    /*
+     * Password modification handling
+     */
+    openRestorePasswordForm: function(){
+      $('.logInSelector').dialog('destroy');
+      this.mode = 'resetPassword';
+      this.render();
+    },
+
+    restorePassword: function(){
+console.log('do restore password');    
+    },
+
+    saveNewPassword: function(){
+console.log('Save new password');
     },
 
     close: function(){
