@@ -106,6 +106,7 @@ define(function(require){
 //                    FB.XFBML.parse(document.getElementById('fb-login-btn'));
 
       this.stickit();
+      $('#spinner').hide();
       return this;
     },
 
@@ -136,7 +137,7 @@ define(function(require){
     },
 
     profileSave: function(){
-      this.model.profileSave();
+      this.model.save();
       $('#spinner').hide();
     },
 

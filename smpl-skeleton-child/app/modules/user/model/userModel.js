@@ -21,6 +21,15 @@ define(function(require){
       this.fetch();
     },
 
+    /*
+     * Overloading Backbone.isNew() method. In our case User.ID is not returned
+     * by backend (security reason). Instead we using access_token validate if
+     * user is stored in DB.
+     */
+    isNew: function(){
+      return this.get('Token').access_token ? false : true;
+    },
+
     validation: {
       UserEmail	: [
         {
@@ -89,6 +98,9 @@ define(function(require){
     /*
      * Save user profile
      */
+    /* evzen.jaskal@gmail.com 
+     * Probably won't be necessery, using Backbone.save() method instead
+     *
     profileSave: function(){
       var that = this;
       $.ajax({
@@ -108,6 +120,7 @@ define(function(require){
         }
       });
     },
+    */
 
     logInSuccess: function(data){
       this.set({Token : data});
