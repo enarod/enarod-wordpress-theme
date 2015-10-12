@@ -205,15 +205,10 @@ define(function(require){
     },
 
     profileSave: function(){
-/*
-        this.model.save();
-        $('#spinner').hide();
-*/
-
       this.addValidation();
       if ( this.model.isValid(true) ){
+        $('#spinner').show();
         this.model.save();
-        $('#spinner').hide();
       }
 
     },
