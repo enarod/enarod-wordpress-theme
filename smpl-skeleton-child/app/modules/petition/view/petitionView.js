@@ -144,11 +144,15 @@ define( function(require){
         },
 
         sign: function() {
-            var view = new SignatureSelector({
-                petitionID : this.model.get('ID'),
-                parentView : this.parentView
-            });
-            view.render();
+            if ( this.parentView.User ){
+                var view = new SignatureSelector({
+                    petitionID : this.model.get('ID'),
+                    parentView : this.parentView
+                });
+                view.render();
+            }else{
+               this.parentView.submenu.userLogIn(); 
+            }
         },
 
         publishPetition: function() {
