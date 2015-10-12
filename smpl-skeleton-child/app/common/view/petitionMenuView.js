@@ -4,7 +4,7 @@ define ( function(require){
     var $   = require('jquery'),
        _       = require('underscore'),
        Backbone= require('backbone'),    
-       petitionMenu = require('text!common/templates/petitionMenu'),
+       petitionMenu = require('text!common/templates/petitionMenu.html'),
        OrganizationView = require('module/organization/view/organizationView'),
        OrganizationsView = require('module/organization/view/organizationsView'),
        Organizations= require('module/organization/collection/organizationCollection'),

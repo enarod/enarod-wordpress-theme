@@ -487,8 +487,6 @@ span#search {
   width: 99%;
 }
 #search-line .search-div {
-  float:left;
-  width:26.55%;
   background: #f5f5f5;
   border: 1px dashed #BBB;
   border-right:0px;
@@ -593,6 +591,15 @@ span#search {
 .quarter-width{
     width: 25.00%;
 }
+
+.third-width{
+    width: 33.33%;
+}
+
+.fifth-width{
+    width: 20.00%;
+}
+
 #categories-list {
   float: left;
   width:62.7%;

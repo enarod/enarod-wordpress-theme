@@ -1,0 +1,133 @@
+﻿<a class="create-petition-btn" href="#petition/new">Створити петицію</a>
+<button id="show-all-petitions" class="search-for-petition">Показати петиції</button>
+<button id="show-all-partners" class="search-for-petition">Всі адресати</button>
+<button id="login" class="search-for-petition">Увійти</button>
+<button id="logout" class="search-for-petition">Вийти</button>
+<button id="profile" class="search-for-petition">Кабінет</button>
+
+<div id='div-search' hidden='hidden'>
+
+  <span id='search'>
+    <div id='petition-search-form'>
+      <form>
+        <input class="search-input-petition" name='search-for' placeholder='Введіть фразу, адресата або П.І.Б. автора петиції' />
+      </form>
+      <div id="search-line">
+        <%_.each(data.StatusesList.models, function(el,idx,list){%>
+        <div class="search-div float-left fifth-width">
+          <label>
+            <input name="search-status-<%=el.get('ID')%>" type="checkbox" value="<%=el.get('ID')%>"/>
+            <span class='lavel-text'><%=el.get('Name')%></span>
+          </label>
+        </div>
+        <%});%>
+        <div class="search-advanced-label">
+          <input id="search-advanced-checkbox" name="search-advanced-checkbox" type="checkbox" value="1"/>
+          <span>розширений пошук</span>
+        </div>
+      </div>
+      <button id="find" class='search-for-petition'>Пошук</button>
+
+      <div style="clear: both;"></div>
+      <div id="search-advanced" hidden="hidden">
+
+        <!-- Status filter -->    
+        <div class='status-line-div'>
+
+          <div id="organizations" class="search-div float-left third-width">
+            <label for="id-search-in-organization">
+              <input id="id-search-in-organization" name="search-in-organization" type="checkbox" value="1"/>
+              <span class='lavel-text'>в назві адресата</span>
+            </label>
+          </div>
+          <div class="search-div float-left third-width">
+            <label for="id-search-in-active">
+              <input id="id-search-in-active" name="search-in-active" type="checkbox" checked="checked"/>
+              <span class='lavel-text'>серед активних</span>
+            </label>
+          </div>
+          <div class="search-div float-left third-width search-div-new">
+            <label for="id-search-in-new">
+              <input id="id-search-in-new" name="search-in-new" type="checkbox" checked="checked" value="1"/>
+              <span class='lavel-text'>серед нових</span>
+            </label>
+          </div>
+
+        </div>
+
+        <div id="categories-list">
+          <span class='lavel-text'>В категорії:</span>
+          <%_.each(data.CategoriesList.models, function(el, idx, list){%>
+          <label>
+            <input type="checkbox" name="search-category-<%=el.get('ID')%>" value="<%=el.get('ID')%>" />
+            <span><%=el.get('Description')%> </span>
+          </label>
+          <%});%>
+        </div>
+        <div id="search-advanced-wrapper">
+          <div id="categories" class="search-div">
+            <label for="id-search-in-category">
+              <input id="id-search-in-category" name="search-in-category" type="checkbox" value="1"/>
+              <span class='lavel-text'>в назві категорії</span>
+            </label>
+          </div>
+
+          <div id="search-pib" class="search-div">
+            <label for="id-search-in-petitions">
+              <input id="id-search-in-petitions" name="search-in-petitions" type="checkbox" checked="checked" value="1"/>
+              <span class='lavel-text'>в петиціях</span>
+            </label>
+          </div>
+          <div id="search-date-creation" class="search-div">
+            <label><span class='lavel-text'>Дата створення</span></label>
+            <label for="id-search-in-date-creation-from">
+              <span class='lavel-text lavel-text2'>з</span>
+              <input id="id-search-in-date-creation-from" name="search-in-date-creation-from" type="text"/>
+            </label>
+            <label for="id-search-in-date-creation-to">
+              <span class='lavel-text lavel-text2'>по</span>
+              <input id="id-search-in-date-creation-to" name="search-in-date-creation-to" type="text"/>
+            </label>
+          </div>
+          <div id="search-date-finish" class="search-div">
+            <label><span class='lavel-text'>Дата закінчення</span></label>
+            <label for="id-search-in-date-finish-from">
+              <span class='lavel-text lavel-text2'>з</span>
+              <input id="id-search-in-date-finish-from" name="search-in-date-finish-from" type="text"/>
+            </label>
+            <label for="id-search-in-date-finish-to">
+              <span class='lavel-text lavel-text2'>по</span>
+              <input id="id-search-in-date-finish-to" name="search-in-date-finish-to" type="text"/>
+            </label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </span>
+</div>
+
+<div style="clear: both;"></div>
+
+<div id='paging-settings' hidden='hidden'>
+  Кількість на сторінку:
+  <select name='items-per-page'>
+    <option value="10">10</option>
+    <option value="50">50</option>
+    <option value="100">100</option>
+  </select>
+  <span>Впорядкувати за:</span>
+  <select name='order-by'>
+    <option value="Subject">Назвою петиції</option>
+    <option value="CreatedDate">Даті створення петиції</option>
+    <option value="Name">Назвою організації</option>
+  </select>
+
+  <input type='radio' name='order-direction' value='ASC' checked='checked'>
+  від найменшого
+  <input type='radio' name='order-direction' value='DESC'>
+  від найбільшого
+
+</div>

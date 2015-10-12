@@ -3,7 +3,7 @@ define( 	function( require ){
 
 	var $				= require ('jquery'),
 	Backbone			= require ('backbone'),
-	defPetitionSearchURL= 'Text=&SearchInPetitions=true&ShowActivePetitions=true&CreatedDateStart=&CreatedDateEnd=&FinishDateStart=&FinishDateEnd=&OrderBy=Subject&OrderDirection=ASC&PageNumber=1&PageSize=10'
+	defPetitionSearchURL= 'Text=&SearchInPetitions=true&ShowActivePetitions=true&ShowInactivePetitions=true&CreatedDateStart=&CreatedDateEnd=&FinishDateStart=&FinishDateEnd=&OrderBy=Subject&OrderDirection=ASC&PageNumber=1&PageSize=10'
 	;
 
 
