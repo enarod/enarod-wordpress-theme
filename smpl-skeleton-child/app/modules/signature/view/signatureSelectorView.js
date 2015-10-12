@@ -61,17 +61,26 @@ console.log('select certificate');
 				   
 				selectEmail: function(){
 					if ( !this.signator ){
-						this.signator	= new emailSignatorModel();
                         if ( this.parentView.User ){
-                            this.signator.set('Email', this.parentView.User.get('UserEmail'));
+                            this.signator = new userModel();
+                            this.signator.set('mode', 'signingPetition');
+                            this.signator.getProfile();
+                            this.listenTo(this.signator, 'sync', this.loadEmailSignatureForm)
+                        }else{
+                            this.signator	= new emailSignatorModel();
+                            this.loadEmailSignatureForm();
                         }
 					}
-					var signatureModel	= new emailSignatureModel({ 'PetitionID': this.petitionID, 'Signer' : this.signator });
-					var signatureView	= new emailSignatureView({ model: signatureModel });
-                    signatureView.parentView = this.parentView;
-					this.close();
-					signatureView.render();
 				},	
+
+                loadEmailSignatureForm: function(){
+                    this.signator.set('Email', this.parentView.User.get('UserEmail')); //Different attr name in models 
+                    var signatureModel	= new emailSignatureModel({ 'PetitionID': this.petitionID, 'Signer' : this.signator });
+                    var signatureView	= new emailSignatureView({ model: signatureModel });
+                    signatureView.parentView = this.parentView;
+                    this.close();
+                    signatureView.render();
+                },
 
 				selectFB: function(){
 					if ( !this.signator ){
