@@ -16,23 +16,17 @@
       <div class="petition-item-inner">
         <a href='#petition/<%=this.petition.get('ID')%>'><%=this.petition.get('Subject')%></a>
         <div class='signature-summary'>
-          <span class="partner"><%=this.petition.get('Partner')%></span>
-          <span class="petition-author"><%=this.petition.get('AuthorRef')%></span>
-          <span class="sign-name">зібрано підписів</span>
-          <span class="sign-have"><%=this.petition.get('VotesCount')%>/</span>
-          <span class="sign-left"><%=this.petition.get('Level').Limit%></span>
-          <span class="finish-date"><%=this.petition.get('EffectiveFrom')%></span>
-          <div>
-            <span class="category">Категорія: <%=this.petition.get('Category').Description%></span>
-          </div>
-          <div>
-            <span class="category">Статус: <%=this.petition.get('PetitionStatus').Name%></span>
-          </div>
+          <div>Адресат: <%=this.petition.get('Partner')%></div>
+          <div>Автор: <%=this.petition.get('AuthorRef')%></div>
+          <div>Зібрано підписів: <%=this.petition.get('VotesCount')%> </div>
+          <div>Необхідно підписів: <%=this.petition.get('Level').Limit%></div>
+          <div>Дата завершення: <%=this.petition.get('EffectiveTo')%></div>
+          <div>Категорія: <%=this.petition.get('Category').Description%></div>
+          <div>Статус: <%=this.petition.get('PetitionStatus').Name%></div>
         </div>
       </div>
     </div>
     <div class="clear"></div>
-
   </div>
 
   <div id='votes-paging-settings'>
