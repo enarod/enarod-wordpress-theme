@@ -17,7 +17,8 @@ define(
 			},
 
 			events:{
-				'click input#vote-with-email'	: 'signWithEmail'
+			    'click input#vote-with-email'	: 'signWithEmail',
+                'click input#update-user-profile': 'updateUserProfile'
 			},
 
 			bindings:{
@@ -81,13 +82,6 @@ define(
 						validate : true
 					}
 				},
-				'[name=privacyConfirm]'	: {
-					observe : 'privacyConfirm',
-					setOptions : {
-						validate : true
-					}
-				}
-				
 			},
 
 			render: function(){
@@ -112,6 +106,12 @@ define(
 				this.stickit( this.model.get('Signer') );
 				return this;
 			},
+
+            updateUserProfile: function(){
+                this.parentView.PetitionID = this.model.get('PetitionID');
+                this.parentView.router.navigate('/user', true);
+                this.close();
+            },
 
 			signWithEmail: function(){
 //				this.setModelParameters (this.model.get('Signer') );

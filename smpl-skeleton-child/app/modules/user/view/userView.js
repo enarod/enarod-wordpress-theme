@@ -208,6 +208,11 @@ define(function(require){
       this.addValidation();
       if ( this.model.isValid(true) ){
         $('#spinner').show();
+        if (this.parentView.PetitionID){
+            this.returnPetitionID = this.parentView.PetitionID;
+            this.parentView.PetitionID = undefined;
+            this.listenTo(this.model, 'sync', this.getBackToPetition);
+        }
         this.model.save();
       }
 
@@ -266,8 +271,15 @@ console.log('do restore password');
 console.log('Save new password');
     },
 
+    getBackToPetition: function(){
+        this.parentView.router.navigate('#petition/'+this.returnPetitionID, true);
+        this.close();
+    },
+
     close: function(){
-      $('.logInSelector').dialog('destroy');
+      if ($('.logInSelector').hasClass("ui-dialog-content")){
+          $('.logInSelector').dialog('destroy');
+      }  
       this.remove();
       this.unbind();
     }

@@ -199,9 +199,9 @@ define(function(require){
 
         privacyConfirm : {
             required: function(){
-                if ( this.get('mode') == 'signingPetition'){
-                    return true;
-                }else if ( this.get('Token') ){
+                if ( this.get('mode') == 'signingPetition' ||
+                    this.get('Token')
+                ){
                     return false;
                 }else{
                     return true;
