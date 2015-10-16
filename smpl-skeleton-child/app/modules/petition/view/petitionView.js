@@ -149,7 +149,12 @@ define( function(require){
                     petitionID : this.model.get('ID'),
                     parentView : this.parentView
                 });
-                view.render();
+//2015-10-16 eugen.jaskal@gmail.com: 
+//Skip signature selection as currently using
+//only signature with user email details.
+//                view.render();
+                view.selectEmail();
+                
             }else{
                this.parentView.submenu.userLogIn(); 
             }

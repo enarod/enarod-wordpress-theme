@@ -169,11 +169,6 @@ define(
 				Backbone.Validation.unbind(this);
 				this.remove();
 				this.unbind();
-				if (this.model.get('ID') !== ''){
-					if (typeof this.model.get('Message') !== 'undefined') {
-						alert(this.model.get('Message'));
-					}
-				}
 			}
 		
 		});
