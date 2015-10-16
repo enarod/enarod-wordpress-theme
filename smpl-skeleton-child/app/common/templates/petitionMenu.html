@@ -14,12 +14,14 @@
       </form>
       <div id="search-line">
         <%_.each(data.StatusesList.models, function(el,idx,list){%>
-        <div class="search-div float-left fifth-width">
-          <label>
-            <input name="search-status-<%=el.get('ID')%>" type="checkbox" value="<%=el.get('ID')%>"/>
-            <span class='lavel-text'><%=el.get('Name')%></span>
-          </label>
-        </div>
+        <%if(el.get('Name') != 'Модерація'){%>
+          <div class="search-div float-left fifth-width">
+            <label>
+              <input name="search-status-<%=el.get('ID')%>" type="checkbox" value="<%=el.get('ID')%>"/>
+              <span class='lavel-text'><%=el.get('Name')%></span>
+            </label>
+          </div>
+        <%}%>
         <%});%>
         <div class="search-advanced-label">
           <input id="search-advanced-checkbox" name="search-advanced-checkbox" type="checkbox" value="1"/>
