@@ -55,23 +55,34 @@ define(
 					return this;
 				},
 
+                /*
+                 * Use e-certificate for signing petition
+                 */
 				selectCertificate: function(){
 console.log('select certificate');					
 				},
-				   
+
+				/*
+                 * Use E-mail registred account for signing petition
+                 */   
 				selectEmail: function(){
 					if ( !this.signator ){
                         if ( this.parentView.User ){
                             this.signator = new userModel();
-                            this.signator.set('mode', 'signingPetition');
-                            this.signator.getProfile();
-                            this.listenTo(this.signator, 'sync', this.loadEmailSignatureForm)
+                            this.setSignatorAttributes();
                         }else{
-                            this.signator	= new emailSignatorModel();
-                            this.loadEmailSignatureForm();
+                            this.parentView.submenu.userLogIn(); 
                         }
-					}
-				},	
+					}else{
+                        this.setSignatorAttributes();
+                    }
+				},
+
+                setSignatorAttributes: function(){
+                    this.signator.set('mode', 'signingPetition');
+                    this.signator.getProfile();
+                    this.listenTo( this.signator, 'sync', this.loadEmailSignatureForm );
+                },    
 
                 loadEmailSignatureForm: function(){
                     this.signator.set('Email', this.parentView.User.get('UserEmail')); //Different attr name in models 
@@ -82,35 +93,38 @@ console.log('select certificate');
                     signatureView.render();
                 },
 
-				selectFB: function(){
-					if ( !this.signator ){
-						this.signator = new userModel();
-					}
-					this.signator.fbLogIn();
-					this.listenTo ( this.signator, 'userProfileReady', this.signWithFB ); 
+                /*
+                 * Use FB profile for signing petition
+                 */
+                selectFB: function(){
+                    if ( !this.signator ){
+                        this.signator = new userModel();
+                    }
+                    this.signator.fbLogIn();
+                    this.listenTo ( this.signator, 'userProfileReady', this.signWithFB ); 
 
-				},
+                },
 
-				signWithFB: function(){
-					this.signatureModel	= new fbSignatureModel({ 'PetitionID': this.petitionID, 'Signer' : this.signator });
-					this.listenTo ( this.signatureModel, 'sync', this.close );
+                signWithFB: function(){
+                    this.signatureModel	= new fbSignatureModel({ 'PetitionID': this.petitionID, 'Signer' : this.signator });
+                    this.listenTo ( this.signatureModel, 'sync', this.close );
 
-					this.signatureModel.save();
-					
-				},
+                    this.signatureModel.save();
 
-				close: function(){
-					$('.signatureSelector').dialog('destroy');
-					this.remove();
-					this.unbind();
+                },
 
-					if ( this.signatureModel && this.signatureModel.get('PetitionID') !== ''){
-						if ( typeof this.signatureModel.get('Message') !== undefined ){
-							alert ( this.signatureModel.get('Message') );
-						} 
-					}
+                close: function(){
+                    $('.signatureSelector').dialog('destroy');
+                    this.remove();
+                    this.unbind();
 
-				},
+                    if ( this.signatureModel && this.signatureModel.get('PetitionID') !== ''){
+                        if ( typeof this.signatureModel.get('Message') !== undefined ){
+                            alert ( this.signatureModel.get('Message') );
+                        } 
+                    }
+
+                },
 
 			
 			});

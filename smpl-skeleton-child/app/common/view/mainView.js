@@ -32,11 +32,17 @@ define(function (require) {
         initialize: function(){
             if ( localStorage.edemUser ) {
                 var userData = JSON.parse( localStorage.getItem('edemUser') );
-                this.User = new User();
-                this.User.set({
-                    'Token'     : userData.Token,
-                    'UserEmail' : userData.UserEmail
-                });
+                var now = Date.now();
+                if ( now < userData.validUntil ){
+                    this.User = new User();
+                    this.User.set({
+                        'Token'     : userData.Token,
+                        'UserEmail' : userData.UserEmail
+                    });
+                }else{
+                    this.removeUser();
+                    this.addUser();
+                }
             }
         },
 

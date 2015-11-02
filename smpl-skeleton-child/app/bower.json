@@ -6,6 +6,7 @@
   ],
   "description": "enarod.org - чесне волевиявлення без шин та коктейлів",
   "dependencies": {
+    "backbone": "~1.2.3",
     "zeroclipboard": "~2.2.0"
   }
 }

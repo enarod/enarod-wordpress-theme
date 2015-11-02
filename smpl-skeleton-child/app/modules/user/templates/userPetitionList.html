@@ -1,0 +1,29 @@
+<div class="clear"></div>
+<%_.each(petitions, function(petition, index, list){%>
+<div>
+<div class="petition-item">
+  <!--<img src="ImageUrl" class="petition-partner-image" />-->
+  <% var logo = ( petition.Organization.Logo ? petition.Organization.Logo : '../wp-content/themes/smpl-skeleton-child/app/images/no-logo.png' ); %>
+  <img src="<%=logo%>" class="petition-partner-image">
+  <div class="petition-item-inner">
+    <a href='#petition/<%=petition.ID%>'><%=petition.Subject%></a>
+    <div class='signature-summary'>
+      <span class="partner"><%=petition.Organization.Name%></span>
+      <span class="petition-author"><%=petition.AuthorRef%></span>
+      <span class="sign-name">зібрано підписів</span>
+      <span class="sign-have"><%=petition.VotesCount%>/</span>
+      <span class="sign-left"><%=petition.Level.Limit%></span>
+      <span class="finish-date"><%=petition.EffectiveFrom%></span>
+      <div>
+        <span class="category">Категорія: <%=petition.Category.Description%></span>
+      </div>
+      <div>
+        <span class="category">Статус: <%=petition.PetitionStatus.Name%></span>
+      </div>
+      <!--<input class='unsigned' type='image' id='sign' value='Підписати' src='../wp-content/themes/smpl-skeleton-child/app/images/petition-not-checked.jpg'>-->
+    </div>
+  </div>
+</div> 
+<div class="clear"></div>
+</div>
+<%});%>

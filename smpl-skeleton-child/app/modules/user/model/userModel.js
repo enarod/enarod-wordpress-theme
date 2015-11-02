@@ -22,6 +22,16 @@ define(function(require){
       this.fetch();
     },
 
+    getCreatedPetitions: function(){
+      this.url = BASE_URL+'users/current?showCreated=true';
+      this.fetch();
+    },
+
+    getSignedPetitions: function(){
+      this.url = BASE_URL+'users/current?showSigned=true';
+      this.fetch();
+    },
+
     parse: function(response){
         return response.Data;
     },
@@ -215,7 +225,20 @@ define(function(require){
 
     register: function(){
       this.urlRoot = BASE_URL+'Account/Register';
-      this.save();
+      var that = this;
+      this.save(
+        null,
+        {
+            error: function(model, response){
+                that.registerError(response);
+            }
+        }
+      );
+    },
+
+    registerError: function(data){
+      var error = data.responseJSON.ModelState[''][0];
+      this.trigger( 'signUpError', { msg: error} );
     },
 
     /*
@@ -272,11 +295,14 @@ define(function(require){
     logInSuccess: function(data){
       this.set({Token : data});
       var that = this;
+      var validUntil = Date.now() + ( this.get('Token').expires_in*1000 );
+
       localStorage.setItem(
           'edemUser',
           JSON.stringify({
             'Token'     : that.get('Token'),
             'UserEmail' : that.get('UserEmail'),
+            'validUntil': validUntil, 
           })
       );
       this.trigger('loggedIn');

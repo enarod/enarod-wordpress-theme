@@ -10,7 +10,7 @@ define(
 		PetitionRegions		= require( 'module/petition/collection/petitionRegionCollection' ) ,
 		Organizations		= require( 'module/organization/collection/organizationCollection' ) ,
 
-		PetitionAuthor  = require('module/signature/model/emailSignatorModel');
+		PetitionAuthor  = require('module/user/model/userModel');
 
 
 	return Backbone.Model.extend({
@@ -133,6 +133,8 @@ alert("Error!");
 			}else{
 				data.AuthorRef = 'Без Автора';
 			}
+
+            return data;
 
 		},
 

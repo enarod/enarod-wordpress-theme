@@ -10,27 +10,50 @@ define( function(require){
         Petition		= require('text!module/petition/templates/petition.html'),
         PetitionNew		= require('text!module/petition/templates/petitionNew.html'),
         PetitionItem	= require('text!module/petition/templates/petitionItem.html'),
-		PetitionWidgetPage = require('text!module/petition/templates/petitionWidgetPage.html');
+        PetitionWidgetPage = require('text!module/petition/templates/petitionWidgetPage.html');
 
     return Backbone.View.extend({
         initialize: function(data) {
             if (data.tmpl === 'new') {
                 this.tmpl = PetitionNew;
                 this.onceAll ([
-					this.model.get( 'categoryList' ), 
-					this.model.get( 'levelList' ), 
-					this.model.get( 'regionList'),
-					this.model.get( 'organizationList')
-					], 'sync', this.render, this );
+                    this.model.get( 'categoryList' ), 
+                    this.model.get( 'levelList' ), 
+                    this.model.get( 'regionList'),
+                    this.model.get( 'organizationList')
+                    ], 'sync', this.render, this );
             } else if (data.tmpl === 'item'){ // this.render triggered by collection view (petitionsView.js)
                 this.tmpl = PetitionItem;
             } else if (data.tmpl === 'petition'){
                 this.tmpl = Petition;
                 this.listenTo(this.model, 'sync', this.render);
             }else if ( data.tmpl === 'widget' ){
-				this.tmpl = PetitionWidgetPage;
-				this.listenTo(this.model, 'sync', this.render);
-			}
+                this.tmpl = PetitionWidgetPage;
+                this.listenTo(this.model, 'sync', this.render);
+            }
+        },
+
+        addValidation: function(){
+            Backbone.Validation.bind ( this, {
+            model	: this.model,
+            valid	: function( view, attr, selector ){
+
+            var el	= view.$('[name='+attr+']'),
+            group	= el.closest('div.petition-form-item, div.petition-form-textarea');
+
+            group.removeClass('has-error');
+            group.find('.help-block').html('').addClass('hidden');
+
+            },
+            invalid	: function( view, attr, error, selector ){
+            var el	= view.$('[name='+attr+']'),
+            group	= el.closest('div.petition-form-item, div.petition-form-textarea');
+
+            group.addClass('has-error');
+            group.find('.help-block').html(error).removeClass('hidden');
+
+            }
+            } );
         }, 
 
 		bindings:{
@@ -128,22 +151,23 @@ define( function(require){
             if ( this.model.attributes.state ){
                 this.checkState( this.model.get('state') );
             }
-		
-			if ( this.model.get('organizationID') ){
-				this.model.setOrganization( this.model.get('organizationID') );
-			}
 
-			this.stickit( this.model );
+            if ( this.model.get('organizationID') ){
+                this.model.setOrganization( this.model.get('organizationID') );
+            }
+
+            this.stickit( this.model );
             this.addClipboardHandler();
 
             $('#spinner').hide();
-          try{
-            FB.XFBML.parse();
-          }catch(ex){}
+            try{
+                FB.XFBML.parse();
+            }catch(ex){}
             return this;
         },
 
         sign: function() {
+            $('#spinner').show();
             if ( this.parentView.User ){
                 var view = new SignatureSelector({
                     petitionID : this.model.get('ID'),
@@ -161,51 +185,44 @@ define( function(require){
         },
 
         publishPetition: function() {
-			Backbone.Validation.bind ( this, {
-				model	: this.model,
-				valid	: function( view, attr, selector ){
+            this.addValidation();
 
-					var el	= view.$('[name='+attr+']'),
-					group	= el.closest('div.petition-form-item, div.petition-form-textarea');
+            if ( this.model.isValid(true) ){
 
-					group.removeClass('has-error');
-					group.find('.help-block').html('').addClass('hidden');
+                delete this.model.attributes.ID;
+                this.model.set({ PetitionStatus: { ID: 1 } });
+                if ( this.parentView.User ){
+                    var view = new SignatureSelector({
+                        petitionID : this.model.get('ID'),
+                        parentView : this.parentView,
+                        signator: this.model.get('Author'),
+                    });
+                    //2015-10-16 eugen.jaskal@gmail.com: 
+                    //Skip signature selection as currently using
+                    //only signature with user email details.
+                    //                view.render();
+                    view.selectEmail();
 
-				},
-				invalid	: function( view, attr, error, selector ){
-					var el	= view.$('[name='+attr+']'),
-					group	= el.closest('div.petition-form-item, div.petition-form-textarea');
+                }else{
+                    this.parentView.submenu.userLogIn(); 
+                }
 
-					group.addClass('has-error');
-					group.find('.help-block').html(error).removeClass('hidden');
-
-				}
-			} );
-
-			if ( this.model.isValid(true) ){
-				delete this.model.attributes.ID;
-
-		        var view = new SignatureSelector( {
-							signator: this.model.get("Author")
-				} );
-			    view.render();
-
-				this.listenTo(this.model.get("Author"), 'signed', this.storePetition ); //model.save() );
-				this.listenTo(this.model, 'sync', this.openStoredPetition);
-			}else{
+                this.listenTo(this.model.get("Author"), 'signed', this.storePetition ); 
+                this.listenTo(this.model, 'sync', this.openStoredPetition);
+            }else{
                 //do nothing if petition invalid
-			}
+            }
 
         },
 		
-		storePetition: function(){
+        storePetition: function(){
             $('#spinner').show();
 
-			this.unstickit(this.model);
-			this.model.set( 'Email', this.model.get("Author").get("Email") );
-			this.model.set( 'CreatedBy', this.model.get("Author") );
-			this.model.save();
-		},	
+            this.unstickit(this.model);
+            this.model.set( 'Email', this.model.get("Author").get("Email") );
+            this.model.set( 'CreatedBy', this.model.get("Author") );
+            this.model.save();
+        },	
 	
         openStoredPetition: function(){
         //TODO: Change below, so ID was reachable easily
@@ -223,17 +240,17 @@ define( function(require){
             }
         },
 
-		addOrganizationView: function( val ){
+        addOrganizationView: function( val ){
 
-			if (this.childView ){
-				this.childView.close();
-			}
-			
-			this.childView = new OrganizationView ( {model: this.model.get('Organization'), tmpl: 'organizationInPetition'} );
-			this.moduleNode = '#organization-details';
-			this.childView.parentView = this;
-			this.childView.render();	
-		},
+            if (this.childView ){
+                this.childView.close();
+            }
+
+            this.childView = new OrganizationView ( {model: this.model.get('Organization'), tmpl: 'organizationInPetition'} );
+            this.moduleNode = '#organization-details';
+            this.childView.parentView = this;
+            this.childView.render();	
+        },
 
         checkState: function(state) {
             if (state=='alreadyVoted') {

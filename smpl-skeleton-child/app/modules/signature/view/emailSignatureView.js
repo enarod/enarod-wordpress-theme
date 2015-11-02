@@ -16,6 +16,30 @@ define(
 				this.listenTo (this.model, 'sync',  this.close );
 			},
 
+            addValidation: function(){
+				Backbone.Validation.bind ( this, {
+					model	: this.model.get('Signer'),
+					valid	: function( view, attr ){
+						var el	= view.$('[name='+attr+']'),
+						group	= el.closest('div.form-element-group');
+
+						group.removeClass('has-error');
+						group.find('.help-block').html('').addClass('hidden');
+
+					},
+					invalid	: function( view, attr, error ){
+						var el	= view.$('[name='+attr+']'),
+						group	= el.closest('div.form-element-group');
+
+						group.addClass('has-error');
+						group.find('.help-block').html(error).removeClass('hidden');
+
+					}
+
+				} );
+            
+            },
+
 			events:{
 			    'click input#vote-with-email'	: 'signWithEmail',
                 'click input#update-user-profile': 'updateUserProfile'
@@ -104,6 +128,7 @@ define(
                 }
 
 				this.stickit( this.model.get('Signer') );
+                $('#spinner').hide();
 				return this;
 			},
 
@@ -115,26 +140,7 @@ define(
 
 			signWithEmail: function(){
 //				this.setModelParameters (this.model.get('Signer') );
-				Backbone.Validation.bind ( this, {
-					model	: this.model.get('Signer'),
-					valid	: function( view, attr ){
-						var el	= view.$('[name='+attr+']'),
-						group	= el.closest('div.form-element-group');
-
-						group.removeClass('has-error');
-						group.find('.help-block').html('').addClass('hidden');
-
-					},
-					invalid	: function( view, attr, error ){
-						var el	= view.$('[name='+attr+']'),
-						group	= el.closest('div.form-element-group');
-
-						group.addClass('has-error');
-						group.find('.help-block').html(error).removeClass('hidden');
-
-					}
-
-				} );
+                this.addValidation();				
 
 				if ( this.model.get('Signer').isValid(true) ){
                     $('#spinner').show();
