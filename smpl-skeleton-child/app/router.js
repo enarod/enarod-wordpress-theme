@@ -190,18 +190,24 @@ define( 	function( require ){
  * User profile routes
  */ 
         userProfile: function(){
-            var User = this.appView.User;
-            var mode = User ? 'profile' : 'LogIn';
-            this.appView.addChildView({
-                module: 'petition',
-                type:   'user',
-                settings: { 
-                    model: User,
+            var User, mode;
+            if ( this.appView.User ){
+                User = this.appView.User;
+                var mode = User ? 'profile' : 'LogIn';
+                this.appView.addChildView({
+                    module: 'petition',
+                    type:   'user',
+                    settings: { 
+                        model: User,
                     'mode': mode
-                }
-            });
-            
-            User.getProfile();
+                    }
+                });
+
+                User.getProfile();
+            }else{
+                this.navigate('petition', { trigger: true});
+            }
+
 
         },
 

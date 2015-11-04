@@ -41,7 +41,6 @@ define(function (require) {
                     });
                 }else{
                     this.removeUser();
-                    this.addUser();
                 }
             }
         },
