@@ -34,9 +34,9 @@
 				 <span><%= daysLeft %></span> днів <span><%= hoursLeft %></span> годин <span><%=minutesLeft%></span> хвилин
 			 </span>
 			 <p id='enarod-pet-votes-collected'><span class="enarod-pet-votes-collected-number"><%=VotesCount%></span><span>підписів зібрано</span></p>
-			 <p id='enarod-pet-votes-left'><span class="enarod-pet-votes-left-number"><%=(Level.Limit-VotesCount)%></span><span>залишилось зібрати</span></p>
+			 <p id='enarod-pet-votes-left'><span class="enarod-pet-votes-left-number"><%=(Limit-VotesCount)%></span><span>залишилось зібрати</span></p>
       <%} else {%>
-        <p>Підтримали: <%=VotesCount%>, потрібно ще: <%=(Level.Limit-VotesCount)%><br/>
+        <p>Підтримали: <%=VotesCount%>, потрібно ще: <%=(Limit-VotesCount)%><br/>
         У нас  <%= daysLeft %> дн. <%= hoursLeft %> год. <%=minutesLeft%> хв.</p>
       <%}%>
 				<a target='_blank' href='#petition/<%=ID%>/sign'> 

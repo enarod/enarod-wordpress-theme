@@ -80,7 +80,7 @@ alert("Error!");
 		*----------------------------------*/
 		prepareModelParameters: function(data){
 			if ( data.VotesCount !== undefined ){
-				var limit = data.Level.Limit;
+				var limit = data.Limit;
 				var collected = data.VotesCount;
 				var left = limit - collected;
 				data.VotesLeft = left;
