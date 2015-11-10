@@ -171,6 +171,7 @@ define(
 
 			close: function(){
                 $('#spinner').hide();
+                alert(this.model.get('Message'));
 				$('.emailForm').dialog('destroy');
 				Backbone.Validation.unbind(this);
 				this.remove();
