@@ -11,7 +11,8 @@ define(function(require){
       profileForm = require('text!modules/user/templates/userProfilePage.html'),
       restorePasswordForm = require('text!modules/user/templates/restorePasswordForm.html'),
       userPetitionsTemplate = require('text!modules/user/templates/userPetitionList.html'),
-        
+       
+      UserPassModel = require('module/user/model/userPassword'),
       Petition = require('module/petition/model/petitionModel')
       ;
 
@@ -33,9 +34,9 @@ define(function(require){
       this.listenTo( this.model, 'sync', this.render);
     },
 
-    addValidation: function(){
+    addValidation: function( Model ){
       Backbone.Validation.bind ( this, {
-        model	: this.model,
+        model	: Model,
         valid	: function( view, attr ){
           var el	= view.$('[name='+attr+']'),
               group	= el.closest('div.form-element-group');
@@ -173,6 +174,7 @@ define(function(require){
           });
         }else if ( this.mode == 'profile'){
           $('.logInSelector').tabs();
+          this.setPasswordBindings();
         }
   
         if ( $('#captcha').length ){
@@ -260,6 +262,7 @@ define(function(require){
           .addClass('has-error')
           .find('.help-block')
           .html(data.msg);
+      $('#spinner').hide();
     },
 
     /*
@@ -273,7 +276,7 @@ define(function(require){
     },
 
     register: function(){
-      this.addValidation();
+      this.addValidation(this.model);
 
       if ( this.model.isValid(true) ){
         $('#spinner').show();
@@ -304,15 +307,93 @@ define(function(require){
 console.log('do restore password');    
     },
 
+    setPasswordBindings: function(){
+        this.UserPassword = new UserPassModel();
+        this.stickit( this.UserPassword, this.PasswordBindings);
+    },
+
     saveNewPassword: function(){
-console.log('Save new password');
+        this.addValidation(this.UserPassword);
+
+        if ( this.UserPassword.isValid(true) ){
+            $('#spinner').show();
+            this.UserPassword.save();
+            this.listenTo( this.UserPassword, 'sync', this.changePasswordDone );
+        }
+
+    },
+
+
+    PasswordBindings:{
+      '#NewPassword': {
+        observe: 'NewPassword',
+        setOptions: {
+          validate: true
+        }
+
+      },
+      '#ConfirmPassword': {
+        observe: 'ConfirmPassword',
+        setOptions: {
+          validate: true
+        }
+      },
+      '#CurrentPassword': {
+        observe: 'CurrentPassword',
+        setOptions: {
+          validate: true
+        }
+      },
+    
+    },
+
+    changePasswordDone: function(){
+
+        if ( this.UserPassword.get('IsSuccess') ){
+            $('#ChangePasswordStatus')
+                .closest('div.form-element-group')
+                .addClass('has-success')
+                .find('.help-block')
+                .html(this.UserPassword.get('Message'))
+                .removeClass('hidden');
+
+            setTimeout(function(){
+                $('#ChangePasswordStatus')
+                .closest('div.form-element-group')
+                .removeClass('has-success')
+                .find('.help-block')
+                .html('')
+                .addClass('hidden');
+            },
+            5000);
+        }else{
+            $('#ChangePasswordStatus')
+                .closest('div.form-element-group')
+                .addClass('has-error')
+                .find('.help-block')
+                .html(this.UserPassword.get('Message'))
+                .removeClass('hidden');
+
+            setTimeout(function(){
+                $('#ChangePasswordStatus')
+                .closest('div.form-element-group')
+                .removeClass('has-error')
+                .find('.help-block')
+                .html('')
+                .addClass('hidden');
+            },
+            5000);
+        }
+
+        $('#spinner').hide();
+
     },
 
     /*
      * Save changes to user profile
      */
     profileSave: function(){
-      this.addValidation();
+      this.addValidation(this.model);
       if ( this.model.isValid(true) ){
         $('#spinner').show();
         if (this.parentView.PetitionID){
@@ -371,6 +452,7 @@ console.log('Save new password');
 
     close: function(){
       $('#spinner').hide();
+      this.unstickit();
       this.cleanUp();
       this.remove();
       this.unbind();

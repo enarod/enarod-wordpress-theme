@@ -138,22 +138,30 @@ alert("Error!");
 
 		},
 
-		setDaysLeft: function(effectiveDate){
-			var d, h, m, diff;
-			var currentDate = new Date();
+        setDaysLeft: function(effectiveDate){
+            var d, h, m, diff;
+            //			var effectiveDate = new Date (effectiveDate);
+            var currentDate = new Date();
+            var dateDiff = effectiveDate - currentDate;
 
-			diff = Math.abs( effectiveDate - currentDate ) / 1000;
-			d = Math.floor( diff/86400 );
-			diff -= d * 86400;
-			h = Math.floor( diff/3600 );
-			diff -= h * 3600;
-			m = Math.floor( diff/60 );
-			diff -= m * 60;
+            if ( dateDiff < 0 ){
+                d = 0;
+                h = 0;
+                m = 0;
+            }else{
+                diff = dateDiff / 1000;
+                d = Math.floor( diff/86400 );
+                diff -= d * 86400;
+                h = Math.floor( diff/3600 );
+                diff -= h * 3600;
+                m = Math.floor( diff/60 );
+                diff -= m * 60;
+            }
 
-			this.set("daysLeft", d);
-			this.set("hoursLeft", h);
-			this.set("minutesLeft", m);
-		},
+            this.set("daysLeft", d);
+            this.set("hoursLeft", h);
+            this.set("minutesLeft", m);
+        },
 
 		formatDate: function(date){
 			var formatedDate = date.getDate()+"."+(date.getMonth()+1)+"."+date.getFullYear();

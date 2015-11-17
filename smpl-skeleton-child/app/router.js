@@ -199,7 +199,7 @@ define( 	function( require ){
                     type:   'user',
                     settings: { 
                         model: User,
-                    'mode': mode
+                        'mode': mode
                     }
                 });
 
